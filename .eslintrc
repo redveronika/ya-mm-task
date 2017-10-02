@@ -1,0 +1,16 @@
+// Переназначение конфигураций eslint от airbnb
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "react/jsx-filename-extension": [ 1, { "extensions": [".js"] } ],
+    // Валидация пробелов
+    "indent": ["error", 4],
+    "react/jsx-indent": ["error", 4],
+    "linebreak-style": ["off"],
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": "off",
+    // Валидация пробелов для propTypes
+    "react/jsx-indent-props": ["error", 4]
+  }
+}
