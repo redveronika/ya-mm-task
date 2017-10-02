@@ -3,8 +3,8 @@ import React from 'react'
 const Main = () => {
     return (
         <div>
-            Тест
+            Тест14
         </div>
     )
 };
-export default Main;
+export default Main
