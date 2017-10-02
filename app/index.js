@@ -1,6 +1,6 @@
-import React from 'react'
-import {render} from 'react-dom'
+import React from 'react';
+import { render } from 'react-dom';
 
-import Main from '../app/blocks/main/main.js';
+import Main from '../app/blocks/main/main';
 
 render(<Main />, document.getElementById('app'));
