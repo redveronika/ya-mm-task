@@ -1,5 +1,5 @@
 {
-  "name": "Yandex multimedia task",
+  "name": "ya-mm-task",
   "author": "Veronika Voronova",
   "scripts": {
     "start:dev": "webpack-dev-server"
