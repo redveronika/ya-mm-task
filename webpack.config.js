@@ -1,32 +1,39 @@
 const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-    entry: [
-        './app/index.js'
-    ],
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+    entry: {
+        app: './app/index.js',
     },
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
-        port: 4400,
+        contentBase: './dist',
         hot: true,
     },
     module: {
-        loaders: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader'
-        }]
+        loaders: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+            },
+            {
+                test: /\.html$/,
+                loader: 'html-loader',
+            },
+        ],
     },
     plugins: [
         new HtmlPlugin({
-            template: './app/index.html'
+            template: './app/index.html',
         }),
-        new webpack.HotModuleReplacementPlugin()
-    ]
+        new CleanWebpackPlugin(['dist']),
+        new webpack.HotModuleReplacementPlugin(),
+    ],
+    output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+    },
 };

@@ -1,10 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 const Main = () => {
     return (
-        <div>
-            Тест14
-        </div>
-    )
+        <section>Test</section>
+    );
 };
-export default Main
+export default Main;
