@@ -15,7 +15,11 @@ const Tabs = ({ tabs }) => (
 );
 
 Tabs.propTypes = {
-    tabs: PropTypes.arrayOf(PropTypes.object).isRequired,
+    tabs: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        linkTo: PropTypes.string,
+        title: PropTypes.string,
+    })).isRequired,
 };
 
 export default Tabs;
