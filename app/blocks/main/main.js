@@ -31,7 +31,7 @@ const Main = ({ filter }) => (
         <section className="content">
             { filter !== null && filterComponents[filter]() }
         </section>
-        <section className="console">
+        <section className="command-window">
             <Console />
         </section>
     </main>

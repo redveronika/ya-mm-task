@@ -1,0 +1,51 @@
+.console {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.console-window {
+    padding: 10px;
+    font-size: 14px;
+}
+
+.console-window__placeholder {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.console-window__placeholder-list {
+    padding-left: 20px;
+}
+
+.console-form {
+    width: 100%;
+    display: flex;
+}
+
+.console-form__input {
+    width: calc(100% - 100px);
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    border: 0;
+    font-size: 16px;
+    background-color: #fff;
+    outline-color: #2fe5bf;
+}
+
+.console-form__submit {
+    width: 100px;
+    height: 30px;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    cursor: pointer;
+    background-color: #ffe200;
+    outline-color: #2fe5bf;
+}
+
+.console-form__submit:hover {
+    background-color: #feea54;
+    transition-delay: 0.1s;
+}
