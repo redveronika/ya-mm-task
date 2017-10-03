@@ -23,6 +23,29 @@ module.exports = {
                 test: /\.html$/,
                 loader: 'html-loader',
             },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: 'style-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                    'css-loader'],
+            },
+            {
+                test: /\.(woff|woff2)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'assets/fonts/',
+                        },
+                    },
+                ],
+            },
         ],
     },
     plugins: [
@@ -31,6 +54,7 @@ module.exports = {
         }),
         new CleanWebpackPlugin(['dist']),
         new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
     ],
     output: {
         filename: '[name].bundle.js',
