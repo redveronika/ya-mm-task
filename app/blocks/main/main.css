@@ -1,8 +1,11 @@
 .main {
-    width: 1180px;
-    margin: 0 auto 30px;
     display: flex;
     flex-direction: column;
+    max-width: 1180px;
+    width: 100%;
+    margin: 0 auto 30px;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .header {
@@ -17,12 +20,12 @@
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.console {
+.command-window {
     width: 100%;
     height: 300px;
     margin-top: 20px;
-    padding: 0 20px;
     box-sizing: border-box;
-    background-color: #000;
+    background-color: #2fe5bf;
     color: white;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.04)
 }
