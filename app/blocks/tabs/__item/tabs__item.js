@@ -12,4 +12,11 @@ const TabsItem = props => (
     </div>
 );
 
+TabsItem.propTypes = {
+    tab: PropTypes.objectOf(PropTypes.shape({
+        linkTo: PropTypes.string,
+        title: PropTypes.string,
+    })).isRequired,
+};
+
 export default TabsItem;
