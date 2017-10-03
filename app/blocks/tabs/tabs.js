@@ -4,14 +4,18 @@ import TabsItem from './__item/tabs__item';
 
 import './tabs.css';
 
-const Tabs = props => (
+const Tabs = ({ tabs }) => (
     <div className="tabs">
         <div className="tabs__container">
-            { props.tabs.length > 0 && props.tabs.map((tab, i) => (
-                <TabsItem tab={tab} key={i} />
+            { tabs.length > 0 && tabs.map(tab => (
+                <TabsItem tab={tab} key={tab.id} />
             ))}
         </div>
     </div>
 );
+
+Tabs.propTypes = {
+    tabs: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default Tabs;

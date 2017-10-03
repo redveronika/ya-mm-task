@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { Tabs } from '../../blocks';
 
@@ -7,10 +6,12 @@ import './main.css';
 
 const tabs = [
     {
+        id: 1,
         title: 'Прогресс бар',
         linkTo: '/progress-bar',
     },
     {
+        id: 2,
         title: 'Кнопка',
         linkTo: '/button',
     },
