@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { Tabs } from '../../blocks';
+import { Tabs, Rating, ProgressBar, Console } from '../../blocks';
 
 import './main.css';
 
@@ -8,22 +9,40 @@ const tabs = [
     {
         id: 1,
         title: 'Прогресс бар',
-        linkTo: '/progress-bar',
+        linkTo: '/main/progress-bar',
     },
     {
         id: 2,
-        title: 'Кнопка',
-        linkTo: '/button',
+        title: 'Рейтинг',
+        linkTo: '/main/rating',
     },
 ];
 
-const Main = () => {
-    return (
-        <main>
-            <header className="header">
-                <Tabs tabs={tabs} />
-            </header>
-        </main>
-    );
+const filterComponents = {
+    rating: () => <Rating />,
+    'progress-bar': () => <ProgressBar />,
 };
+
+const Main = ({ filter }) => (
+    <main className="main">
+        <header className="header">
+            <Tabs tabs={tabs} />
+        </header>
+        <section className="content">
+            { filter !== null && filterComponents[filter]() }
+        </section>
+        <section className="console">
+            <Console />
+        </section>
+    </main>
+);
+
+Main.propTypes = {
+    filter: PropTypes.string,
+};
+
+Main.defaultProps = {
+    filter: null,
+};
+
 export default Main;

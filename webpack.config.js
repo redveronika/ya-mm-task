@@ -11,6 +11,7 @@ module.exports = {
     devServer: {
         contentBase: './dist',
         hot: true,
+        historyApiFallback: true,
     },
     module: {
         loaders: [
@@ -59,5 +60,6 @@ module.exports = {
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
+        publicPath: '/',
     },
 };

@@ -11,6 +11,8 @@
     "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": "off",
     // Валидация пробелов для propTypes
-    "react/jsx-indent-props": ["error", 4]
+    "react/jsx-indent-props": ["error", 4],
+    // forbidden proptypes
+    "react/forbid-prop-types": "off"
   }
 }
