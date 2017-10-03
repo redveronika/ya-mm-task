@@ -4,19 +4,22 @@ import PropTypes from 'prop-types';
 
 import './tabs__item.css';
 
-const TabsItem = props => (
+const TabsItem = ({ linkTo, title }) => (
     <div className="tabs__item tab">
-        <NavLink to={props.tab.linkTo} className="tab__link" activeClassName="tab__link--active">
-            {props.tab.title}
+        <NavLink to={linkTo} className="tab__link" activeClassName="tab__link--active">
+            {title}
         </NavLink>
     </div>
 );
 
 TabsItem.propTypes = {
-    tab: PropTypes.objectOf(PropTypes.shape({
-        linkTo: PropTypes.string,
-        title: PropTypes.string,
-    })).isRequired,
+    linkTo: PropTypes.string,
+    title: PropTypes.string,
+};
+
+TabsItem.defaultProps = {
+    linkTo: '',
+    title: '',
 };
 
 export default TabsItem;

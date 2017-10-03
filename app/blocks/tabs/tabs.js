@@ -8,18 +8,14 @@ const Tabs = ({ tabs }) => (
     <div className="tabs">
         <div className="tabs__container">
             { tabs.length > 0 && tabs.map(tab => (
-                <TabsItem tab={tab} key={tab.id} />
+                <TabsItem linkTo={tab.linkTo} title={tab.title} key={tab.id} />
             ))}
         </div>
     </div>
 );
 
 Tabs.propTypes = {
-    tabs: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number,
-        linkTo: PropTypes.string,
-        title: PropTypes.string,
-    })).isRequired,
+    tabs: PropTypes.array.isRequired,
 };
 
 export default Tabs;
