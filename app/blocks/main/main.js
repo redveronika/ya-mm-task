@@ -22,12 +22,6 @@ const Main = () => {
             <header className="header">
                 <Tabs tabs={tabs} />
             </header>
-            <Router>
-                <Switch>
-                    <Route path="/progress-bar" component={Main} />
-                    <Route path="/button" component={Main} />
-                </Switch>
-            </Router>
         </main>
     );
 };
