@@ -24,7 +24,7 @@ const component = () => {
                             <Main filter={match.params.filter} />
                         )}
                     />
-                    <Redirect from="/" to="/main" />
+                    <Redirect from="/" to="/main/progress-bar" />
                 </Switch>
             </Router>
         </Provider>,
