@@ -15,6 +15,7 @@
     "react/no-did-mount-set-state": "off",
     "no-param-reassign": "off",
     // forbidden proptypes
-    "react/forbid-prop-types": "off"
+    "react/forbid-prop-types": "off",
+    "react/no-did-update-set-state": "off"
   }
 }
