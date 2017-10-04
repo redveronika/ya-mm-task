@@ -16,6 +16,7 @@
     "no-param-reassign": "off",
     // forbidden proptypes
     "react/forbid-prop-types": "off",
-    "react/no-did-update-set-state": "off"
+    "react/no-did-update-set-state": "off",
+    "no-case-declarations": "off"
   }
 }
