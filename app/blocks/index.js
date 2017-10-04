@@ -6,4 +6,5 @@ export { default as Text } from './text/text';
 export { default as Button } from './button/button';
 export { default as IconsList } from './icons-list/icons-list';
 export { default as Console } from './console/console';
+export { default as SelectTab } from './select-tab/select-tab';
 export { default as ShowStat } from './show-stat/show-stat';

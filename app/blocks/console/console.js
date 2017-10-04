@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 
-import { ShowStat } from '../../blocks';
+import { SelectTab, ShowStat } from '../../blocks';
 
 import './console.css';
+
+const SELECT_TAB = 'selectTab()';
+const SHOW_STAT = 'showStat()';
 
 class Console extends Component {
     constructor(props) {
         super(props);
         this.state = {
             command: '',
-            availableCommands: ['showStat()'],
+            availableCommands: [SELECT_TAB, SHOW_STAT],
             showResult: null,
             strArgs: '',
         };
@@ -42,8 +45,10 @@ class Console extends Component {
 
     showResult() {
         switch (this.state.showResult) {
-        case 'showStat()':
-            return <ShowStat args={this.state.strArgs} />;
+        case SHOW_STAT:
+            return <ShowStat />;
+        case SELECT_TAB:
+            return <SelectTab selectedTabId={this.state.strArgs} />
         default: return null;
         }
     }
@@ -62,7 +67,7 @@ class Console extends Component {
                         {/*</ul>*/}
                     {/*</div>*/}
                     <div className="console-window__result">
-                        { this.state.showResult !== null && this.showResult() }
+                        { this.state.showResult && this.showResult() }
                     </div>
                 </div>
                 <form className="console-form" onSubmit={this.handleSubmit}>

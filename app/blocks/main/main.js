@@ -1,37 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { Tabs, Rating, ProgressBar, Button, IconsList, Text, Console } from '../../blocks';
 
 import './main.css';
-
-const tabs = [
-    {
-        id: 1,
-        title: 'Прогресс-бар',
-        linkTo: '/main/progress-bar',
-    },
-    {
-        id: 2,
-        title: 'Рейтинг',
-        linkTo: '/main/rating',
-    },
-    {
-        id: 3,
-        title: 'Кнопка',
-        linkTo: '/main/button',
-    },
-    {
-        id: 4,
-        title: 'Список иконок',
-        linkTo: '/main/icons-list',
-    },
-    {
-        id: 5,
-        title: 'Текст',
-        linkTo: '/main/text',
-    },
-];
 
 const filterComponents = {
     rating: () => <Rating />,
@@ -41,7 +14,7 @@ const filterComponents = {
     text: () => <Text />,
 };
 
-const Main = ({ filter }) => (
+const Main = ({ filter, tabs }) => (
     <main className="main">
         <header className="header">
             <Tabs tabs={tabs} />
@@ -57,10 +30,15 @@ const Main = ({ filter }) => (
 
 Main.propTypes = {
     filter: PropTypes.string,
+    tabs: PropTypes.array.isRequired,
 };
 
 Main.defaultProps = {
     filter: null,
 };
 
-export default Main;
+export default connect(
+    state => ({
+        tabs: state.tabs.tabs,
+    }),
+)(Main);
