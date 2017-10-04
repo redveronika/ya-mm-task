@@ -30,16 +30,20 @@ const initialState = {
 };
 
 const SET_ACTIVE_TAB = 'SET_ACTIVE_TAB';
+const REORDER_TABS = 'REORDER_TABS';
 
 const setActiveTab = id => ({ type: SET_ACTIVE_TAB, payload: id });
+const reorderTabs = tabs => ({ type: REORDER_TABS, payload: tabs });
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
     case SET_ACTIVE_TAB:
         return { ...state, activeTab: action.payload };
+    case REORDER_TABS:
+        return { ...state, tabs: action.payload };
     default:
         return state;
     }
 };
 
-export { reducer, setActiveTab };
+export { reducer, setActiveTab, reorderTabs };
