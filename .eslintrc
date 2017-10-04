@@ -12,6 +12,9 @@
     "import/no-extraneous-dependencies": "off",
     // Валидация пробелов для propTypes
     "react/jsx-indent-props": ["error", 4],
-    "react/no-did-mount-set-state": "off"
+    "react/no-did-mount-set-state": "off",
+    "no-param-reassign": "off",
+    // forbidden proptypes
+    "react/forbid-prop-types": "off"
   }
 }
