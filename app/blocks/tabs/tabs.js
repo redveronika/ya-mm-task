@@ -8,7 +8,7 @@ const Tabs = ({ tabs }) => (
     <div className="tabs">
         <div className="tabs__container">
             { tabs.length > 0 && tabs.map(tab => (
-                <TabsItem linkTo={tab.linkTo} title={tab.title} key={tab.id} />
+                <TabsItem id={tab.id} title={tab.title} linkTo={tab.linkTo} key={tab.id} />
             ))}
         </div>
     </div>

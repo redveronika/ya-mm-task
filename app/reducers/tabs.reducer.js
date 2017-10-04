@@ -26,7 +26,7 @@ const initialState = {
             linkTo: '/main/text',
         },
     ],
-    activeTab: 1,
+    activeTab: null,
 };
 
 const SET_ACTIVE_TAB = 'SET_ACTIVE_TAB';
