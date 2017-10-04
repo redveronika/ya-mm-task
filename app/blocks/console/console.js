@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 
-import { SelectTab, ShowStat } from '../../blocks';
+import { SelectTab, ShowStat, SwapTabs } from '../../blocks';
 
 import './console.css';
 
 const SELECT_TAB = 'selectTab()';
 const SHOW_STAT = 'showStat()';
+const SWAP_TABS = 'swapTabs()';
 
 class Console extends Component {
     constructor(props) {
         super(props);
         this.state = {
             command: '',
-            availableCommands: [SELECT_TAB, SHOW_STAT],
+            availableCommands: [SELECT_TAB, SHOW_STAT, SWAP_TABS],
             showResult: null,
             strArgs: '',
         };
@@ -48,7 +49,9 @@ class Console extends Component {
         case SHOW_STAT:
             return <ShowStat />;
         case SELECT_TAB:
-            return <SelectTab selectedTabId={this.state.strArgs} />
+            return <SelectTab selectedTabId={this.state.strArgs} />;
+        case SWAP_TABS:
+            return <SwapTabs args={this.state.strArgs} />
         default: return null;
         }
     }
