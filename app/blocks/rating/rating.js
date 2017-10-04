@@ -39,8 +39,7 @@ Rating.propTypes = {
 
 export default connect(
     state => ({
-        timeOpen: state.rating.timeOpen,
-        timeClose: state.rating.timeClose,
+        sessionTime: state.rating.sessionTime,
     }),
     { setSessionTime },
 )(Rating);
