@@ -8,16 +8,16 @@ import { setAppOpenTime } from '../../reducers/app.reducer';
 import './main.css';
 
 const filterComponents = {
-    rating: () => <Rating />,
-    'progress-bar': () => <ProgressBar />,
-    button: () => <Button />,
-    'icons-list': () => <IconsList />,
-    text: () => <Text />,
+    rating: () => <Rating time={new Date().valueOf()} />,
+    'progress-bar': () => <ProgressBar time={new Date().valueOf()} />,
+    button: () => <Button time={new Date().valueOf()} />,
+    'icons-list': () => <IconsList time={new Date().valueOf()} />,
+    text: () => <Text time={new Date().valueOf()} />,
 };
 
 class Main extends Component {
-    componentDidMount() {
-        this.props.setAppOpenTime(new Date().valueOf());
+    componentWillMount() {
+        //this.props.setAppOpenTime(new Date().valueOf());
     }
 
     render() {

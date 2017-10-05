@@ -34,7 +34,7 @@ class ShowStat extends Component {
     }
 
     showCommonTime() {
-        const commonSessionTime = new Date().valueOf() - this.props.app.openApp;
+        const commonSessionTime = this.props.time - this.props.app.openApp;
         const { hours, minutes, seconds } = PARSE_DATE(commonSessionTime);
         return (
             <p>
@@ -52,7 +52,7 @@ class ShowStat extends Component {
             return sum;
         }, 0);
         if (this.props.tabs.activeTab === tab.id) {
-            time += new Date().valueOf() - this.props.app.activeTabOpen;
+            time += this.props.time - this.props.app.activeTabOpen;
         }
         const { hours, minutes, seconds } = PARSE_DATE(time);
         return (

@@ -15,7 +15,7 @@ class Rating extends Component {
 
     componentWillMount() {
         const time = new Date().valueOf();
-        this.setState({ timeOpened: time });
+        this.setState({ timeOpened: this.props.time });
     }
 
     componentWillUnmount() {
@@ -33,6 +33,7 @@ class Rating extends Component {
 
 Rating.propTypes = {
     setSessionTime: PropTypes.func.isRequired,
+    time: PropTypes.number.isRequired,
 };
 
 export default connect(

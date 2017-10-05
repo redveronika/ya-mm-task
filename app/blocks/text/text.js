@@ -14,8 +14,7 @@ class Text extends Component {
     }
 
     componentWillMount() {
-        const timeOpened = new Date().valueOf();
-        this.setState({ timeOpened });
+        this.setState({ timeOpened: this.props.time });
     }
 
     componentWillUnmount() {
@@ -33,6 +32,7 @@ class Text extends Component {
 
 Text.propTypes = {
     setSessionTime: PropTypes.func.isRequired,
+    time: PropTypes.number.isRequired,
 };
 
 export default connect(

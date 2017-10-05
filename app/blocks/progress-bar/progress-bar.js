@@ -14,8 +14,7 @@ class ProgressBar extends Component {
     }
 
     componentWillMount() {
-        const time = new Date().valueOf();
-        this.setState({ timeOpened: time });
+        this.setState({ timeOpened: this.props.time });
     }
 
     componentWillUnmount() {
@@ -33,6 +32,7 @@ class ProgressBar extends Component {
 
 ProgressBar.propTypes = {
     setSessionTime: PropTypes.func.isRequired,
+    time: PropTypes.number.isRequired,
 };
 
 export default connect(

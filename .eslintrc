@@ -17,6 +17,7 @@
     // forbidden proptypes
     "react/forbid-prop-types": "off",
     "react/no-did-update-set-state": "off",
-    "no-case-declarations": "off"
+    "no-case-declarations": "off",
+    "jsx-a11y/no-static-element-interactions": "off"
   }
 }
