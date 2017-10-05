@@ -1,0 +1,8 @@
+.show-stat__tabs {
+    padding-left: 0;
+    line-height: 1.7;
+}
+
+.show-stat__tabs-item {
+    list-style-type: none;
+}

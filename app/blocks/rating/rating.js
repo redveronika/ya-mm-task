@@ -9,8 +9,7 @@ class Rating extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            timeOpened: '',
-            timeClosed: '',
+            timeOpened: null,
         };
     }
 
@@ -21,7 +20,6 @@ class Rating extends Component {
 
     componentWillUnmount() {
         const time = new Date().valueOf();
-        this.setState({ timeClosed: time });
         this.props.setSessionTime('rating', time - this.state.timeOpened);
     }
 
@@ -38,9 +36,7 @@ Rating.propTypes = {
 };
 
 export default connect(
-    state => ({
-        sessionTime: state.rating.sessionTime,
-    }),
+    null,
     { setSessionTime },
 )(Rating);
 
