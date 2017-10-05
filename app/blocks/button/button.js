@@ -13,9 +13,8 @@ class Button extends Component {
         };
     }
 
-    componentDidMount() {
-        const time = new Date().valueOf();
-        this.setState({ timeOpened: time });
+    componentWillMount() {
+        this.setState({ timeOpened: this.props.time });
     }
 
     componentWillUnmount() {
@@ -33,6 +32,7 @@ class Button extends Component {
 
 Button.propTypes = {
     setSessionTime: PropTypes.func.isRequired,
+    time: PropTypes.number.isRequired,
 };
 
 export default connect(

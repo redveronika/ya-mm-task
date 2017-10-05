@@ -21,6 +21,7 @@ class Console extends Component {
             strArgs: '',
             message: '',
             commandHistId: null,
+            time: null,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -45,7 +46,7 @@ class Console extends Component {
             strCommand = command.replace(strArgs, '');
         }
         if (typeof strCommand !== 'undefined' && this.state.availableCommands.includes(strCommand)) {
-            this.setState({ showResult: strCommand, strArgs });
+            this.setState({ showResult: strCommand, strArgs, time: new Date().valueOf() });
         } else {
             this.setState({ showResult: null });
             this.setState({ message: 'Такой команды не существует! Попробуйте другую команду.' });
@@ -56,11 +57,11 @@ class Console extends Component {
     showResult() {
         switch (this.state.showResult) {
         case SHOW_STAT:
-            return <ShowStat />;
+            return <ShowStat time={this.state.time} />;
         case SELECT_TAB:
             return <SelectTab selectedTabId={this.state.strArgs} />;
         case SWAP_TABS:
-            return <SwapTabs args={this.state.strArgs} />;
+            return <SwapTabs time={this.state.time} args={this.state.strArgs} />;
         default: return null;
         }
     }
@@ -134,14 +135,3 @@ export default connect(
     }),
     { addCommand },
 )(Console);
-
-
-{/*<div className="console-window__placeholder">*/}
-{/*<h3>Для ввода доступны следующие команды:</h3>*/}
-{/*<ul className="console-window__placeholder-list">*/}
-{/*<li>selectTab(tabIndex) — выбор таба с индексом tabIndex</li>*/}
-{/*<li>swapTabs(tabIndex1, tabIndex2) — поменять местами в DOM табы*/}
-{/*tabIndex1 и tabIndex2</li>*/}
-{/*<li>showStat() — показать статистику</li>*/}
-{/*</ul>*/}
-{/*</div>*/}

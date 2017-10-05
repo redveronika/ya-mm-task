@@ -13,14 +13,13 @@ class Text extends Component {
         };
     }
 
-    componentDidMount() {
-        const time = new Date().valueOf();
-        this.setState({ timeOpened: time });
+    componentWillMount() {
+        this.setState({ timeOpened: this.props.time });
     }
 
     componentWillUnmount() {
-        const time = new Date().valueOf();
-        this.props.setSessionTime('text', time - this.state.timeOpened);
+        const timeClosed = new Date().valueOf();
+        this.props.setSessionTime('text', timeClosed - this.state.timeOpened);
     }
 
     render() {
@@ -33,6 +32,7 @@ class Text extends Component {
 
 Text.propTypes = {
     setSessionTime: PropTypes.func.isRequired,
+    time: PropTypes.number.isRequired,
 };
 
 export default connect(

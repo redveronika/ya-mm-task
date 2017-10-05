@@ -1,11 +1,6 @@
 const initialState = {
     openApp: null,
     activeTabOpen: null,
-    ratingSession: [],
-    buttonSession: [],
-    iconsListSession: [],
-    progressBarSession: [],
-    textSession: [],
 };
 
 const SET_APP_OPEN_TIME = 'SET_APP_OPEN_TIME';

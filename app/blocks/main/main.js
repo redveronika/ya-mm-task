@@ -8,16 +8,16 @@ import { setAppOpenTime } from '../../reducers/app.reducer';
 import './main.css';
 
 const filterComponents = {
-    rating: () => <Rating />,
-    'progress-bar': () => <ProgressBar />,
-    button: () => <Button />,
-    'icons-list': () => <IconsList />,
-    text: () => <Text />,
+    rating: () => <Rating time={new Date().valueOf()} />,
+    'progress-bar': () => <ProgressBar time={new Date().valueOf()} />,
+    button: () => <Button time={new Date().valueOf()} />,
+    'icons-list': () => <IconsList time={new Date().valueOf()} />,
+    text: () => <Text time={new Date().valueOf()} />,
 };
 
 class Main extends Component {
-    componentDidMount() {
-        this.props.setAppOpenTime(new Date().valueOf());
+    componentWillMount() {
+        //this.props.setAppOpenTime(new Date().valueOf());
     }
 
     render() {
@@ -31,6 +31,19 @@ class Main extends Component {
                     { filter !== null && filterComponents[filter]() }
                 </section>
                 <section className="command-window">
+                    <div className="command-window__description commands-description">
+                        <h3>Для ввода доступны следующие команды:</h3>
+                        <ul className="commands-description__list">
+                            <li>selectTab(tabIndex) — выбор таба с индексом tabIndex</li>
+                            <li>swapTabs(tabIndex1, tabIndex2) — поменять местами в DOM табы
+                            tabIndex1 и tabIndex2</li>
+                            <li>showStat() — показать статистику</li>
+                        </ul>
+                        <p>Команды выполняются по нажатию кнопки "Выполнить"
+                             или клавиши "Enter".</p>
+                        <p>Доступна навигация по истории последних 10
+                            комманд клавишами "↑" и "↓".</p>
+                    </div>
                     <Console />
                 </section>
             </main>
