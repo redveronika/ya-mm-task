@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { setSessionTime } from '../../reducers/tabs.reducer';
+import { setActiveTabOpenTime } from '../../reducers/app.reducer';
 
 import './text.css';
 
@@ -15,6 +17,7 @@ class Text extends Component {
 
     componentWillMount() {
         this.setState({ timeOpened: this.props.time });
+        this.props.setActiveTabOpenTime(this.props.history.location.time);
     }
 
     componentWillUnmount() {
@@ -33,10 +36,12 @@ class Text extends Component {
 Text.propTypes = {
     setSessionTime: PropTypes.func.isRequired,
     time: PropTypes.number.isRequired,
+    setActiveTabOpenTime: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired,
 };
 
 export default connect(
     null,
-    { setSessionTime },
-)(Text);
+    { setSessionTime, setActiveTabOpenTime },
+)(withRouter(Text));
 

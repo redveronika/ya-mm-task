@@ -13,6 +13,7 @@
     color: rgba(0, 0, 0, 0.5);
     text-decoration: none;
     outline-color: #2fe5bf;
+    cursor: pointer;
 }
 
 .tab__link--active {
