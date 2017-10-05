@@ -30,6 +30,10 @@ const Main = ({ filter, tabs }) => (
                     <li>swapTabs(tabIndex1, tabIndex2) — поменять местами в DOM табы
                     tabIndex1 и tabIndex2</li>
                     <li>showStat() — показать статистику</li>
+                    <li>setBest(maxStars) — установить максимальноё количество {'"звёздочек"'} рейтинга</li>
+                    <li>setScore(score) — выставить рейтинг</li>
+                    <li>setActiveColor(color) — установить активный цвет {'"звёздочек"'} рейтинга</li>
+                    <li>setInactiveColor(color) — установить неактивный цвет {'"звёздочек"'} рейтинга</li>
                 </ul>
                 <p>Команды выполняются по нажатию кнопки {'"Выполнить"'}
                      или клавиши {'"Enter"'}.</p>
