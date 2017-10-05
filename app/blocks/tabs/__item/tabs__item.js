@@ -28,8 +28,8 @@ class TabsItem extends Component {
     render() {
         const { linkTo, title } = this.props;
         return (
-            <div className="tabs__item tab" onClick={this.setActiveInStore}>
-                <NavLink to={linkTo} className="tab__link" activeClassName="tab__link--active">
+            <div className="tabs__item tab" onClick={this.setActiveInStore} tabIndex="-1">
+                <NavLink to={linkTo} className="tab__link" activeClassName="tab__link--active" role="tab" tabIndex="0">
                     {title}
                 </NavLink>
             </div>

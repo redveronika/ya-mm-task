@@ -1,6 +1,5 @@
 .tabs__item {
     display: inline-block;
-    margin: 0 15px;
     vertical-align: baseline;
 }
 
@@ -8,11 +7,12 @@
     position: relative;
     display: inline-block;
     height: 60px;
-    outline: none;
+    padding: 0 15px;
     font-size: 17px;
     line-height: 60px;
     color: rgba(0, 0, 0, 0.5);
     text-decoration: none;
+    outline-color: #2fe5bf;
 }
 
 .tab__link--active {
