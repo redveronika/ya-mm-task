@@ -33,11 +33,12 @@ class Rating extends Component {
     }
 
     renderItem(i) {
+        const { score, activeColor, inactiveColor } = this.props.rating;
         return (
             <span className="rating__item" key={i} onClick={() => this.setRating(i)}>
                 <Icon
                     name="star"
-                    color={i < this.props.rating.score ? '#ffe200' : 'rgba(0, 0, 0, 0.25)'}
+                    color={i < score ? activeColor : inactiveColor}
                     width="30"
                     height="30"
                 />

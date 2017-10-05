@@ -21,8 +21,8 @@ class TabsItem extends Component {
         }
     }
 
-    setActiveInStore(time) {
-        time = time || new Date().valueOf();
+    setActiveInStore() {
+        const time = new Date().valueOf();
         if (this.props.app.openApp === null) {
             this.props.setAppOpenTime(time);
         }
@@ -37,7 +37,7 @@ class TabsItem extends Component {
     render() {
         const { title } = this.props;
         return (
-            <div className="tabs__item tab" onClick={() => this.setActiveInStore(new Date().valueOf())} tabIndex="-1">
+            <div className="tabs__item tab" onClick={this.setActiveInStore} tabIndex="-1">
                 <a className={`tab__link ${this.isActiveTab() ? 'tab__link--active' : ''}`} role="tab" tabIndex="0">
                     {title}
                 </a>
@@ -58,7 +58,6 @@ TabsItem.propTypes = {
 
 export default connect(
     state => ({
-        activeTab: state.tabs.activeTab,
         app: state.app,
     }),
     { setActiveTab, setAppOpenTime },

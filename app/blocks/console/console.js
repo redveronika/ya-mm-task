@@ -3,20 +3,27 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { addCommand } from '../../reducers/console.reducer';
-import { SelectTab, ShowStat, SwapTabs } from '../../blocks';
+import { SelectTab, ShowStat, SwapTabs, ManageRating } from '../../blocks';
 
 import './console.css';
 
 const SELECT_TAB = 'selectTab()';
 const SHOW_STAT = 'showStat()';
 const SWAP_TABS = 'swapTabs()';
+const SET_RATING_BEST = 'setBest()';
+const SET_RATING_SCORE = 'setScore()';
+const SET_RATING_ACTIVE_COLOR = 'setActiveColor()';
+const SET_RATING_INACTIVE_COLOR = 'setInactiveColor()';
 
 class Console extends Component {
     constructor(props) {
         super(props);
         this.state = {
             command: '',
-            availableCommands: [SELECT_TAB, SHOW_STAT, SWAP_TABS],
+            availableCommands:
+                [SELECT_TAB, SHOW_STAT, SWAP_TABS,
+                    SET_RATING_BEST, SET_RATING_SCORE,
+                    SET_RATING_ACTIVE_COLOR, SET_RATING_INACTIVE_COLOR],
             showResult: null,
             strArgs: '',
             message: '',
@@ -62,6 +69,15 @@ class Console extends Component {
             return <SelectTab selectedTabId={this.state.strArgs} />;
         case SWAP_TABS:
             return <SwapTabs time={this.state.time} args={this.state.strArgs} />;
+        case SET_RATING_BEST:
+        case SET_RATING_SCORE:
+        case SET_RATING_ACTIVE_COLOR:
+        case SET_RATING_INACTIVE_COLOR:
+            return (<ManageRating
+                time={this.state.time}
+                command={this.state.showResult}
+                args={this.state.strArgs}
+            />);
         default: return null;
         }
     }
