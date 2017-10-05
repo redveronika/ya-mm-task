@@ -14,7 +14,6 @@ class Rating extends Component {
     }
 
     componentWillMount() {
-        const time = new Date().valueOf();
         this.setState({ timeOpened: this.props.time });
     }
 

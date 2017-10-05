@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { PARSE_DATE } from '../../utils/shared.function';
+import { parseDate } from '../../utils/shared.function';
 
 import './show-stat.css';
 
@@ -35,7 +35,7 @@ class ShowStat extends Component {
 
     showCommonTime() {
         const commonSessionTime = this.props.time - this.props.app.openApp;
-        const { hours, minutes, seconds } = PARSE_DATE(commonSessionTime);
+        const { hours, minutes, seconds } = parseDate(commonSessionTime);
         return (
             <p>
                 Общее время работы со страницей:
@@ -54,7 +54,7 @@ class ShowStat extends Component {
         if (this.props.tabs.activeTab === tab.id) {
             time += this.props.time - this.props.app.activeTabOpen;
         }
-        const { hours, minutes, seconds } = PARSE_DATE(time);
+        const { hours, minutes, seconds } = parseDate(time);
         return (
             (hours > 0 || minutes > 0 || seconds > 0) ?
                 <li className="show-stat__tabs-item" key={tab.id}>
@@ -93,4 +93,3 @@ export default connect(
         tabs: state.tabs,
     }),
 )(ShowStat);
-
