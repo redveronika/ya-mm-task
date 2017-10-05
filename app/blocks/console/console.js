@@ -55,7 +55,6 @@ class Console extends Component {
     }
 
     showResult() {
-        console.log('showResult')
         switch (this.state.showResult) {
         case SHOW_STAT:
             return <ShowStat time={this.state.time} />;

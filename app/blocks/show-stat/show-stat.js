@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { PARSE_DATE } from '../../utils/shared.function';
+
 import './show-stat.css';
 
 class ShowStat extends Component {
@@ -31,17 +33,9 @@ class ShowStat extends Component {
         }
     }
 
-    parseDate(time) {
-        const date = new Date(time);
-        const hours = date.getHours() - 3;
-        const minutes = date.getMinutes();
-        const seconds = date.getSeconds();
-        return { hours, minutes, seconds };
-    }
-
     showCommonTime() {
         const commonSessionTime = new Date().valueOf() - this.props.app.openApp;
-        const { hours, minutes, seconds } = this.parseDate(commonSessionTime);
+        const { hours, minutes, seconds } = PARSE_DATE(commonSessionTime);
         return (
             <p>
                 Общее время работы со страницей:
@@ -60,7 +54,7 @@ class ShowStat extends Component {
         if (this.props.tabs.activeTab === tab.id) {
             time += new Date().valueOf() - this.props.app.activeTabOpen;
         }
-        const { hours, minutes, seconds } = this.parseDate(time);
+        const { hours, minutes, seconds } = PARSE_DATE(time);
         return (
             (hours > 0 || minutes > 0 || seconds > 0) ?
                 <li className="show-stat__tabs-item" key={tab.id}>
