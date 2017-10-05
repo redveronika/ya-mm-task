@@ -62,7 +62,7 @@ class Console extends Component {
         case SELECT_TAB:
             return <SelectTab selectedTabId={this.state.strArgs} />;
         case SWAP_TABS:
-            return <SwapTabs args={this.state.strArgs} />;
+            return <SwapTabs time={this.state.time} args={this.state.strArgs} />;
         default: return null;
         }
     }

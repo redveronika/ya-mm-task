@@ -19,13 +19,13 @@ class SwapTabs extends Component {
     }
 
     componentDidMount() {
+        this.setState({ args: this.props.args, timeMounted: this.props.time });
         this.reorder();
     }
 
-    // TODO Повторно не меняются табы с теми же индексами
     componentDidUpdate() {
-        if (this.props.args !== this.state.args) {
-            this.setState({ args: this.props.args });
+        if (this.props.args !== this.state.args || this.props.time !== this.state.timeMounted) {
+            this.setState({ args: this.props.args, timeMounted: this.props.time });
             this.reorder();
         }
     }
@@ -81,6 +81,7 @@ SwapTabs.propTypes = {
     args: PropTypes.string.isRequired,
     tabs: PropTypes.array.isRequired,
     reorderTabs: PropTypes.func.isRequired,
+    time: PropTypes.number.isRequired,
 };
 
 export default connect(

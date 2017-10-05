@@ -53,7 +53,6 @@ class ShowStat extends Component {
     }
 
     showTabTime(tab) {
-        console.log('showtabtime')
         let time = tab.sessionTime.reduce((sum, current) => {
             sum += current;
             return sum;
