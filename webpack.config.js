@@ -12,6 +12,7 @@ module.exports = {
         contentBase: './dist',
         hot: true,
         historyApiFallback: true,
+        stats: 'errors-only',
     },
     module: {
         loaders: [
