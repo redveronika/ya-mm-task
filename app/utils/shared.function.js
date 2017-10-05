@@ -1,9 +1,9 @@
-const PARSE_DATE = (time) => {
+const parseDate = (time) => {
     const date = new Date(time);
-    const hours = date.getHours() - 3;
+    const hours = date.getUTCHours();
     const minutes = date.getMinutes();
     const seconds = date.getSeconds();
     return { hours, minutes, seconds };
 };
 
-export { PARSE_DATE };
+export { parseDate };
