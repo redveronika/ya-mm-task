@@ -21,6 +21,7 @@ class Console extends Component {
             strArgs: '',
             message: '',
             commandHistId: null,
+            time: null,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -45,7 +46,7 @@ class Console extends Component {
             strCommand = command.replace(strArgs, '');
         }
         if (typeof strCommand !== 'undefined' && this.state.availableCommands.includes(strCommand)) {
-            this.setState({ showResult: strCommand, strArgs });
+            this.setState({ showResult: strCommand, strArgs, time: new Date().valueOf() });
         } else {
             this.setState({ showResult: null });
             this.setState({ message: 'Такой команды не существует! Попробуйте другую команду.' });
@@ -54,9 +55,10 @@ class Console extends Component {
     }
 
     showResult() {
+        console.log('showResult')
         switch (this.state.showResult) {
         case SHOW_STAT:
-            return <ShowStat />;
+            return <ShowStat time={this.state.time} />;
         case SELECT_TAB:
             return <SelectTab selectedTabId={this.state.strArgs} />;
         case SWAP_TABS:

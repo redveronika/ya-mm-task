@@ -13,14 +13,14 @@ class Text extends Component {
         };
     }
 
-    componentDidMount() {
-        const time = new Date().valueOf();
-        this.setState({ timeOpened: time });
+    componentWillMount() {
+        const timeOpened = new Date().valueOf();
+        this.setState({ timeOpened });
     }
 
     componentWillUnmount() {
-        const time = new Date().valueOf();
-        this.props.setSessionTime('text', time - this.state.timeOpened);
+        const timeClosed = new Date().valueOf();
+        this.props.setSessionTime('text', timeClosed - this.state.timeOpened);
     }
 
     render() {

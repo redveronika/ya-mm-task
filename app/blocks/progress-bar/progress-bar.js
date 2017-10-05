@@ -13,7 +13,7 @@ class ProgressBar extends Component {
         };
     }
 
-    componentDidMount() {
+    componentWillMount() {
         const time = new Date().valueOf();
         this.setState({ timeOpened: time });
     }

@@ -14,15 +14,15 @@ class TabsItem extends Component {
         this.setActiveInStore = this.setActiveInStore.bind(this);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         if (this.props.history.location.pathname.includes(this.props.linkTo)) {
             this.setActiveInStore();
         }
     }
 
     setActiveInStore() {
-        this.props.setActiveTab(this.props.id);
         this.props.setActiveTabOpenTime(new Date().valueOf());
+        this.props.setActiveTab(this.props.id);
     }
 
     render() {

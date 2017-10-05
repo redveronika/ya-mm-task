@@ -10,14 +10,25 @@ class ShowStat extends Component {
 
         this.state = {
             commonSessionTime: {},
+            timeMounted: null,
         };
 
         this.showCommonTime = this.showCommonTime.bind(this);
         this.showTabTime = this.showTabTime.bind(this);
     }
 
-    componentDidMount() {
-        //this.showStat();
+    componentWillMount() {
+        this.setState({ timeMounted: this.props.time });
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.time !== nextState.timeMounted;
+    }
+
+    componentDidUpdate() {
+        if (this.props.time !== this.state.timeMounted) {
+            this.setState({ timeMounted: this.props.time });
+        }
     }
 
     parseDate(time) {
@@ -42,6 +53,7 @@ class ShowStat extends Component {
     }
 
     showTabTime(tab) {
+        console.log('showtabtime')
         let time = tab.sessionTime.reduce((sum, current) => {
             sum += current;
             return sum;
@@ -79,6 +91,7 @@ class ShowStat extends Component {
 ShowStat.propTypes = {
     app: PropTypes.object.isRequired,
     tabs: PropTypes.object.isRequired,
+    time: PropTypes.number.isRequired,
 };
 
 export default connect(
