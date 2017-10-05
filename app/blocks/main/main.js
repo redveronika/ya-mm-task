@@ -6,16 +6,13 @@ import { Tabs, Rating, ProgressBar, Button, IconsList, Text, Console } from '../
 
 import './main.css';
 
-const filterComponents = () => {
-    const time = new Date().valueOf();
-    return ({
-        rating: () => <Rating time={time} />,
-        'progress-bar': () => <ProgressBar time={time} />,
-        button: () => <Button time={time} />,
-        'icons-list': () => <IconsList time={time} />,
-        text: () => <Text time={time} />,
-    });
-};
+const filterComponents = () => ({
+    rating: () => <Rating />,
+    'progress-bar': () => <ProgressBar />,
+    button: () => <Button />,
+    'icons-list': () => <IconsList />,
+    text: () => <Text />,
+});
 
 const Main = ({ filter, tabs }) => (
     <main className="main">
