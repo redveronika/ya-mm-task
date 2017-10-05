@@ -3,6 +3,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setActiveTab } from '../../../reducers/tabs.reducer';
+import { setActiveTabOpenTime } from '../../../reducers/app.reducer';
 
 import './tabs__item.css';
 
@@ -21,6 +22,7 @@ class TabsItem extends Component {
 
     setActiveInStore() {
         this.props.setActiveTab(this.props.id);
+        this.props.setActiveTabOpenTime(new Date().valueOf());
     }
 
     render() {
@@ -40,6 +42,7 @@ TabsItem.propTypes = {
     linkTo: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     setActiveTab: PropTypes.func.isRequired,
+    setActiveTabOpenTime: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
 };
 
@@ -47,5 +50,5 @@ export default connect(
     state => ({
         activeTab: state.tabs.activeTab,
     }),
-    { setActiveTab },
+    { setActiveTab, setActiveTabOpenTime },
 )(withRouter(TabsItem));

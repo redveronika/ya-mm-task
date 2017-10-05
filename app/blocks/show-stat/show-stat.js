@@ -9,37 +9,82 @@ class ShowStat extends Component {
         super(props);
 
         this.state = {
-            ratingSessionTime: 0,
-            commonSessionTime: 0,
+            commonSessionTime: {},
         };
+
+        this.showCommonTime = this.showCommonTime.bind(this);
+        this.showTabTime = this.showTabTime.bind(this);
     }
 
     componentDidMount() {
-        this.showStat();
+        //this.showStat();
     }
 
-    showStat() {
-        const ratingTime = this.props.ratingSessionTime.reduce((sum, current) => {
+    parseDate(time) {
+        const date = new Date(time);
+        const hours = date.getHours() - 3;
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+        return { hours, minutes, seconds };
+    }
+
+    showCommonTime() {
+        const commonSessionTime = new Date().valueOf() - this.props.app.openApp;
+        const { hours, minutes, seconds } = this.parseDate(commonSessionTime);
+        return (
+            <p>
+                Общее время работы со страницей:
+                { hours > 0 ? ` ${hours} ч` : null}
+                { minutes > 0 ? ` ${minutes} мин` : null}
+                { seconds > 0 ? ` ${seconds} сек` : null}
+            </p>
+        );
+    }
+
+    showTabTime(tab) {
+        let time = tab.sessionTime.reduce((sum, current) => {
             sum += current;
             return sum;
         }, 0);
-        this.setState({ ratingSessionTime: ratingTime });
+        if (this.props.tabs.activeTab === tab.id) {
+            time += new Date().valueOf() - this.props.app.activeTabOpen;
+        }
+        const { hours, minutes, seconds } = this.parseDate(time);
+        return (
+            (hours > 0 || minutes > 0 || seconds > 0) ?
+                <li className="show-stat__tabs-item" key={tab.id}>
+                    {`${tab.id} "${tab.title}":`}
+                    { hours > 0 ? ` ${hours} ч` : null}
+                    { minutes > 0 ? ` ${minutes} мин` : null}
+                    { seconds > 0 ? ` ${seconds} сек` : null}
+                </li> :
+                null
+        );
     }
 
     render() {
+        const { tabs } = this.props.tabs;
         return (
-            <p>{this.state.ratingSessionTime / 1000} сек</p>
+            <div className="show-stat">
+                <div className="show-stat__common">{this.showCommonTime()}</div>
+                <ul className="show-stat__tabs">
+                    Детализация времени просмотра табов:
+                    { tabs.map(tab => this.showTabTime(tab)) }
+                </ul>
+            </div>
         );
     }
 }
 
 ShowStat.propTypes = {
-    ratingSessionTime: PropTypes.array.isRequired,
+    app: PropTypes.object.isRequired,
+    tabs: PropTypes.object.isRequired,
 };
 
 export default connect(
     state => ({
-        ratingSessionTime: state.rating.sessionTime,
+        app: state.app,
+        tabs: state.tabs,
     }),
 )(ShowStat);
 
