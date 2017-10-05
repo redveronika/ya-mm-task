@@ -16,7 +16,8 @@ class ProgressBar extends Component {
     }
 
     componentWillMount() {
-        this.setState({ timeOpened: this.props.time });
+        const { time } = this.props.history.location;
+        this.setState({ timeOpened: time });
         this.props.setActiveTabOpenTime(this.props.history.location.time);
     }
 
@@ -35,7 +36,6 @@ class ProgressBar extends Component {
 
 ProgressBar.propTypes = {
     setSessionTime: PropTypes.func.isRequired,
-    time: PropTypes.number.isRequired,
     setActiveTabOpenTime: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
 };

@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { setSessionTime } from '../../reducers/tabs.reducer';
 import { setActiveTabOpenTime } from '../../reducers/app.reducer';
+import { Icon } from '../../blocks';
 
 import './rating.css';
+import {setRatingScore} from '../../reducers/rating.reducer';
 
 class Rating extends Component {
     constructor(props) {
@@ -16,7 +18,8 @@ class Rating extends Component {
     }
 
     componentWillMount() {
-        this.setState({ timeOpened: this.props.time });
+        const { time } = this.props.history.location;
+        this.setState({ timeOpened: time });
         this.props.setActiveTabOpenTime(this.props.history.location.time);
     }
 
@@ -25,9 +28,28 @@ class Rating extends Component {
         this.props.setSessionTime('rating', time - this.state.timeOpened);
     }
 
+    setRating(i) {
+        this.props.setRatingScore(i + 1);
+    }
+
+    renderItem(i) {
+        return (
+            <span className="rating__item" key={i} onClick={() => this.setRating(i)}>
+                <Icon
+                    name="star"
+                    color={i < this.props.rating.score ? '#ffe200' : 'rgba(0, 0, 0, 0.25)'}
+                    width="30"
+                    height="30"
+                />
+            </span>
+        );
+    }
+
     render() {
         return (
-            <p>Rating</p>
+            <div className="rating">
+                { Array(+this.props.rating.best).fill(0).map((el, i) => this.renderItem(i)) }
+            </div>
         );
     }
 }
@@ -35,13 +57,16 @@ class Rating extends Component {
 
 Rating.propTypes = {
     setSessionTime: PropTypes.func.isRequired,
-    time: PropTypes.number.isRequired,
     setActiveTabOpenTime: PropTypes.func.isRequired,
+    setRatingScore: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
+    rating: PropTypes.object.isRequired,
 };
 
 export default connect(
-    null,
-    { setSessionTime, setActiveTabOpenTime },
+    state => ({
+        rating: state.rating,
+    }),
+    { setSessionTime, setActiveTabOpenTime, setRatingScore },
 )(withRouter(Rating));
 
