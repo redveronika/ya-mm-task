@@ -11,18 +11,12 @@ class TabsItem extends Component {
         super(props);
 
         this.setActiveInStore = this.setActiveInStore.bind(this);
-        this.isActiveTab = this.isActiveTab.bind(this);
     }
 
     componentWillMount() {
-        if (this.isActiveTab()) {
+        if (this.props.history.location.pathname === this.props.linkTo) {
             this.setActiveInStore();
         }
-    }
-
-    shouldComponentUpdate() {
-        console.log('shouldComponentUpdate')
-        return this.props.history.location.pathname !== this.props.linkTo;
     }
 
     setActiveInStore() {
@@ -31,16 +25,11 @@ class TabsItem extends Component {
         this.props.setActiveTab(this.props.id);
     }
 
-    isActiveTab() {
-        console.log(this.props.linkTo);
-        return this.props.history.location.pathname.includes(this.props.linkTo);
-    }
-
     render() {
-        const { title } = this.props;
+        const { id, title, activeTab } = this.props;
         return (
             <div className="tabs__item tab" onClick={this.setActiveInStore} tabIndex="-1">
-                <a className={`tab__link ${this.isActiveTab() ? 'tab__link--active' : ''}`} role="tab" tabIndex="0">
+                <a className={`tab__link ${activeTab === id ? 'tab__link--active' : ''}`} role="tab" tabIndex="0">
                     {title}
                 </a>
             </div>
@@ -54,9 +43,16 @@ TabsItem.propTypes = {
     title: PropTypes.string.isRequired,
     setActiveTab: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
+    activeTab: PropTypes.any,
+};
+
+TabsItem.defaultProps = {
+    activeTab: null,
 };
 
 export default connect(
-    null,
+    state => ({
+        activeTab: state.tabs.activeTab,
+    }),
     { setActiveTab },
 )(withRouter(TabsItem));
