@@ -34,24 +34,44 @@ class ManageRating extends Component {
     }
 
     setBest() {
-        this.props.setRatingBest(+this.props.args);
-        this.setState({ message: `Максимальное значение рейтинга установлено равным ${this.props.args}` });
+        if (+this.props.args > 0 && +this.props.args <= 10) {
+            this.props.setRatingBest(+this.props.args);
+            this.setState({ message: `Максимальное значение рейтинга установлено равным ${this.props.args}` });
+        } else {
+            this.setState({ message: 'Введите значение от 1 до 10.' });
+        }
     }
 
     setScore() {
+        // Если значение рейтинга больше максимально допустимого,
+        // то выставляем максимально допустимое.
         const score = Math.min(this.props.ratingBest, +this.props.args);
-        this.props.setRatingScore(score);
-        this.setState({ message: `Величина рейтинга изменена на ${score}` });
+        if (score > 0) {
+            this.props.setRatingScore(score);
+            this.setState({ message: `Величина рейтинга изменена на ${score}` });
+        } else {
+            this.setState({ message: 'Введите значение больше 1' });
+        }
     }
 
     setActiveColor() {
-        this.props.setRatingActiveColor(this.props.args);
-        this.setState({ message: `Активный цвет рейтинга изменён на ${this.props.args}` });
+        const color = this.props.args.replace(/['"]/g, '');
+        if (color !== '') {
+            this.props.setRatingActiveColor(color);
+            this.setState({ message: `Активный цвет рейтинга изменён на "${color}"` });
+        } else {
+            this.setState({ message: 'Укажите желаемый цвет.' });
+        }
     }
 
     setInactiveColor() {
-        this.props.setRatingInactiveColor(this.props.args);
-        this.setState({ message: `Неактивный цвет рейтинга изменён на ${this.props.args}` });
+        const color = this.props.args.replace(/['"]/g, '');
+        if (color !== '') {
+            this.props.setRatingInactiveColor(color);
+            this.setState({ message: `Неактивный цвет рейтинга изменён на "${color}"` });
+        } else {
+            this.setState({ message: 'Укажите желаемый цвет.' });
+        }
     }
 
     manageRating() {
