@@ -6,6 +6,7 @@ import { addCommand } from '../../reducers/console.reducer';
 import { SelectTab, ShowStat, SwapTabs, ManageRating } from '../../blocks';
 
 import './console.css';
+import ManageProgress from '../manage-progress/manage-progress';
 
 const SELECT_TAB = 'selectTab()';
 const SHOW_STAT = 'showStat()';
@@ -14,6 +15,7 @@ const SET_RATING_BEST = 'setBest()';
 const SET_RATING_SCORE = 'setScore()';
 const SET_RATING_ACTIVE_COLOR = 'setActiveColor()';
 const SET_RATING_INACTIVE_COLOR = 'setInactiveColor()';
+const SET_PROGRESS = 'setProgress()';
 
 class Console extends Component {
     constructor(props) {
@@ -23,7 +25,8 @@ class Console extends Component {
             availableCommands:
                 [SELECT_TAB, SHOW_STAT, SWAP_TABS,
                     SET_RATING_BEST, SET_RATING_SCORE,
-                    SET_RATING_ACTIVE_COLOR, SET_RATING_INACTIVE_COLOR],
+                    SET_RATING_ACTIVE_COLOR, SET_RATING_INACTIVE_COLOR,
+                    SET_PROGRESS],
             showResult: null,
             strArgs: '',
             message: '',
@@ -78,6 +81,8 @@ class Console extends Component {
                 command={this.state.showResult}
                 args={this.state.strArgs}
             />);
+        case SET_PROGRESS:
+            return <ManageProgress time={this.state.time} args={this.state.strArgs} />
         default: return null;
         }
     }

@@ -1,6 +1,4 @@
 const initialState = {
-    width: 300,
-    height: 20,
     progress: 80,
 };
 
