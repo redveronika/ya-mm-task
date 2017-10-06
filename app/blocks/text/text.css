@@ -8,6 +8,7 @@
     column-gap: 80px;
     column-width: 380px;
     font-size: 16px;
+    font-weight: 500;
     line-height: 1.313;
     text-align: left;
 }
@@ -21,7 +22,7 @@
     list-style-type: none;
 }
 
-ul li:before {
+.text__list li:before {
     content: '\2014';
     position: absolute;
     margin-left: -20px;
