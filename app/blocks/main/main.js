@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { Tabs, Rating, ProgressBar, Button, IconsList, Text, Console } from '../../blocks';
+import { Tabs, Rating, ProgressBar, ButtonTab, IconsList, Text, Console } from '../../blocks';
 
 import './main.css';
 
 const filterComponents = () => ({
     rating: () => <Rating />,
     'progress-bar': () => <ProgressBar />,
-    button: () => <Button />,
+    button: () => <ButtonTab />,
     'icons-list': () => <IconsList />,
     text: () => <Text />,
 });
