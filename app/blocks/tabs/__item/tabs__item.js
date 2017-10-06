@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setActiveTab } from '../../../reducers/tabs.reducer';
-import { setAppOpenTime } from '../../../reducers/app.reducer';
 
 import './tabs__item.css';
 
@@ -12,33 +11,25 @@ class TabsItem extends Component {
         super(props);
 
         this.setActiveInStore = this.setActiveInStore.bind(this);
-        this.isActiveTab = this.isActiveTab.bind(this);
     }
 
     componentWillMount() {
-        if (this.isActiveTab()) {
+        if (this.props.history.location.pathname === this.props.linkTo) {
             this.setActiveInStore();
         }
     }
 
     setActiveInStore() {
         const time = new Date().valueOf();
-        if (this.props.app.openApp === null) {
-            this.props.setAppOpenTime(time);
-        }
         this.props.history.push({ pathname: this.props.linkTo, time });
         this.props.setActiveTab(this.props.id);
     }
 
-    isActiveTab() {
-        return this.props.history.location.pathname.includes(this.props.linkTo);
-    }
-
     render() {
-        const { title } = this.props;
+        const { id, title, activeTab } = this.props;
         return (
             <div className="tabs__item tab" onClick={this.setActiveInStore} tabIndex="-1">
-                <a className={`tab__link ${this.isActiveTab() ? 'tab__link--active' : ''}`} role="tab" tabIndex="0">
+                <a className={`tab__link ${activeTab === id ? 'tab__link--active' : ''}`} role="tab" tabIndex="0">
                     {title}
                 </a>
             </div>
@@ -51,14 +42,17 @@ TabsItem.propTypes = {
     linkTo: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     setActiveTab: PropTypes.func.isRequired,
-    setAppOpenTime: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
-    app: PropTypes.object.isRequired,
+    activeTab: PropTypes.any,
+};
+
+TabsItem.defaultProps = {
+    activeTab: null,
 };
 
 export default connect(
     state => ({
-        app: state.app,
+        activeTab: state.tabs.activeTab,
     }),
-    { setActiveTab, setAppOpenTime },
+    { setActiveTab },
 )(withRouter(TabsItem));
