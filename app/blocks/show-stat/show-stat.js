@@ -55,7 +55,7 @@ class ShowStat extends Component {
                 return sum;
             }, 0);
             if (this.props.tabs.activeTab === tab.id) {
-                time += this.props.time - this.props.app.activeTabOpen;
+                time += this.props.time - this.props.tabs.activeTabOpenTime;
             }
             return {
                 ...tab,
@@ -97,14 +97,12 @@ class ShowStat extends Component {
 }
 
 ShowStat.propTypes = {
-    app: PropTypes.object.isRequired,
     tabs: PropTypes.object.isRequired,
     time: PropTypes.number.isRequired,
 };
 
 export default connect(
     state => ({
-        app: state.app,
         tabs: state.tabs,
     }),
 )(ShowStat);

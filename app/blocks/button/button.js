@@ -7,22 +7,13 @@ import { setSessionTime, setActiveTabOpenTime } from '../../reducers/tabs.reduce
 import './button.css';
 
 class Button extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            timeOpened: null,
-        };
-    }
-
     componentWillMount() {
-        const { time } = this.props.history.location;
-        this.setState({ timeOpened: time });
         this.props.setActiveTabOpenTime(this.props.history.location.time);
     }
 
     componentWillUnmount() {
         const time = new Date().valueOf();
-        this.props.setSessionTime('button', time - this.state.timeOpened);
+        this.props.setSessionTime('button', time - this.props.activeTabOpenTime);
     }
 
     render() {
@@ -37,10 +28,16 @@ Button.propTypes = {
     setSessionTime: PropTypes.func.isRequired,
     setActiveTabOpenTime: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
+    activeTabOpenTime: PropTypes.any,
+};
+
+Button.defaultProps = {
+    activeTabOpenTime: 0,
 };
 
 export default connect(
-    null,
+    state => ({
+        activeTabOpenTime: state.tabs.activeTabOpenTime,
+    }),
     { setSessionTime, setActiveTabOpenTime },
 )(withRouter(Button));
-
