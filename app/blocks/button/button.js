@@ -1,43 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { setSessionTime, setActiveTabOpenTime } from '../../reducers/tabs.reducer';
 
 import './button.css';
 
-class Button extends Component {
-    componentWillMount() {
-        this.props.setActiveTabOpenTime(this.props.history.location.time);
-    }
-
-    componentWillUnmount() {
-        const time = new Date().valueOf();
-        this.props.setSessionTime('button', time - this.props.activeTabOpenTime);
-    }
-
-    render() {
-        return (
-            <p>Button</p>
-        );
-    }
-}
+const Button = ({ text, type, size, state, onClick }) => (
+    <button className={`button button--${type} button--${size} button--${state}`} onClick={() => onClick()} >
+        <span className="button__label">{text}</span>
+    </button>
+);
 
 
 Button.propTypes = {
-    setSessionTime: PropTypes.func.isRequired,
-    setActiveTabOpenTime: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired,
-    activeTabOpenTime: PropTypes.any,
+    text: PropTypes.string,
+    type: PropTypes.string,
+    size: PropTypes.string,
+    state: PropTypes.string,
+    onClick: PropTypes.func,
 };
 
 Button.defaultProps = {
-    activeTabOpenTime: 0,
+    text: 'Кнопка',
+    type: 'default',
+    size: 'S',
+    state: 'normal',
+    onClick: () => false,
 };
 
-export default connect(
-    state => ({
-        activeTabOpenTime: state.tabs.activeTabOpenTime,
-    }),
-    { setSessionTime, setActiveTabOpenTime },
-)(withRouter(Button));
+export default Button;
