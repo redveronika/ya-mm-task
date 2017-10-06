@@ -23,12 +23,13 @@ const Main = ({ filter, tabs }) => (
             { filter !== null && filterComponents()[filter]() }
         </section>
         <section className="command-window">
+            <Console />
             <div className="command-window__description commands-description">
                 <h3>Для ввода доступны следующие команды:</h3>
                 <ul className="commands-description__list">
                     <li>selectTab(tabIndex) — выбор таба с индексом tabIndex</li>
                     <li>swapTabs(tabIndex1, tabIndex2) — поменять местами в DOM табы
-                    tabIndex1 и tabIndex2</li>
+                        tabIndex1 и tabIndex2</li>
                     <li>showStat() — показать статистику</li>
                     <li>setBest(maxStars) — установить максимальноё количество {'"звёздочек"'} рейтинга</li>
                     <li>setScore(score) — выставить рейтинг</li>
@@ -36,11 +37,10 @@ const Main = ({ filter, tabs }) => (
                     <li>setInactiveColor(color) — установить неактивный цвет {'"звёздочек"'} рейтинга</li>
                 </ul>
                 <p>Команды выполняются по нажатию кнопки {'"Выполнить"'}
-                     или клавиши {'"Enter"'}.</p>
+                    или клавиши {'"Enter"'}.</p>
                 <p>Доступна навигация по истории последних 10
                     команд клавишами {'"↑"'} и {'"↓"'}.</p>
             </div>
-            <Console />
         </section>
     </main>
 );

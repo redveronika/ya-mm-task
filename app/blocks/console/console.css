@@ -1,3 +1,7 @@
+.command-window__container {
+    margin-top: 20px;
+}
+
 .console {
     display: flex;
     flex-direction: column;
