@@ -32,14 +32,17 @@ const initialState = {
         },
     ],
     activeTab: null,
+    activeTabOpenTime: null,
 };
 
 const SET_ACTIVE_TAB = 'SET_ACTIVE_TAB';
+const SET_ACTIVE_TAB_OPEN_TIME = 'SET_ACTIVE_TAB_OPEN_TIME';
 const REORDER_TABS = 'REORDER_TABS';
 const SET_SESSION_TIME = 'SET_SESSION_TIME';
 
 
 const setActiveTab = id => ({ type: SET_ACTIVE_TAB, payload: id });
+const setActiveTabOpenTime = time => ({ type: SET_ACTIVE_TAB_OPEN_TIME, payload: time });
 const reorderTabs = tabs => ({ type: REORDER_TABS, payload: tabs });
 const setSessionTime = (name, time) => ({ type: SET_SESSION_TIME, name, payload: time });
 
@@ -47,6 +50,8 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
     case SET_ACTIVE_TAB:
         return { ...state, activeTab: action.payload };
+    case SET_ACTIVE_TAB_OPEN_TIME:
+        return { ...state, activeTabOpenTime: action.payload };
     case REORDER_TABS:
         return { ...state, tabs: action.payload };
     case SET_SESSION_TIME:
@@ -62,4 +67,4 @@ const reducer = (state = initialState, action) => {
     }
 };
 
-export { reducer, setActiveTab, reorderTabs, setSessionTime };
+export { reducer, setActiveTab, setActiveTabOpenTime, reorderTabs, setSessionTime };

@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setActiveTab } from '../../../reducers/tabs.reducer';
-import { setAppOpenTime } from '../../../reducers/app.reducer';
 
 import './tabs__item.css';
 
@@ -21,16 +20,19 @@ class TabsItem extends Component {
         }
     }
 
+    shouldComponentUpdate() {
+        console.log('shouldComponentUpdate')
+        return this.props.history.location.pathname !== this.props.linkTo;
+    }
+
     setActiveInStore() {
         const time = new Date().valueOf();
-        if (this.props.app.openApp === null) {
-            this.props.setAppOpenTime(time);
-        }
         this.props.history.push({ pathname: this.props.linkTo, time });
         this.props.setActiveTab(this.props.id);
     }
 
     isActiveTab() {
+        console.log(this.props.linkTo);
         return this.props.history.location.pathname.includes(this.props.linkTo);
     }
 
@@ -51,14 +53,10 @@ TabsItem.propTypes = {
     linkTo: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     setActiveTab: PropTypes.func.isRequired,
-    setAppOpenTime: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
-    app: PropTypes.object.isRequired,
 };
 
 export default connect(
-    state => ({
-        app: state.app,
-    }),
-    { setActiveTab, setAppOpenTime },
+    null,
+    { setActiveTab },
 )(withRouter(TabsItem));

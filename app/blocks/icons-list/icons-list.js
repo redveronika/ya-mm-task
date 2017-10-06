@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { setSessionTime } from '../../reducers/tabs.reducer';
-import { setActiveTabOpenTime } from '../../reducers/app.reducer';
+import { setSessionTime, setActiveTabOpenTime } from '../../reducers/tabs.reducer';
 
 import './icons-list.css';
 

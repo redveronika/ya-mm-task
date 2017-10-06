@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { setSessionTime } from '../../reducers/tabs.reducer';
-import { setActiveTabOpenTime } from '../../reducers/app.reducer';
+import { setSessionTime, setActiveTabOpenTime } from '../../reducers/tabs.reducer';
+import { setRatingScore } from '../../reducers/rating.reducer';
 import { Icon } from '../../blocks';
 
 import './rating.css';
-import {setRatingScore} from '../../reducers/rating.reducer';
 
 class Rating extends Component {
     constructor(props) {
@@ -20,7 +19,7 @@ class Rating extends Component {
     componentWillMount() {
         const { time } = this.props.history.location;
         this.setState({ timeOpened: time });
-        this.props.setActiveTabOpenTime(this.props.history.location.time);
+        this.props.setActiveTabOpenTime(time);
     }
 
     componentWillUnmount() {
