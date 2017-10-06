@@ -17,18 +17,11 @@ class ProgressBar extends Component {
     }
 
     render() {
-        const { width, height, progress } = this.props.progress;
-        const styles = {
-            width: `${width}px`,
-            height: `${height}px`,
-        };
-        const innerStyles = {
-            width: `${progress}%`,
-        };
+        const { progress } = this.props.progress;
         return (
-            <div className="progress-bar" style={styles} >
+            <div className="progress-bar" >
                 <span className="progress-bar__text">{progress}%</span>
-                <div className="progress-bar__inner" style={innerStyles}></div>
+                <div className="progress-bar__inner" style={{ width: `${progress}%` }} />
             </div>
         );
     }
