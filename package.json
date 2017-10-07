@@ -2,7 +2,8 @@
   "name": "ya-mm-task",
   "author": "Veronika Voronova",
   "scripts": {
-    "start:dev": "webpack-dev-server"
+    "start:dev": "webpack-dev-server --env dev",
+    "start:prod": "webpack --env prod"
   },
   "dependencies": {
     "react": "^16.0.0",
