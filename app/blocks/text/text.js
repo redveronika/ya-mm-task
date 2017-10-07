@@ -59,8 +59,8 @@ class Text extends Component {
                     <ul className="text__list">
                         <li><b>Курит ли трупка мой</b></li>
                         {/* eslint-disable jsx-a11y/href-no-hash */}
-                        <li><a href="#">из трупка тфой пихтишь</a></li>
-                        <li><abbr title="здесь интересно использование тега аббревиатура предполагалось? сомневаюсь.">Или мой кафе пил</abbr></li>
+                        <li><a href="#" title="из трупка тфой пихтишь">из трупка тфой пихтишь</a></li>
+                        <li className="text__list-item text__list-item--underline">Или мой кафе пил</li>
                         <li>тфой в щашешка сидишь</li>
                     </ul>
                 </div>
