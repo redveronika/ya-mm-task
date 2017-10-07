@@ -112,10 +112,12 @@ class Console extends Component {
     }
 
     commandHistory(event) {
-        if (event.key === 'ArrowUp') {
-            this.showPrevCommand();
-        } else if (event.key === 'ArrowDown') {
-            this.showNextCommand();
+        if (this.props.commandsHist.length > 0) {
+            if (event.key === 'ArrowUp') {
+                this.showPrevCommand();
+            } else if (event.key === 'ArrowDown') {
+                this.showNextCommand();
+            }
         }
     }
 
