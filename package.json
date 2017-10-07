@@ -11,7 +11,8 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "redux-devtools-extension": "^2.13.2"
+    "redux-devtools-extension": "^2.13.2",
+    "uglifyjs-webpack-plugin": "^0.4.6"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
