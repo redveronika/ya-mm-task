@@ -28,7 +28,13 @@ class TabsItem extends Component {
     render() {
         const { id, title, activeTab } = this.props;
         return (
-            <div className="tabs__item tab" onClick={this.setActiveInStore} tabIndex="-1">
+            // keyCode = 13 - обработка кнопки "Enter" для навигации по табам с клавиатуры
+            <div
+                className="tabs__item tab"
+                onClick={this.setActiveInStore}
+                onKeyDown={e => (e.keyCode === 13 ? this.setActiveInStore() : false)}
+                tabIndex="-1"
+            >
                 <a className={`tab__link ${activeTab === id ? 'tab__link--active' : ''}`} role="tab" tabIndex="0">
                     {title}
                 </a>

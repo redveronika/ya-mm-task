@@ -16,10 +16,12 @@ const filterComponents = () => ({
 
 const Main = ({ filter, tabs }) => (
     <main className="main">
-        <header className="header">
-            <Tabs tabs={tabs} />
+        <header className="main__header">
+            <nav>
+                <Tabs tabs={tabs} />
+            </nav>
         </header>
-        <section className="content">
+        <section className="main__content">
             { filter !== null && filterComponents()[filter]() }
         </section>
         <section className="command-window">
