@@ -1,6 +1,5 @@
 .text__title {
-    column-count: 2;
-    column-width: 380px;
+    max-width: 380px;
 }
 
 .text__content {

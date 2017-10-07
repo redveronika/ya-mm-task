@@ -19,7 +19,7 @@ class Text extends Component {
     render() {
         return (
             <div className="text">
-                <h3 className="text__title">Тема: «Сюжетный анапест:  основные моменты»</h3>
+                <h2 className="text__title">Тема: «Сюжетный анапест:  основные моменты»</h2>
                 <div className="text__content">
                     <p>
                         Нельзя восстановить истинной хронологической последовательности событий,

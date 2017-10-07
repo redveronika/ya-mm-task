@@ -12,8 +12,12 @@
     line-height: 60px;
     color: rgba(0, 0, 0, 0.5);
     text-decoration: none;
-    outline-color: #2fe5bf;
+    outline-color: transparent;
     cursor: pointer;
+}
+
+.tab__link:focus {
+    box-shadow: 0 0 2px 1px #2fe5bf;
 }
 
 .tab__link--active {
