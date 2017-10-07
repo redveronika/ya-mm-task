@@ -2,6 +2,9 @@ const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
+const projectFolder = 'ya-mm-task';
 
 module.exports = {
     entry: {
@@ -11,7 +14,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
+                include: path.resolve(__dirname, '../app'),
                 loader: 'babel-loader',
             },
             {
@@ -47,13 +50,17 @@ module.exports = {
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
-                        outputPath: 'assets/imgs/',
+                        // костыль, конечно, что-то я не знаю пока, как правильно сделать
+                        outputPath: path.join('/', projectFolder, '/assets/imgs/'),
                     },
                 }],
             },
         ],
     },
     plugins: [
+        new UglifyJSPlugin({
+            include: /\/includes/
+        }),
         new HtmlPlugin({
             template: './app/index.html',
         }),
@@ -62,6 +69,5 @@ module.exports = {
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, '../dist'),
-        publicPath: './',
     },
 };
