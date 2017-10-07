@@ -50,8 +50,9 @@ module.exports = {
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
+                        outputPath: '/assets/imgs/',
                         // костыль, конечно, что-то я не знаю пока, как правильно сделать
-                        outputPath: path.join('/', projectFolder, '/assets/imgs/'),
+                        publicPath: `/${projectFolder}`,
                     },
                 }],
             },
