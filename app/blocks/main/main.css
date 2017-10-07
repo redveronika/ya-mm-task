@@ -8,11 +8,11 @@
     box-sizing: border-box;
 }
 
-.header {
+.main__header {
     background-color: #fff;
 }
 
-.content {
+.main__content {
     display: flex;
     align-items: center;
     justify-content: center;
