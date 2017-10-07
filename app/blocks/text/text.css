@@ -8,7 +8,6 @@
     column-gap: 80px;
     column-width: 380px;
     font-size: 16px;
-    font-weight: 500;
     line-height: 1.313;
     text-align: left;
 }
@@ -26,4 +25,12 @@
     content: '\2014';
     position: absolute;
     margin-left: -20px;
+}
+
+.text__list-item {
+    display: inline-block;
+}
+
+.text__list-item--underline {
+    border-bottom: 1px dashed;
 }
