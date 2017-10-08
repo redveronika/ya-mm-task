@@ -62,6 +62,7 @@ module.exports = {
     },
     plugins: [
         new HtmlPlugin({
+            filename: 'index.html',
             template: './app/index.html',
         }),
         new CleanWebpackPlugin(['dist']),
