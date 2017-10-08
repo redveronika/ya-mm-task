@@ -67,4 +67,15 @@ const reducer = (state = initialState, action) => {
     }
 };
 
-export { reducer, setActiveTab, setActiveTabOpenTime, reorderTabs, setSessionTime };
+export {
+    reducer,
+    initialState,
+    setActiveTab,
+    setActiveTabOpenTime,
+    reorderTabs,
+    setSessionTime,
+    SET_ACTIVE_TAB,
+    SET_ACTIVE_TAB_OPEN_TIME,
+    REORDER_TABS,
+    SET_SESSION_TIME,
+};

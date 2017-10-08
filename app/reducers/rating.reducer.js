@@ -32,6 +32,7 @@ const reducer = (state = initialState, action) => {
 
 export {
     reducer,
+    initialState,
     setRatingScore,
     setRatingBest,
     setRatingActiveColor,

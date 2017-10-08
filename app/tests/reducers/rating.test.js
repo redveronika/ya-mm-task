@@ -1,17 +1,11 @@
 import {
     reducer,
+    initialState,
     SET_RATING_SCORE,
     SET_RATING_BEST,
     SET_RATING_ACTIVE_COLOR,
     SET_RATING_INACTIVE_COLOR,
 } from './../../reducers/rating.reducer';
-
-const initialState = {
-    best: 6,
-    score: 3,
-    activeColor: '#ffe200',
-    inactiveColor: 'rgba(0, 0, 0, 0.25)',
-};
 
 describe('rating reducer', () => {
     it('should return the initial state', () => {
