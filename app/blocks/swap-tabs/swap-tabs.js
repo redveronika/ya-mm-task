@@ -24,7 +24,8 @@ class SwapTabs extends Component {
     }
 
     componentDidUpdate() {
-        if (this.props.args !== this.state.args || this.props.time !== this.state.timeMounted) {
+        // Вызываем функцию только, если время в параметрах изменилось.
+        if (this.props.time !== this.state.timeMounted) {
             this.setState({ args: this.props.args, timeMounted: this.props.time });
             this.reorder();
         }
@@ -35,14 +36,20 @@ class SwapTabs extends Component {
         // Предполагаем, что массив с объектами табов остортирирован, id идут по возрастанию
         const minTabId = this.props.tabs[0].id;
         const maxTabId = this.props.tabs[this.props.tabs.length - 1].id;
+        // Такое ужасное условие, да.
+        // Проверяем, что пользователь ввёл параметры, и что параметров 2 штуки.
+        // Проверяем, что табы с такими id существуют в приложении.
         if (this.props.args !== ''
             && tabsId.length === 2
             && +tabsId[0] >= minTabId
             && +tabsId[0] <= maxTabId
             && +tabsId[1] >= minTabId
             && +tabsId[1] <= maxTabId) {
+            // Вычисляем названия табов по их id.
             const tabTitle1 = this.props.tabs[+tabsId[0] - 1].title;
             const tabTitle2 = this.props.tabs[+tabsId[1] - 1].title;
+            // Здесь мы создаём новый массив табов,
+            // где уже указанные табы поменены местами.
             const newTabs = this.props.tabs.map((tab, i, arr) => {
                 if (tab.id === +tabsId[0]) {
                     tab = {
@@ -57,14 +64,19 @@ class SwapTabs extends Component {
                 }
                 return tab;
             });
+            // Выводим сообщение об успешной операции по свайпу табов.
             this.setState({ message: `Поменяли табы №${tabsId[0]} "${tabTitle1}"
         и №${tabsId[1]} "${tabTitle2}" местами.` });
+            // Сохраняем заново отсортированный массив табов в стор.
             this.props.reorderTabs(newTabs);
         } else if (this.props.args === '') {
+            // Выводим сообщение, если пользователь не передал параметры.
             this.setState({ message: 'Введите номера табов в качестве аргументов.' });
         } else if (tabsId.length !== 2) {
+            // Выводим сообщение, если пользователь передал не 2 параметра.
             this.setState({ message: 'Вы ввели неверное количество аргументов. Необходимо ввести 2 аргумента.' });
         } else {
+            // Выводим сообщение, если пользователь передал id табов, которых нет в приложении.
             this.setState({ message: `Не удалось поменять местами табы №${tabsId[0]} и №${tabsId[1]}. 
                 Доступны табы с ${minTabId} по ${maxTabId}.` });
         }

@@ -30,9 +30,10 @@ class SelectTab extends Component {
     }
 
     selectTab() {
-        // Предполагаем, что массив с объектами табов остортирирован, id идут по возрастанию
+        // Предполагаем, что массив с объектами табов остортирирован, id идут по возрастанию.
         const minTabId = this.props.tabs[0].id;
         const maxTabId = this.props.tabs[this.props.tabs.length - 1].id;
+        // Проверяем, что значение id таба не пустое и такой номер таба существует.
         if (this.props.selectedTabId !== ''
             && this.props.selectedTabId >= minTabId
             && this.props.selectedTabId <= maxTabId) {
@@ -41,10 +42,13 @@ class SelectTab extends Component {
             ))[0];
             this.setState({ message: `Выбран таб №${this.props.selectedTabId} "${selectedTab.title}".` });
             this.props.setActiveTab(+this.props.selectedTabId);
+            // Навигируемся на выбранный таб.
             this.props.history.push(selectedTab.linkTo);
         } else if (this.props.selectedTabId === '') {
+            // Сообщение, если пользователь не ввёл номер таба.
             this.setState({ message: 'Введите номер таба.' });
         } else {
+            // Сообщение, если таба с указанным номер не существует.
             this.setState({
                 message: `Не удалось выбрать таб №${this.props.selectedTabId}. 
                 Доступны табы с ${minTabId} по ${maxTabId}.`,

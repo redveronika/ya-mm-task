@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+
 import { setSessionTime, setActiveTabOpenTime } from '../../reducers/tabs.reducer';
 
 import './text.css';
 
 class Text extends Component {
     componentWillMount() {
+        // Устанавливаем время открытия активного таба в стор.
         this.props.setActiveTabOpenTime(this.props.history.location.time);
     }
 
     componentWillUnmount() {
         const time = new Date().valueOf();
+        // Добавляем время текущей сессии на данной вкладке в стор.
         this.props.setSessionTime('text', time - this.props.activeTabOpenTime);
     }
 

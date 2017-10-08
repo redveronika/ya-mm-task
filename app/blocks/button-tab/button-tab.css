@@ -12,12 +12,8 @@
     flex-basis: 300px;
 }
 
-.button-sizes__item {
+.button-tab__item {
     display: flex;
     align-items: center;
     margin-top: 25px;
-}
-
-.button-sizes__title {
-    margin: 0 10px 0 0;
 }

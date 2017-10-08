@@ -10,59 +10,73 @@ import './button-tab.css';
 
 class ButtonTab extends Component {
     componentWillMount() {
+        // Устанавливаем время открытия активного таба в стор.
         this.props.setActiveTabOpenTime(this.props.history.location.time);
     }
 
     componentWillUnmount() {
         const time = new Date().valueOf();
+        // Добавляем время текущей сессии на данной вкладке в стор.
         this.props.setSessionTime('button', time - this.props.activeTabOpenTime);
     }
 
     render() {
         return (
             <div className="button-tab">
-                <div className="button-tab__col button-sizes">
+                {/*
+                Блок с представлением разных размеров кнопки.
+                Размер кнопки меняется параметром "size"
+                 */}
+                <div className="button-tab__col">
                     <h4>Кнопки могут быть разного размера</h4>
-                    <div className="button-sizes__item">
+                    <div className="button-tab__item">
                         <Button text="Гигантская кнопка" size="XL" onClick={() => alert('Тут будет магия!')} />
                     </div>
-                    <div className="button-sizes__item">
+                    <div className="button-tab__item">
                         <Button text="Кнопка L" size="L" onClick={() => alert('Тут будет магия!')} />
                     </div>
-                    <div className="button-sizes__item">
+                    <div className="button-tab__item">
                         <Button text="Кнопка M" size="M" onClick={() => alert('Тут будет магия!')} />
                     </div>
-                    <div className="button-sizes__item">
+                    <div className="button-tab__item">
                         <Button text="Кнопка S" onClick={() => alert('Тут будет магия!')} />
                     </div>
                 </div>
-                <div className="button-tab__col button-sizes">
+                {/*
+                 Блок с представлением разных состояний кнопки.
+                 Состояние кнопки меняется параметром "state"
+                 */}
+                <div className="button-tab__col">
                     <h4>Кнопки могут иметь разное состояние</h4>
-                    <div className="button-sizes__item">
+                    <div className="button-tab__item">
                         <Button text="Нормальная такая кнопка" size="M" state="normal" type="action" />
                     </div>
-                    <div className="button-sizes__item">
+                    <div className="button-tab__item">
                         <Button text=":hover" size="M" state="hover" type="action" />
                     </div>
-                    <div className="button-sizes__item">
+                    <div className="button-tab__item">
                         <Button text=":focus" size="M" state="focus" type="action" />
                     </div>
-                    <div className="button-sizes__item">
+                    <div className="button-tab__item">
                         <Button text=":active" size="M" state="active" type="action" />
                     </div>
                 </div>
-                <div className="button-tab__col button-sizes">
+                {/*
+                 Блок с представлением разных скинов кнопки.
+                 Размер кнопки меняется параметром "type"
+                 */}
+                <div className="button-tab__col">
                     <h4>Кнопки могут легко менять своё визуальное представление</h4>
-                    <div className="button-sizes__item">
+                    <div className="button-tab__item">
                         <Button text="type = action" size="M" type="action" />
                     </div>
-                    <div className="button-sizes__item">
+                    <div className="button-tab__item">
                         <Button text="type = default" size="M" type="default" />
                     </div>
-                    <div className="button-sizes__item">
+                    <div className="button-tab__item">
                         <Button text="type = light" size="M" type="light" />
                     </div>
-                    <div className="button-sizes__item">
+                    <div className="button-tab__item">
                         <Button text="type = bright" size="M" type="bright" />
                     </div>
                 </div>

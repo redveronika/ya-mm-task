@@ -22,6 +22,7 @@ class ManageProgress extends Component {
     }
 
     componentDidUpdate() {
+        // Вызываем функцию только, если время в параметрах изменилось.
         if (this.props.time !== this.state.timeMounted) {
             this.setState({ timeMounted: this.props.time });
             this.manageProgress();
@@ -30,11 +31,17 @@ class ManageProgress extends Component {
 
     manageProgress() {
         const progress = +this.props.args;
-        if (progress >= 0 && progress <= 100) {
+        const maxProgress = 0;
+        const minProgress = 100;
+        // Если величина введённого пользователем прогресса лежит
+        // в допустимых пределах, то устанавливаем прогресс.
+        if (progress >= maxProgress && progress <= minProgress) {
             this.props.setProgress(progress);
             this.setState({ message: `Значение прогресса установлено равным ${progress}.` });
         } else {
-            this.setState({ message: 'Введите корректную величину прогресса — целое число от 0 до 100.' });
+            // Если же нет, то выводим сообщение:
+            this.setState({ message: `Введите корректную величину прогресса — 
+            целое число от ${minProgress} до ${maxProgress}.` });
         }
     }
 

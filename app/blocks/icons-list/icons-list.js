@@ -14,11 +14,13 @@ import ieIcon from '../../assets/imgs/ie.png';
 
 class IconsList extends Component {
     componentWillMount() {
+        // Устанавливаем время открытия активного таба в сторе.
         this.props.setActiveTabOpenTime(this.props.history.location.time);
     }
 
     componentWillUnmount() {
         const time = new Date().valueOf();
+        // Добавляем время текущей сессии на данной вкладке в стор.
         this.props.setSessionTime('icons-list', time - this.props.activeTabOpenTime);
     }
 
@@ -27,7 +29,13 @@ class IconsList extends Component {
             <div className="icons-list">
                 <div className="icons-list__good-boys icons-list__block">
                     <div className="chrome-icon">
-                        <img className="chrome-icon__img" src={chromeIcon} />
+                        <img className="chrome-icon__img" src={chromeIcon} alt="" />
+                        {/*
+                            Fallback, если изображение не загрузилось.
+                            У остальных иконок отображается значение из аттрибута "alt",
+                            но у данной иконки требовалось сделать буквы разного цвета,
+                            поэтому такое решение.
+                        */}
                         <div className="chrome-icon__alt">
                             <span style={{ color: '#33b43b' }}>Ch</span>
                             <span style={{ color: '#da0000' }}>ro</span>
@@ -44,6 +52,7 @@ class IconsList extends Component {
                         <img className="icons-list__img" src={safariIcon} alt="Safari" style={{ color: '#787878' }} />
                     </div>
                 </div>
+                {/* Блок для иконок браузеров в стороне стоящих. */}
                 <div className="icons-list__bad-boy icons-list__block">
                     <div className="icons-list__img-wrapper">
                         <img className="icons-list__img" src={ieIcon} alt="Internet Explorer" style={{ color: '#0579b0' }} />
