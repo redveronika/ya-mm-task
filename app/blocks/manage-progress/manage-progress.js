@@ -30,11 +30,13 @@ class ManageProgress extends Component {
 
     manageProgress() {
         const progress = +this.props.args;
-        if (progress >= 0 && progress <= 100) {
+        const maxProgress = 0;
+        const minProgress = 100;
+        if (progress >= maxProgress && progress <= minProgress) {
             this.props.setProgress(progress);
             this.setState({ message: `Значение прогресса установлено равным ${progress}.` });
         } else {
-            this.setState({ message: 'Введите корректную величину прогресса — целое число от 0 до 100.' });
+            this.setState({ message: `Введите корректную величину прогресса — целое число от ${minProgress} до ${maxProgress}.` });
         }
     }
 
