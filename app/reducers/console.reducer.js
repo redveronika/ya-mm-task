@@ -19,4 +19,4 @@ const reducer = (state = initialState, action) => {
     }
 };
 
-export { reducer, addCommand };
+export { reducer, initialState, addCommand, ADD_COMMAND };

@@ -15,4 +15,4 @@ const reducer = (state = initialState, action) => {
     }
 };
 
-export { reducer, setProgress };
+export { reducer, setProgress, SET_PROGRESS };

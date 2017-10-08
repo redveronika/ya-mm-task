@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const projectFolder = 'ya-mm-task';
@@ -60,9 +59,10 @@ module.exports = {
     },
     plugins: [
         new UglifyJSPlugin({
-            include: /\/includes/
+            include: /\/includes/,
         }),
         new HtmlPlugin({
+            filename: 'index.html',
             template: './app/index.html',
         }),
         new CleanWebpackPlugin(['../dist']),
