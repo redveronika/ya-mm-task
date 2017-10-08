@@ -75,13 +75,14 @@ class ShowStat extends Component {
         });
         // Считаем общее время работы с приложением:
         // суммируем время на всех вкладках.
-        const commonTime = tabs.reduce((sum, current) => {
-            sum.hours += current.sessionTime.hours;
-            sum.minutes += current.sessionTime.minutes;
-            sum.seconds += current.sessionTime.seconds;
+        const commonTimeMS = tabs.reduce((sum, current) => {
+            sum += current.sessionTime.hours * 24 * 60 * 1000;
+            sum += current.sessionTime.minutes * 60 * 1000;
+            sum += current.sessionTime.seconds * 1000;
             return sum;
-        }, { hours: 0, minutes: 0, seconds: 0 });
-        this.setState({ tabs, commonTime });
+        }, 0);
+        // const commonMS = commonTime.hours * 24 * 60 * 1000 + commonTime.minutes * 60 * 1000 + commonTime.seconds * 1000;
+        this.setState({ tabs, commonTime: convertMS(commonTimeMS) });
     }
 
     // Отвечает за отображение времени проведённого на каждом табе.
