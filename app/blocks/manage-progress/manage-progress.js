@@ -31,11 +31,11 @@ class ManageProgress extends Component {
 
     manageProgress() {
         const progress = +this.props.args;
-        const maxProgress = 0;
-        const minProgress = 100;
+        const minProgress = 0;
+        const maxProgress = 100;
         // Если величина введённого пользователем прогресса лежит
         // в допустимых пределах, то устанавливаем прогресс.
-        if (progress >= maxProgress && progress <= minProgress) {
+        if (progress >= minProgress && progress <= maxProgress) {
             this.props.setProgress(progress);
             this.setState({ message: `Значение прогресса установлено равным ${progress}.` });
         } else {
