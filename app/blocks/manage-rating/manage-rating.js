@@ -27,6 +27,7 @@ class ManageRating extends Component {
     }
 
     componentDidUpdate() {
+        // Вызываем функцию только, если время в параметрах изменилось.
         if (this.props.time !== this.state.timeMounted) {
             this.setState({ timeMounted: this.props.time });
             this.manageRating();
@@ -34,11 +35,15 @@ class ManageRating extends Component {
     }
 
     setBest() {
-        if (+this.props.args > 0 && +this.props.args <= 10) {
+        // минимально возможное кол-во "звёздочек" рейтинга
+        const minRatingValue = 1;
+        // максимально возможное кол-во "звёздочек" рейтинга
+        const maxRatingValue = 10;
+        if (+this.props.args >= minRatingValue && +this.props.args <= maxRatingValue) {
             this.props.setRatingBest(+this.props.args);
             this.setState({ message: `Максимальное значение рейтинга установлено равным ${this.props.args}` });
         } else {
-            this.setState({ message: 'Введите значение от 1 до 10.' });
+            this.setState({ message: `Введите значение от ${minRatingValue} до ${maxRatingValue}.` });
         }
     }
 
@@ -55,6 +60,8 @@ class ManageRating extends Component {
     }
 
     setActiveColor() {
+        // Значение цвета может быть передан как в кавычках, так и без.
+        // На всякий случай чистим от кавычек.
         const color = this.props.args.replace(/['"]/g, '');
         if (color !== '') {
             this.props.setRatingActiveColor(color);
@@ -65,6 +72,8 @@ class ManageRating extends Component {
     }
 
     setInactiveColor() {
+        // Значение цвета может быть передан как в кавычках, так и без.
+        // На всякий случай чистим от кавычек.
         const color = this.props.args.replace(/['"]/g, '');
         if (color !== '') {
             this.props.setRatingInactiveColor(color);
@@ -74,6 +83,8 @@ class ManageRating extends Component {
         }
     }
 
+    // В зависимости от того, какая команда была введена,
+    // вызываем ту или иную функцию.
     manageRating() {
         switch (this.props.command) {
         case 'setBest()':

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import TabsItem from './__item/tabs__item';
 
 import './tabs.css';

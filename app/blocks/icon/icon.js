@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './icon.css';
 
 const Icon = ({ name, color, width, height }) => {
+    // Здесь могут быть ещё иконки, выбираем по параметру "name".
     switch (name) {
     case 'star':
         return (

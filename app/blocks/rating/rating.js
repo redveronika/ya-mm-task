@@ -10,15 +10,18 @@ import './rating.css';
 
 class Rating extends Component {
     componentWillMount() {
+        // Устанавливаем время открытия активного таба в сторе.
         this.props.setActiveTabOpenTime(this.props.history.location.time);
     }
 
     componentWillUnmount() {
         const time = new Date().valueOf();
+        // Добавляем время текущей сессии на данной вкладке в стор.
         this.props.setSessionTime('rating', time - this.props.activeTabOpenTime);
     }
 
     setRating(i) {
+        // Устанавливаем значения рейтинга в сторе.
         this.props.setRatingScore(i + 1);
     }
 
@@ -39,7 +42,12 @@ class Rating extends Component {
     render() {
         return (
             <div className="rating">
-                { Array(+this.props.rating.best).fill(0).map((el, i) => this.renderItem(i)) }
+                {/*
+                    Создаём пустой массив размером равным максимальному количеству "звёздочек",
+                    наполняем его 0, а затем проходим map-ом
+                    и добавляем требуемое кол-во "звёздочек".
+                */}
+                { new Array(+this.props.rating.best).fill(0).map((el, i) => this.renderItem(i)) }
             </div>
         );
     }

@@ -25,17 +25,21 @@ class ShowStat extends Component {
         this.countSessionTime();
     }
 
+    // Считаем, что компонент нужно перерендерить,
+    // если время вызова компонента в параметрах изменилось.
     shouldComponentUpdate(nextProps, nextState) {
         return nextProps.time !== nextState.timeMounted;
     }
 
     componentDidUpdate() {
+        // Вызываем функцию только, если время в параметрах изменилось.
         if (this.props.time !== this.state.timeMounted) {
             this.setState({ timeMounted: this.props.time });
             this.countSessionTime();
         }
     }
 
+    // Отвечает за отображение общего времени работы с приложением.
     showCommonTime() {
         const { hours, minutes, seconds } = this.state.commonTime;
         return (
@@ -49,19 +53,28 @@ class ShowStat extends Component {
     }
 
     countSessionTime() {
+        // Проходим по всем табам приложения.
         const tabs = this.props.tabs.tabs.map((tab) => {
+            // Определяем сумму всех сессий для каждого таба.
             let time = tab.sessionTime.reduce((sum, current) => {
                 sum += current;
                 return sum;
             }, 0);
+            // Если таб активный, то находим текущее время сессии:
+            // вычитаем из текущего времени время захода на вкладку.
             if (this.props.tabs.activeTab === tab.id) {
                 time += this.props.time - this.props.tabs.activeTabOpenTime;
             }
+            // Для конкретного таба перезаписываем время сессии
+            // уже в часах, минутах и секундах.
+            // Добавляем изменённый таб в новый массив.
             return {
                 ...tab,
                 sessionTime: convertMS(time),
             };
         });
+        // Считаем общее время работы с приложением:
+        // суммируем время на всех вкладках.
         const commonTime = tabs.reduce((sum, current) => {
             sum.hours += current.sessionTime.hours;
             sum.minutes += current.sessionTime.minutes;
@@ -71,6 +84,7 @@ class ShowStat extends Component {
         this.setState({ tabs, commonTime });
     }
 
+    // Отвечает за отображение времени проведённого на каждом табе.
     showTabTime(tab) {
         const { hours, minutes, seconds } = tab.sessionTime;
         return (

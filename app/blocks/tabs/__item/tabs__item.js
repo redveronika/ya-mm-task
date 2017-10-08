@@ -10,18 +10,21 @@ class TabsItem extends Component {
     constructor(props) {
         super(props);
 
-        this.setActiveInStore = this.setActiveInStore.bind(this);
+        this.setActiveTab = this.setActiveTab.bind(this);
     }
 
     componentWillMount() {
+        // При заходе в приложение выставляем активный таб, исходя из location.
         if (this.props.history.location.pathname === this.props.linkTo) {
-            this.setActiveInStore();
+            this.setActiveTab();
         }
     }
 
-    setActiveInStore() {
+    setActiveTab() {
         const time = new Date().valueOf();
+        // Навигируемся на выбранный таб.
         this.props.history.push({ pathname: this.props.linkTo, time });
+        // Записываем выбранный таб, как активный в стор.
         this.props.setActiveTab(this.props.id);
     }
 
@@ -31,8 +34,8 @@ class TabsItem extends Component {
             // keyCode = 13 - обработка кнопки "Enter" для навигации по табам с клавиатуры
             <div
                 className="tabs__item tab"
-                onClick={this.setActiveInStore}
-                onKeyDown={e => (e.keyCode === 13 ? this.setActiveInStore() : false)}
+                onClick={this.setActiveTab}
+                onKeyDown={e => (e.keyCode === 13 ? this.setActiveTab() : false)}
                 tabIndex="-1"
             >
                 <a className={`tab__link ${activeTab === id ? 'tab__link--active' : ''}`} role="tab" tabIndex="0">

@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { addCommand } from '../../reducers/console.reducer';
-import { SelectTab, ShowStat, SwapTabs, ManageRating } from '../../blocks';
+import { SelectTab, ShowStat, SwapTabs, ManageRating, ManageProgress } from '../../blocks';
 
 import './console.css';
-import ManageProgress from '../manage-progress/manage-progress';
 
+// Команды, которые доступны пользователю для ввода в консоль (без параметров).
 const SELECT_TAB = 'selectTab()';
 const SHOW_STAT = 'showStat()';
 const SWAP_TABS = 'swapTabs()';
@@ -22,11 +22,12 @@ class Console extends Component {
         super(props);
         this.state = {
             command: '',
-            availableCommands:
-                [SELECT_TAB, SHOW_STAT, SWAP_TABS,
-                    SET_RATING_BEST, SET_RATING_SCORE,
-                    SET_RATING_ACTIVE_COLOR, SET_RATING_INACTIVE_COLOR,
-                    SET_PROGRESS],
+            availableCommands: [
+                SELECT_TAB, SHOW_STAT, SWAP_TABS,
+                SET_RATING_BEST, SET_RATING_SCORE,
+                SET_RATING_ACTIVE_COLOR, SET_RATING_INACTIVE_COLOR,
+                SET_PROGRESS,
+            ],
             showResult: null,
             strArgs: '',
             message: '',
@@ -43,27 +44,36 @@ class Console extends Component {
     }
 
     handleChange(event) {
+        // На изменения значения инпута в консоли меняет значение command в state.
         this.setState({ command: event.target.value });
     }
 
+    // Обрабатываем событие submit формы ввода в консоль.
     handleSubmit(event) {
         event.preventDefault();
         const command = this.state.command;
         let strArgs;
         let strCommand;
+        // Проверяем, что в введённой команде присутствуют скобки.
         if (command.indexOf('(') > -1 && command.indexOf(')') > -1) {
+            // Удаляем пробелы из команды и аргументы выносим в отдельную переменную.
             strArgs = command.trim().substring(command.indexOf('(') + 1, command.indexOf(')'));
+            // Из команды удаляем параметры.
             strCommand = command.replace(strArgs, '');
         }
+        // Проверяем, что введённая команда валидна и есть в списке доступных команд.
         if (typeof strCommand !== 'undefined' && this.state.availableCommands.includes(strCommand)) {
             this.setState({ showResult: strCommand, strArgs, time: new Date().valueOf() });
         } else {
+            // Если команда невалидна или её нет в списке доступных - выводим сообщение об ошибке.
             this.setState({ showResult: null });
             this.setState({ message: 'Такой команды не существует! Попробуйте другую команду.' });
         }
+        // Добавляем команду в историю комманд в стор.
         this.props.addCommand(command);
     }
 
+    // В зависимости от введённой команды вызываем тот или иной компонент.
     showResult() {
         switch (this.state.showResult) {
         case SHOW_STAT:
@@ -82,11 +92,12 @@ class Console extends Component {
                 args={this.state.strArgs}
             />);
         case SET_PROGRESS:
-            return <ManageProgress time={this.state.time} args={this.state.strArgs} />
+            return <ManageProgress time={this.state.time} args={this.state.strArgs} />;
         default: return null;
         }
     }
 
+    // Действие на нажатие кнопки "↑".
     showPrevCommand() {
         const prevCommandId = this.state.commandHistId !== null ?
             this.state.commandHistId - 1 :
@@ -99,6 +110,7 @@ class Console extends Component {
         }
     }
 
+    // Действие на нажатие кнопки "↓".
     showNextCommand() {
         const nextCommandId = this.state.commandHistId !== null ?
             this.state.commandHistId + 1 :
@@ -112,6 +124,7 @@ class Console extends Component {
     }
 
     commandHistory(event) {
+        // Обрабатываем нажатия на "↑" и "↓" только, если история команд не пуста.
         if (this.props.commandsHist.length > 0) {
             if (event.key === 'ArrowUp') {
                 this.showPrevCommand();
