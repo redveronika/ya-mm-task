@@ -66,7 +66,12 @@ class Console extends Component {
         }
         // Проверяем, что введённая команда валидна и есть в списке доступных команд.
         if (typeof strCommand !== 'undefined' && this.state.availableCommands.includes(strCommand)) {
-            this.setState({ showResult: strCommand, strArgs, time: new Date().valueOf() });
+            this.setState({
+                showResult: strCommand,
+                strArgs,
+                time: new Date().valueOf(),
+                commandHistId: this.props.commandsHist.length,
+            });
         } else if (command.trim() === '') {
             this.setState({ message: '', showResult: null });
         } else {
@@ -74,8 +79,10 @@ class Console extends Component {
             this.setState({ showResult: null });
             this.setState({ message: 'Такой команды не существует! Попробуйте другую команду.' });
         }
-        // Добавляем команду в историю комманд в стор.
-        this.props.addCommand(command);
+        if (command.trim() !== '') {
+            // Добавляем команду в историю комманд в стор.
+            this.props.addCommand(command);
+        }
     }
 
     // В зависимости от введённой команды вызываем тот или иной компонент.
