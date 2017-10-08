@@ -49,10 +49,38 @@
     border-color: rgba(232, 232, 232, 0.77);
 }
 
+.button--light:hover {
+    background-color: rgb(232, 232, 232);
+    border-color: rgb(232, 232, 232);
+}
+
+.button--light:focus {
+    box-shadow: 0 0 3px 1px rgba(158, 158, 158, 0.55);
+}
+
+.button--light:active {
+    background-color: rgb(232, 232, 232);
+    border-color: rgb(232, 232, 232);
+}
+
 .button--bright {
     border-radius: 4px;
     background-color: #2fe5bf;
     border-color: #2fe5bf;
+}
+
+.button--bright:hover {
+    background-color: #11c29d;
+    border-color: #11c29d;
+}
+
+.button--bright:focus {
+    box-shadow: 0 0 3px 1px rgba(255, 226, 0, 0.55);
+}
+
+.button--bright:active {
+    background-color: #11c29d;
+    border-color: #11c29d;
 }
 
 .button--action.button--hover {
@@ -75,17 +103,12 @@
 .button--default {
     border-radius: 6px;
     box-shadow: 1px 1px 2px #a8a8a8;
-    background-image: -moz-linear-gradient( 90deg, rgb(226,226,226) 30%, rgb(242,242,242) 70%);
-    background-image: -webkit-linear-gradient( 90deg, rgb(226,226,226) 30%, rgb(242,242,242) 70%);
-    background-image: -ms-linear-gradient( 90deg, rgb(226,226,226) 30%, rgb(242,242,242) 70%);
+    background-image: linear-gradient(0, rgb(226,226,226) 30%, rgb(242,242,242) 70%);
 }
 
 .button--default:hover {
     border-radius: 6px;
-    background-image: -moz-linear-gradient( 90deg, rgb(253,255,204) 30%, rgb(254,255,235) 70%);
-    background-image: -webkit-linear-gradient( 90deg, rgb(253,255,204) 30%, rgb(254,255,235) 70%);
-    background-image: -ms-linear-gradient( 90deg, rgb(253,255,204) 30%, rgb(254,255,235) 70%);
-    -webkit-transition: background-image 0.2s ease-in-out;
+    background-image: linear-gradient(0, rgb(253,255,204) 30%, rgb(254,255,235) 70%);
     transition: background-image 0.2s ease-in-out;
 }
 
