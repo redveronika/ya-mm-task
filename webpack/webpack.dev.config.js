@@ -34,7 +34,9 @@ module.exports = {
                             sourceMap: true,
                         },
                     },
-                    'css-loader'],
+                    'css-loader',
+                    'postcss-loader',
+                ],
             },
             {
                 test: /\.(woff|woff2)$/,

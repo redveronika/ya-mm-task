@@ -11,9 +11,7 @@
 
 .progress-bar__inner {
     border-radius: 6px;
-    background-image: -moz-linear-gradient( 90deg, rgb(40,191,20) 0%, rgb(139,218,26) 14%, rgb(40,191,20) 49%, rgb(171,255,88) 100%);
-    background-image: -webkit-linear-gradient( 90deg, rgb(40,191,20) 0%, rgb(139,218,26) 14%, rgb(40,191,20) 49%, rgb(171,255,88) 100%);
-    background-image: -ms-linear-gradient( 90deg, rgb(40,191,20) 0%, rgb(139,218,26) 14%, rgb(40,191,20) 49%, rgb(171,255,88) 100%);
+    background-image: linear-gradient(0, rgb(40,191,20) 0%, rgb(139,218,26) 14%, rgb(40,191,20) 49%, rgb(171,255,88) 100%);
 }
 
 .progress-bar__text {
