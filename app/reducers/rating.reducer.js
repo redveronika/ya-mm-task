@@ -30,4 +30,14 @@ const reducer = (state = initialState, action) => {
     }
 };
 
-export { reducer, setRatingScore, setRatingBest, setRatingActiveColor, setRatingInactiveColor };
+export {
+    reducer,
+    setRatingScore,
+    setRatingBest,
+    setRatingActiveColor,
+    setRatingInactiveColor,
+    SET_RATING_SCORE,
+    SET_RATING_BEST,
+    SET_RATING_ACTIVE_COLOR,
+    SET_RATING_INACTIVE_COLOR,
+};
