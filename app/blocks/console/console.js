@@ -22,6 +22,7 @@ class Console extends Component {
         super(props);
         this.state = {
             command: '',
+            outputCommand: '',
             availableCommands: [
                 SELECT_TAB, SHOW_STAT, SWAP_TABS,
                 SET_RATING_BEST, SET_RATING_SCORE,
@@ -52,6 +53,8 @@ class Console extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const command = this.state.command;
+        // Сохраняем в state введённую команду для вывода в консоль.
+        this.setState({ outputCommand: command });
         let strArgs;
         let strCommand;
         // Проверяем, что в введённой команде присутствуют скобки.
@@ -64,6 +67,8 @@ class Console extends Component {
         // Проверяем, что введённая команда валидна и есть в списке доступных команд.
         if (typeof strCommand !== 'undefined' && this.state.availableCommands.includes(strCommand)) {
             this.setState({ showResult: strCommand, strArgs, time: new Date().valueOf() });
+        } else if (command.trim() === '') {
+            this.setState({ message: '', showResult: null });
         } else {
             // Если команда невалидна или её нет в списке доступных - выводим сообщение об ошибке.
             this.setState({ showResult: null });
@@ -139,6 +144,7 @@ class Console extends Component {
             <div className="console command-window__container">
                 <div className="console-window">
                     <div className="console-window__result">
+                        <p>{this.state.outputCommand && `/> ${this.state.outputCommand}`}</p>
                         { this.state.showResult
                             ? this.showResult()
                             : this.state.message
