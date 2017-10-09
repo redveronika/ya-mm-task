@@ -2,7 +2,7 @@
     padding: 0;
     border: 0;
     cursor: pointer;
-    outline-color: transparent;
+    outline: none;
 }
 
 .button__label {

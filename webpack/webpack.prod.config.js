@@ -60,9 +60,7 @@ module.exports = {
         ],
     },
     plugins: [
-        new UglifyJSPlugin({
-            include: /\/includes/,
-        }),
+        new UglifyJSPlugin(),
         new HtmlPlugin({
             filename: 'index.html',
             template: './app/index.html',
