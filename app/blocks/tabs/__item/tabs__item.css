@@ -12,7 +12,7 @@
     line-height: 60px;
     color: rgba(0, 0, 0, 0.5);
     text-decoration: none;
-    outline-color: transparent;
+    outline: none;
     cursor: pointer;
 }
 
