@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
-import { setSessionTime, setActiveTabOpenTime } from '../../reducers/tabs.reducer';
+import { setSessionTime } from '../../reducers/tabs.reducer';
 
 import './progress-bar.css';
 
 class ProgressBar extends Component {
-    componentWillMount() {
-        // Устанавливаем время открытия активного таба в сторе.
-        this.props.setActiveTabOpenTime(this.props.history.location.time);
-    }
-
     componentWillUnmount() {
         const time = new Date().valueOf();
         // Добавляем время текущей сессии на данной вкладке в стор.
@@ -33,8 +27,6 @@ class ProgressBar extends Component {
 
 ProgressBar.propTypes = {
     setSessionTime: PropTypes.func.isRequired,
-    setActiveTabOpenTime: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired,
     activeTabOpenTime: PropTypes.any,
     progress: PropTypes.object.isRequired,
 };
@@ -48,5 +40,5 @@ export default connect(
         activeTabOpenTime: state.tabs.activeTabOpenTime,
         progress: state.progress,
     }),
-    { setSessionTime, setActiveTabOpenTime },
-)(withRouter(ProgressBar));
+    { setSessionTime },
+)(ProgressBar);
