@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { setSessionTime, setActiveTabOpenTime } from '../../reducers/tabs.reducer';
+
+import { setSessionTime } from '../../reducers/tabs.reducer';
 import { setRatingScore } from '../../reducers/rating.reducer';
 import { Icon } from '../../blocks';
 
 import './rating.css';
 
 class Rating extends Component {
-    componentWillMount() {
-        // Устанавливаем время открытия активного таба в сторе.
-        this.props.setActiveTabOpenTime(this.props.history.location.time);
-    }
-
     componentWillUnmount() {
         const time = new Date().valueOf();
         // Добавляем время текущей сессии на данной вкладке в стор.
@@ -56,9 +51,7 @@ class Rating extends Component {
 
 Rating.propTypes = {
     setSessionTime: PropTypes.func.isRequired,
-    setActiveTabOpenTime: PropTypes.func.isRequired,
     setRatingScore: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired,
     rating: PropTypes.object.isRequired,
     activeTabOpenTime: PropTypes.any,
 };
@@ -72,5 +65,5 @@ export default connect(
         rating: state.rating,
         activeTabOpenTime: state.tabs.activeTabOpenTime,
     }),
-    { setSessionTime, setActiveTabOpenTime, setRatingScore },
-)(withRouter(Rating));
+    { setSessionTime, setRatingScore },
+)(Rating);

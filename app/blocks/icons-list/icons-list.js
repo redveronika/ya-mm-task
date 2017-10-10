@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { setSessionTime, setActiveTabOpenTime } from '../../reducers/tabs.reducer';
+
+import { setSessionTime } from '../../reducers/tabs.reducer';
 
 import './icons-list.css';
 
@@ -13,11 +13,6 @@ import safariIcon from '../../assets/imgs/safari.png';
 import ieIcon from '../../assets/imgs/ie.png';
 
 class IconsList extends Component {
-    componentWillMount() {
-        // Устанавливаем время открытия активного таба в сторе.
-        this.props.setActiveTabOpenTime(this.props.history.location.time);
-    }
-
     componentWillUnmount() {
         const time = new Date().valueOf();
         // Добавляем время текущей сессии на данной вкладке в стор.
@@ -66,8 +61,6 @@ class IconsList extends Component {
 
 IconsList.propTypes = {
     setSessionTime: PropTypes.func.isRequired,
-    setActiveTabOpenTime: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired,
     activeTabOpenTime: PropTypes.any,
 };
 
@@ -79,5 +72,5 @@ export default connect(
     state => ({
         activeTabOpenTime: state.tabs.activeTabOpenTime,
     }),
-    { setSessionTime, setActiveTabOpenTime },
-)(withRouter(IconsList));
+    { setSessionTime },
+)(IconsList);
