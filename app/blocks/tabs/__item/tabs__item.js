@@ -31,13 +31,7 @@ class TabsItem extends Component {
     render() {
         const { title, linkTo } = this.props;
         return (
-            // keyCode = 13 - обработка кнопки "Enter" для навигации по табам с клавиатуры
-            <div
-                className="tabs__item tab"
-                onClick={this.setActiveTabInStore}
-                onKeyDown={e => (e.keyCode === 13 ? this.setActiveTabInStore() : false)}
-                tabIndex="-1"
-            >
+            <div className="tabs__item tab" onClick={this.setActiveTabInStore} tabIndex="-1">
                 <NavLink to={linkTo} className="tab__link" activeClassName="tab__link--active" role="tab" tabIndex="0">
                     {title}
                 </NavLink>
