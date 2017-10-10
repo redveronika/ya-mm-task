@@ -65,6 +65,10 @@ module.exports = {
             filename: 'index.html',
             template: './app/index.html',
         }),
+        new HtmlPlugin({
+            filename: '404.html',
+            template: './app/404.html',
+        }),
         new CleanWebpackPlugin(['../dist']),
     ],
     output: {
