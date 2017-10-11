@@ -9,14 +9,16 @@ const addCommand = command => ({ type: ADD_COMMAND, payload: command });
 const reducer = (state = initialState, action) => {
     switch (action.type) {
     case ADD_COMMAND:
-        const newCommands = [...state.commands, action.payload];
-        const commands = newCommands.length > 10 ?
-            newCommands.slice(newCommands.length - 10, newCommands.length) :
-            newCommands;
+        const commands = [...state.commands, action.payload];
+        // Максимальное количество команд для хранения в истории
+        const maxCommandsInHistory = 10;
+        if (commands.length === maxCommandsInHistory + 1) {
+            commands.shift();
+        }
         return { ...state, commands };
     default:
         return state;
     }
 };
 
-export { reducer, initialState, addCommand, ADD_COMMAND };
+export { reducer, addCommand, ADD_COMMAND };

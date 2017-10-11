@@ -1,6 +1,5 @@
 import {
     reducer,
-    initialState,
     SET_ACTIVE_TAB,
     SET_ACTIVE_TAB_OPEN_TIME,
     REORDER_TABS,
@@ -8,6 +7,43 @@ import {
 } from '../../reducers/tabs.reducer';
 
 describe('tabs reducer', () => {
+    const initialState = {
+        tabs: [
+            {
+                id: 1,
+                title: 'Прогресс-бар',
+                linkTo: '/ya-mm-task/progress-bar',
+                sessionTime: [],
+            },
+            {
+                id: 2,
+                title: 'Рейтинг',
+                linkTo: '/ya-mm-task/rating',
+                sessionTime: [],
+            },
+            {
+                id: 3,
+                title: 'Кнопка',
+                linkTo: '/ya-mm-task/button',
+                sessionTime: [],
+            },
+            {
+                id: 4,
+                title: 'Список иконок',
+                linkTo: '/ya-mm-task/icons-list',
+                sessionTime: [],
+            },
+            {
+                id: 5,
+                title: 'Текст',
+                linkTo: '/ya-mm-task/text',
+                sessionTime: [],
+            },
+        ],
+        activeTab: null,
+        activeTabOpenTime: null,
+    };
+
     it('should return the initial state', () => {
         expect(
             reducer(undefined, {}),
