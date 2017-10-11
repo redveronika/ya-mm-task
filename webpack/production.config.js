@@ -27,7 +27,10 @@ module.exports = merge(config, {
         ],
     },
     plugins: [
-        new UglifyJSPlugin(),
+        new UglifyJSPlugin({
+            sourceMap: true,
+            beautify: true,
+        }),
         new HtmlPlugin({
             filename: '404.html',
             template: './app/404.html',

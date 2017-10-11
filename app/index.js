@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { devToolsEnhancer } from 'redux-devtools-extension/developmentOnly';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import reducer from './reducers';
 
@@ -11,13 +11,7 @@ import { Main } from '../app/blocks';
 import './styles.css';
 import './assets/fonts/fonts.css';
 
-let store;
-if (PRODUCTION === 'production') {
-    store = createStore(reducer);
-} else {
-    store = createStore(reducer, composeWithDevTools());
-}
-
+const store = createStore(reducer, devToolsEnhancer());
 
 const component = () => {
     render(
