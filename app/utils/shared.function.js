@@ -1,16 +1,19 @@
-/* eslint-disable operator-assignment, prefer-const */
-function convertMS(milliseconds) {
-    let days;
-    let hours;
-    let minutes;
-    let seconds;
-    seconds = Math.floor(milliseconds / 1000);
-    minutes = Math.floor(seconds / 60);
-    seconds = seconds % 60;
-    hours = Math.floor(minutes / 60);
-    minutes = minutes % 60;
-    days = Math.floor(hours / 24);
-    hours = hours % 24;
+const SECOND = 1000;
+const MINUTE = SECOND * 60;
+const HOUR = MINUTE * 60;
+const DAY = HOUR * 24;
+
+function convertMS(ms) {
+    const days = Math.floor(ms / DAY);
+    ms -= days * DAY;
+
+    const hours = Math.floor(ms / HOUR);
+    ms -= hours * HOUR;
+
+    const minutes = Math.floor(ms / MINUTE);
+    ms -= minutes * MINUTE;
+
+    const seconds = Math.floor(ms / SECOND);
     return { days, hours, minutes, seconds };
 }
 
