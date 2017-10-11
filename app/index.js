@@ -18,13 +18,14 @@ const component = () => {
         <Provider store={store}>
             <Router>
                 <Switch>
+                    <Redirect exact from="/ya-mm-task" to="/ya-mm-task/progress-bar" />
                     <Route
-                        path="/main/:filter?"
+                        path="/ya-mm-task/:filter?"
                         render={({ match }) => (
                             <Main filter={match.params.filter} />
                         )}
                     />
-                    <Redirect from="/" to="/main/progress-bar" />
+                    <Redirect from="/" to="/ya-mm-task/progress-bar" />
                 </Switch>
             </Router>
         </Provider>,
