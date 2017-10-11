@@ -1,6 +1,10 @@
-import { reducer, initialState, ADD_COMMAND } from './../../reducers/console.reducer';
+import { reducer, ADD_COMMAND } from './../../reducers/console.reducer';
 
 describe('console reducer', () => {
+    const initialState = {
+        commands: [],
+    };
+
     it('should return the initial state', () => {
         expect(
             reducer(undefined, {}),

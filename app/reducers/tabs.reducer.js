@@ -69,7 +69,6 @@ const reducer = (state = initialState, action) => {
 
 export {
     reducer,
-    initialState,
     setActiveTab,
     setActiveTabOpenTime,
     reorderTabs,

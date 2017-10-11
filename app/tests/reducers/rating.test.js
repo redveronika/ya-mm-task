@@ -1,6 +1,5 @@
 import {
     reducer,
-    initialState,
     SET_RATING_SCORE,
     SET_RATING_BEST,
     SET_RATING_ACTIVE_COLOR,
@@ -8,6 +7,13 @@ import {
 } from './../../reducers/rating.reducer';
 
 describe('rating reducer', () => {
+    const initialState = {
+        best: 6,
+        score: 3,
+        activeColor: '#ffe200',
+        inactiveColor: 'rgba(0, 0, 0, 0.25)',
+    };
+
     it('should return the initial state', () => {
         expect(
             reducer(undefined, {}),
@@ -34,7 +40,7 @@ describe('rating reducer', () => {
 
     it('should handle SET_RATING_INACTIVE_COLOR', () => {
         expect(
-            reducer(undefined, { type: SET_RATING_INACTIVE_COLOR, payload: 'grey' }),
-        ).toEqual({ ...initialState, inactiveColor: 'grey' });
+            reducer(undefined, { type: SET_RATING_INACTIVE_COLOR, payload: '#2fe5bf' }),
+        ).toEqual({ ...initialState, inactiveColor: '#2fe5bf' });
     });
 });
