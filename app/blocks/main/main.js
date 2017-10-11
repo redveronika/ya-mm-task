@@ -25,7 +25,7 @@ const Main = ({ filter, tabs }) => (
 
         <section className="main__content">
             {/* Если в роуте указан фильтр, то вызываем компонент по значению этого фильтра. */}
-            { filter !== null && filterComponents()[filter]() }
+            { filterComponents()[filter]() }
         </section>
 
         <section className="command-window">
@@ -54,12 +54,8 @@ const Main = ({ filter, tabs }) => (
 );
 
 Main.propTypes = {
-    filter: PropTypes.string,
+    filter: PropTypes.string.isRequired,
     tabs: PropTypes.array.isRequired,
-};
-
-Main.defaultProps = {
-    filter: null,
 };
 
 export default connect(

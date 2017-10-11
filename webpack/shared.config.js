@@ -1,24 +1,17 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const webpack = require('webpack');
 
-module.exports = {
+const config = {
     entry: {
         app: './app/index.js',
-    },
-    devtool: 'inline-source-map',
-    devServer: {
-        contentBase: './dist',
-        hot: true,
-        historyApiFallback: true,
-        stats: 'errors-only',
     },
     module: {
         loaders: [
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
+                include: path.resolve(__dirname, '../app'),
                 loader: 'babel-loader',
             },
             {
@@ -50,16 +43,6 @@ module.exports = {
                     },
                 ],
             },
-            {
-                test: /\.(jpe?g|png|gif|svg)$/i,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: 'assets/imgs/',
-                    },
-                }],
-            },
         ],
     },
     plugins: [
@@ -68,12 +51,10 @@ module.exports = {
             template: './app/index.html',
         }),
         new CleanWebpackPlugin(['dist']),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NamedModulesPlugin(),
+        new webpack.DefinePlugin({
+            PRODUCTION: JSON.stringify(process.env.NODE_ENV || 'development'),
+        }),
     ],
-    output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/',
-    },
 };
+
+module.exports = { config };
