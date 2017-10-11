@@ -2,8 +2,8 @@
   "name": "ya-mm-task",
   "author": "Veronika Voronova",
   "scripts": {
-    "start:dev": "webpack-dev-server --env dev",
-    "start:prod": "webpack --env prod",
+    "start:dev": "webpack-dev-server",
+    "start:prod": "NODE_ENV=production webpack -p",
     "test": "jest"
   },
   "dependencies": {
@@ -13,7 +13,8 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "redux-devtools-extension": "^2.13.2"
+    "redux-devtools-extension": "^2.13.2",
+    "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

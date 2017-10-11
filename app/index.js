@@ -11,7 +11,13 @@ import { Main } from '../app/blocks';
 import './styles.css';
 import './assets/fonts/fonts.css';
 
-const store = createStore(reducer, composeWithDevTools());
+let store;
+if (PRODUCTION === 'production') {
+    store = createStore(reducer);
+} else {
+    store = createStore(reducer, composeWithDevTools());
+}
+
 
 const component = () => {
     render(
@@ -19,6 +25,10 @@ const component = () => {
             <Router>
                 <Switch>
                     <Redirect exact from="/ya-mm-task" to="/ya-mm-task/progress-bar" />
+                    { location.href.includes('localhost') ?
+                        <Redirect from="/ya-mm-task/dist" to="/ya-mm-task/progress-bar" />
+                        : null
+                    }
                     <Route
                         path="/ya-mm-task/:filter?"
                         render={({ match }) => (
