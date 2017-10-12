@@ -165,6 +165,8 @@ class Console extends Component {
                         value={this.state.command}
                         onChange={this.handleChange}
                         onKeyDown={this.commandHistory}
+                        placeholder="Введите команду"
+                        aria-label="Введите команду"
                     />
                     <input type="submit" className="console-form__submit" value="Выполнить" />
                 </form>
