@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './button.css';
 
 const Button = ({ text, type, size, state, onClick }) => (
-    <button className={`button button--${type} button--${size} button--${state}`} onClick={() => onClick()} >
+    <button type="button" className={`button button--${type} button--${size} button--${state}`} onClick={() => onClick()}>
         <span className="button__label">{text}</span>
     </button>
 );

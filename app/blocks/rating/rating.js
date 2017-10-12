@@ -29,6 +29,7 @@ class Rating extends Component {
                     color={i < score ? activeColor : inactiveColor}
                     width="30"
                     height="30"
+                    desc="Одна звёздочка рейтинга"
                 />
             </span>
         );

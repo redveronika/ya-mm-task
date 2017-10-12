@@ -24,7 +24,7 @@ class IconsList extends Component {
             <div className="icons-list">
                 <div className="icons-list__good-boys icons-list__block">
                     <div className="chrome-icon">
-                        <img className="chrome-icon__img" src={chromeIcon} alt="" />
+                        <img className="chrome-icon__img" width="120" height="auto" src={chromeIcon} alt="" />
                         {/*
                             Fallback, если изображение не загрузилось.
                             У остальных иконок отображается значение из аттрибута "alt",
@@ -37,20 +37,20 @@ class IconsList extends Component {
                             <span style={{ color: '#fdd710' }}>me</span>
                         </div>
                     </div>
-                    <div className="icons-list__img-wrapper">
-                        <img className="icons-list__img" src={firefoxIcon} alt="Firefox" style={{ color: '#dc6a18' }} />
+                    <div className="firefox-icon icons-list__img-wrapper">
+                        <img className="firefox-icon__img icons-list__img" width="120" height="auto" src={firefoxIcon} alt="Firefox" />
                     </div>
-                    <div className="icons-list__img-wrapper">
-                        <img className="icons-list__img" src={operaIcon} alt="Opera" style={{ color: '#cd1010' }} />
+                    <div className="opera-icon icons-list__img-wrapper">
+                        <img className="opera-icon__img icons-list__img" width="120" height="auto" src={operaIcon} alt="Opera" />
                     </div>
-                    <div className="icons-list__img-wrapper">
-                        <img className="icons-list__img" src={safariIcon} alt="Safari" style={{ color: '#787878' }} />
+                    <div className="safari-icon icons-list__img-wrapper">
+                        <img className="safari-icon__img icons-list__img" width="111" height="auto" src={safariIcon} alt="Safari" />
                     </div>
                 </div>
                 {/* Блок для иконок браузеров в стороне стоящих. */}
                 <div className="icons-list__bad-boy icons-list__block">
-                    <div className="icons-list__img-wrapper">
-                        <img className="icons-list__img" src={ieIcon} alt="Internet Explorer" style={{ color: '#0579b0' }} />
+                    <div className="ie-icon icons-list__img-wrapper">
+                        <img className="ie-icon__img icons-list__img" width="120" height="auto" src={ieIcon} alt="Internet Explorer" />
                     </div>
                 </div>
             </div>
