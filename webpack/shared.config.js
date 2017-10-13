@@ -8,7 +8,7 @@ const config = {
         app: './app/index.js',
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
                 include: path.resolve(__dirname, '../app'),
@@ -42,6 +42,16 @@ const config = {
                         },
                     },
                 ],
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: './assets/imgs/',
+                    },
+                }],
             },
         ],
     },

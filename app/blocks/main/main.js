@@ -7,13 +7,13 @@ import { Tabs, Rating, ProgressBar, ButtonTab, IconsList, Text, Console } from '
 import './main.css';
 
 // Функция обработки компонентов табов по фильтру в роуте.
-const filterComponents = () => ({
+const filterComponents = {
     rating: () => <Rating />,
     'progress-bar': () => <ProgressBar />,
     button: () => <ButtonTab />,
     'icons-list': () => <IconsList />,
     text: () => <Text />,
-});
+};
 
 const Main = ({ filter, tabs }) => (
     <main className="main">
@@ -25,7 +25,11 @@ const Main = ({ filter, tabs }) => (
 
         <section className="main__content">
             {/* Если в роуте указан фильтр, то вызываем компонент по значению этого фильтра. */}
-            { filterComponents()[filter]() }
+            {
+                Object.keys(filterComponents).includes(filter) ?
+                    filterComponents[filter]() :
+                    filterComponents['progress-bar']()
+            }
         </section>
 
         <section className="command-window">
