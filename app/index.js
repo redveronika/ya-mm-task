@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { devToolsEnhancer } from 'redux-devtools-extension/developmentOnly';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import reducer from './reducers';
 
 import { Main } from '../app/blocks';
@@ -14,23 +14,22 @@ import './assets/fonts/fonts.css';
 const store = createStore(reducer, devToolsEnhancer());
 
 const component = () => {
+    const pathArr = location.pathname.split('/');
+    const basename = pathArr[pathArr.length - 2] || 'main';
     render(
         <Provider store={store}>
-            <Router>
-                <Switch>
-                    <Redirect exact from="/ya-mm-task" to="/ya-mm-task/progress-bar" />
-                    { location.href.includes('localhost') ?
-                        <Redirect from="/ya-mm-task/dist" to="/ya-mm-task/progress-bar" />
-                        : null
-                    }
+            <Router basename={`/${basename}`}>
+                <div>
                     <Route
-                        path="/ya-mm-task/:filter?"
-                        render={({ match }) => (
-                            <Main filter={match.params.filter} />
-                        )}
+                        path="/:filter?"
+                        render={({ match }) => {
+                            if (typeof match.params.filter === 'undefined') {
+                                return <Redirect to="/progress-bar" />;
+                            }
+                            return <Main filter={match.params.filter} />;
+                        }}
                     />
-                    <Redirect from="/" to="/ya-mm-task/progress-bar" />
-                </Switch>
+                </div>
             </Router>
         </Provider>,
         document.getElementById('app'),

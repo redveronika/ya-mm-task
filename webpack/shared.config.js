@@ -2,13 +2,14 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const config = {
     entry: {
         app: './app/index.js',
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
                 include: path.resolve(__dirname, '../app'),
@@ -43,6 +44,16 @@ const config = {
                     },
                 ],
             },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: './assets/imgs/',
+                    },
+                }],
+            },
         ],
     },
     plugins: [
@@ -53,6 +64,13 @@ const config = {
         new CleanWebpackPlugin(['dist']),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+        }),
+        new FaviconsWebpackPlugin({
+            logo: './app/assets/imgs/yandex-logo.png',
+            title: 'Yandex task app',
+            icons: {
+                yandex: true,
+            },
         }),
     ],
 };

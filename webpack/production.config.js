@@ -4,27 +4,9 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const merge = require('webpack-merge');
 const { config } = require('./shared.config');
 
-const projectFolder = 'ya-mm-task';
-
 module.exports = merge(config, {
     entry: {
         app: './app/index.js',
-    },
-    module: {
-        loaders: [
-            {
-                test: /\.(jpe?g|png|gif|svg)$/i,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: '/assets/imgs/',
-                        // костыль, конечно, что-то я не знаю пока, как правильно сделать
-                        publicPath: `/${projectFolder}`,
-                    },
-                }],
-            },
-        ],
     },
     plugins: [
         new UglifyJSPlugin({
