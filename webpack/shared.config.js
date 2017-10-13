@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const config = {
     entry: {
@@ -63,6 +64,13 @@ const config = {
         new CleanWebpackPlugin(['dist']),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+        }),
+        new FaviconsWebpackPlugin({
+            logo: './app/assets/imgs/yandex-logo.png',
+            title: 'Yandex task app',
+            icons: {
+                yandex: true,
+            },
         }),
     ],
 };
