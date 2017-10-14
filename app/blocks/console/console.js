@@ -52,6 +52,7 @@ class Console extends Component {
     // Обрабатываем событие submit формы ввода в консоль.
     handleSubmit(event) {
         event.preventDefault();
+        const commandsHist = this.props.commandsHist;
         const command = this.state.command;
         // Сохраняем в state введённую команду для вывода в консоль.
         this.setState({ outputCommand: command });
@@ -70,7 +71,7 @@ class Console extends Component {
                 showResult: strCommand,
                 strArgs,
                 time: new Date().valueOf(),
-                commandHistId: this.props.commandsHist.length,
+                commandHistId: commandsHist.length,
             });
         } else if (command.trim() === '') {
             this.setState({ message: '', showResult: null });
@@ -79,7 +80,7 @@ class Console extends Component {
             this.setState({ showResult: null });
             this.setState({ message: 'Такой команды не существует! Попробуйте другую команду.' });
         }
-        if (command.trim() !== '') {
+        if (command.trim() !== '' && command !== commandsHist[commandsHist.length - 1]) {
             // Добавляем команду в историю комманд в стор.
             this.props.addCommand(command);
         }
@@ -124,7 +125,7 @@ class Console extends Component {
     }
 
     // Действие на нажатие кнопки "↓".
-    showNextCommand(event) {
+    showNextCommand() {
         const nextCommandId = this.state.commandHistId !== null ?
             this.state.commandHistId + 1 :
             this.props.commandsHist.length - 1;
@@ -133,7 +134,6 @@ class Console extends Component {
                 commandHistId: nextCommandId,
                 command: this.props.commandsHist[nextCommandId],
             });
-            event.preventDefault();
         }
     }
 
@@ -143,7 +143,7 @@ class Console extends Component {
             if (event.key === 'ArrowUp') {
                 this.showPrevCommand(event);
             } else if (event.key === 'ArrowDown') {
-                this.showNextCommand(event);
+                this.showNextCommand();
             }
         }
     }
