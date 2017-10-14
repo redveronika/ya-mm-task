@@ -110,7 +110,7 @@ class Console extends Component {
     }
 
     // Действие на нажатие кнопки "↑".
-    showPrevCommand() {
+    showPrevCommand(event) {
         const prevCommandId = this.state.commandHistId !== null ?
             this.state.commandHistId - 1 :
             this.props.commandsHist.length - 2;
@@ -119,11 +119,12 @@ class Console extends Component {
                 commandHistId: prevCommandId,
                 command: this.props.commandsHist[prevCommandId],
             });
+            event.preventDefault();
         }
     }
 
     // Действие на нажатие кнопки "↓".
-    showNextCommand() {
+    showNextCommand(event) {
         const nextCommandId = this.state.commandHistId !== null ?
             this.state.commandHistId + 1 :
             this.props.commandsHist.length - 1;
@@ -132,6 +133,7 @@ class Console extends Component {
                 commandHistId: nextCommandId,
                 command: this.props.commandsHist[nextCommandId],
             });
+            event.preventDefault();
         }
     }
 
@@ -139,9 +141,9 @@ class Console extends Component {
         // Обрабатываем нажатия на "↑" и "↓" только, если история команд не пуста.
         if (this.props.commandsHist.length > 0) {
             if (event.key === 'ArrowUp') {
-                this.showPrevCommand();
+                this.showPrevCommand(event);
             } else if (event.key === 'ArrowDown') {
-                this.showNextCommand();
+                this.showNextCommand(event);
             }
         }
     }
