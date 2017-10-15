@@ -11,15 +11,28 @@
     min-height: 124px;
 }
 
-.icons-list__block img {
+.icons-list__block .icon__img {
     align-self: center;
 }
 
-.icons-list__good-boys img {
+.icons-list__good-boys .icon__img {
     margin-right: 10px;
 }
 
-.chrome-icon {
+.icon {
+    display: flex;
+    height: 135px;
+    align-items: center;
+}
+
+.icon__img {
+    display: flex;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.icon--type--chrome {
     position: relative;
     display: inline-flex;
     width: 120px;
@@ -27,11 +40,11 @@
     margin-right: 10px;
 }
 
-.chrome-icon__img {
+.icon__img--type--chrome {
     z-index: 3;
 }
 
-.chrome-icon__alt {
+.icon__alt--type-chrome {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -43,33 +56,20 @@
     font-weight: 500;
 }
 
-.firefox-icon__img {
+.icon__img--type--firefox {
     color: #dc6a18;
 }
 
-.opera-icon__img {
+.icon__img--type--opera {
     color: #cd1010;
 }
 
-.safari-icon__img {
+.icon__img--type--safari {
     color: #787878;
 }
 
-.ie-icon__img {
+.icon__img--type--ie {
     color: #0579b0;
-}
-
-.icons-list__img-wrapper {
-    display: flex;
-    height: 135px;
-    align-items: center;
-}
-
-.icons-list__img {
-    display: flex;
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
 }
 
 @media (max-width: 750px) {
