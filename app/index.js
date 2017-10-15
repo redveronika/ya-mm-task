@@ -19,17 +19,15 @@ const component = () => {
     render(
         <Provider store={store}>
             <Router basename={`/${basename}`}>
-                <div>
-                    <Route
-                        path="/:filter?"
-                        render={({ match }) => {
-                            if (typeof match.params.filter === 'undefined') {
-                                return <Redirect to="/progress-bar" />;
-                            }
-                            return <Main filter={match.params.filter} />;
-                        }}
-                    />
-                </div>
+                <Route
+                    path="/:filter?"
+                    render={({ match }) => {
+                        if (typeof match.params.filter === 'undefined') {
+                            return <Redirect to="/progress-bar" />;
+                        }
+                        return <Main filter={match.params.filter} />;
+                    }}
+                />
             </Router>
         </Provider>,
         document.getElementById('app'),

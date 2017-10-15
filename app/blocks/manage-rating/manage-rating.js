@@ -14,9 +14,9 @@ class ManageRating extends Component {
             timeMounted: null,
             message: '',
             // минимально возможное кол-во "звёздочек" рейтинга
-            minRatingValue: 1,
+            minValue: 1,
             // максимально возможное кол-во "звёздочек" рейтинга
-            maxRatingValue: 10,
+            maxValue: 10,
         };
 
         this.setBest = this.setBest.bind(this);
@@ -38,12 +38,12 @@ class ManageRating extends Component {
     }
 
     setBest() {
-        if (+this.props.args >= this.state.minRatingValue &&
-            +this.props.args <= this.state.maxRatingValue) {
+        if (+this.props.args >= this.state.minValue &&
+            +this.props.args <= this.state.maxValue) {
             this.props.setRatingBest(+this.props.args);
             this.setState({ message: `Максимальное значение рейтинга установлено равным ${this.props.args}` });
         } else {
-            this.setState({ message: `Введите значение от ${this.state.minRatingValue} до ${this.state.maxRatingValue}.` });
+            this.setState({ message: `Введите значение от ${this.state.minValue} до ${this.state.maxValue}.` });
         }
     }
 
@@ -55,7 +55,7 @@ class ManageRating extends Component {
             this.props.setRatingScore(score);
             this.setState({ message: `Величина рейтинга изменена на ${score}` });
         } else {
-            this.setState({ message: `Введите значение большее или равное ${this.state.minRatingValue}` });
+            this.setState({ message: `Введите значение большее или равное ${this.state.minValue}` });
         }
     }
 

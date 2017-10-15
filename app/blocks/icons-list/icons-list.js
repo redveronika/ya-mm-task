@@ -22,35 +22,35 @@ class IconsList extends Component {
     render() {
         return (
             <div className="icons-list">
-                <div className="icons-list__good-boys icons-list__block">
-                    <div className="chrome-icon">
-                        <img className="chrome-icon__img" width="120" height="auto" src={chromeIcon} alt="" />
+                <div className="icons-list__block icons-list__block--type--good-boys">
+                    <div className="icon icon--type--chrome">
+                        <img className="icon__img icon__img--type--chrome" width="120" height="auto" src={chromeIcon} alt="" />
                         {/*
                             Fallback, если изображение не загрузилось.
                             У остальных иконок отображается значение из аттрибута "alt",
                             но у данной иконки требовалось сделать буквы разного цвета,
                             поэтому такое решение.
                         */}
-                        <div className="chrome-icon__alt">
+                        <div className="icon__alt icon__alt--type-chrome">
                             <span style={{ color: '#33b43b' }}>Ch</span>
                             <span style={{ color: '#da0000' }}>ro</span>
                             <span style={{ color: '#fdd710' }}>me</span>
                         </div>
                     </div>
-                    <div className="firefox-icon icons-list__img-wrapper">
-                        <img className="firefox-icon__img icons-list__img" width="120" height="auto" src={firefoxIcon} alt="Firefox" />
+                    <div className="icon">
+                        <img className="icon__img icon__img--type--firefox" width="120" height="auto" src={firefoxIcon} alt="Firefox" />
                     </div>
-                    <div className="opera-icon icons-list__img-wrapper">
-                        <img className="opera-icon__img icons-list__img" width="120" height="auto" src={operaIcon} alt="Opera" />
+                    <div className="icon">
+                        <img className="icon__img icon__img--type--opera" width="120" height="auto" src={operaIcon} alt="Opera" />
                     </div>
-                    <div className="safari-icon icons-list__img-wrapper">
-                        <img className="safari-icon__img icons-list__img" width="111" height="auto" src={safariIcon} alt="Safari" />
+                    <div className="icon">
+                        <img className="icon__img icon__img--type--safari" width="111" height="auto" src={safariIcon} alt="Safari" />
                     </div>
                 </div>
                 {/* Блок для иконок браузеров в стороне стоящих. */}
-                <div className="icons-list__bad-boy icons-list__block">
-                    <div className="ie-icon icons-list__img-wrapper">
-                        <img className="ie-icon__img icons-list__img" width="120" height="auto" src={ieIcon} alt="Internet Explorer" />
+                <div className="icons-list__block icons-list__block--type--bad-boy">
+                    <div className="icon">
+                        <img className="icon__img icon__img--type--ie" width="120" height="auto" src={ieIcon} alt="Internet Explorer" />
                     </div>
                 </div>
             </div>
