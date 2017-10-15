@@ -151,14 +151,16 @@ class Console extends Component {
 
     render() {
         return (
-            <div className="console command-window__container">
+            <div className="console">
                 <div className="console-window">
-                    <div className="console-window__result">
-                        <p>{this.state.outputCommand && `/> ${this.state.outputCommand}`}</p>
-                        { this.state.showResult
-                            ? this.showResult()
-                            : this.state.message
-                        }
+                    <div className="console-window__wrapper">
+                        <div className="console-window__result">
+                            <p>{this.state.outputCommand && `/> ${this.state.outputCommand}`}</p>
+                            { this.state.showResult
+                                ? this.showResult()
+                                : this.state.message
+                            }
+                        </div>
                     </div>
                 </div>
                 <form className="console-form" onSubmit={this.handleSubmit}>
