@@ -21,8 +21,7 @@ class ManageRating extends Component {
 
         this.setBest = this.setBest.bind(this);
         this.setScore = this.setScore.bind(this);
-        this.setActiveColor = this.setActiveColor.bind(this);
-        this.setInactiveColor = this.setInactiveColor.bind(this);
+        this.setColor = this.setColor.bind(this);
     }
 
     componentWillMount() {
@@ -60,27 +59,27 @@ class ManageRating extends Component {
         }
     }
 
-    setActiveColor() {
+    /**
+     * @param {boolean} activeColor - тип цвета звёздочек рейтинга:
+     * true = активный или false = неактивный
+     */
+    setColor(activeColor) {
         // Значение цвета может быть передан как в кавычках, так и без.
         // На всякий случай чистим от кавычек.
         const color = this.props.args.replace(/['"]/g, '');
-        if (color !== '') {
-            this.props.setRatingActiveColor(color);
-            this.setState({ message: `Активный цвет рейтинга изменён на "${color}"` });
+        const hexRegExp = (/^#(?:[0-9a-fA-F]{3}){1,2}$/);
+        if (hexRegExp.test(color) === true) {
+            const message = activeColor === true ?
+                `Активный цвет рейтинга изменён на ${color}` :
+                `Неактивный цвет рейтинга изменён на ${color}`;
+            if (activeColor === true) {
+                this.props.setRatingActiveColor(color);
+            } else {
+                this.props.setRatingInactiveColor(color);
+            }
+            this.setState({ message });
         } else {
-            this.setState({ message: 'Укажите желаемый цвет.' });
-        }
-    }
-
-    setInactiveColor() {
-        // Значение цвета может быть передан как в кавычках, так и без.
-        // На всякий случай чистим от кавычек.
-        const color = this.props.args.replace(/['"]/g, '');
-        if (color !== '') {
-            this.props.setRatingInactiveColor(color);
-            this.setState({ message: `Неактивный цвет рейтинга изменён на "${color}"` });
-        } else {
-            this.setState({ message: 'Укажите желаемый цвет.' });
+            this.setState({ message: 'Укажите цвет в формате HEX. Например, #ffc04c или #eee.' });
         }
     }
 
@@ -93,9 +92,9 @@ class ManageRating extends Component {
         case 'setScore()':
             return this.setScore();
         case 'setActiveColor()':
-            return this.setActiveColor();
+            return this.setColor(true);
         case 'setInactiveColor()':
-            return this.setInactiveColor();
+            return this.setColor(false);
         default:
             return null;
         }

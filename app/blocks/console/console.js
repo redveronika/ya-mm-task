@@ -80,7 +80,8 @@ class Console extends Component {
             this.setState({ showResult: null });
             this.setState({ message: 'Такой команды не существует! Попробуйте другую команду.' });
         }
-        if (command.trim() !== '' && command !== commandsHist[commandsHist.length - 1]) {
+
+        if (command.trim() !== '' && command.trim() !== commandsHist[commandsHist.length - 1]) {
             // Добавляем команду в историю комманд в стор.
             this.props.addCommand(command);
         }
