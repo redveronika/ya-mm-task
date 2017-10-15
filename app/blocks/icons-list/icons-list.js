@@ -22,7 +22,7 @@ class IconsList extends Component {
     render() {
         return (
             <div className="icons-list">
-                <div className="icons-list__good-boys icons-list__block">
+                <div className="icons-list__block icons-list__block--type--good-boys">
                     <div className="icon icon--type--chrome">
                         <img className="icon__img icon__img--type--chrome" width="120" height="auto" src={chromeIcon} alt="" />
                         {/*
@@ -48,7 +48,7 @@ class IconsList extends Component {
                     </div>
                 </div>
                 {/* Блок для иконок браузеров в стороне стоящих. */}
-                <div className="icons-list__bad-boy icons-list__block">
+                <div className="icons-list__block icons-list__block--type--bad-boy">
                     <div className="icon">
                         <img className="icon__img icon__img--type--ie" width="120" height="auto" src={ieIcon} alt="Internet Explorer" />
                     </div>
