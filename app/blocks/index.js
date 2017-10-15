@@ -13,3 +13,4 @@ export { default as Icon } from './icon/icon';
 export { default as ManageRating } from './manage-rating/manage-rating';
 export { default as ManageProgress } from './manage-progress/manage-progress';
 export { default as Button } from './button/button';
+export { default as Help } from './help/help';

@@ -29,22 +29,6 @@
 }
 
 .command-window__description {
-    margin-top: 20px;
-}
-
-.commands-description {
     background-color: #fff;
-}
-
-.commands-description__wrapper {
-    padding: 20px;
-}
-
-.commands-description__list {
-    padding-left: 20px;
-    line-height: 1.7;
-}
-
-.commands-description__code {
-    font-size: 16px;
+    margin-top: 20px;
 }
