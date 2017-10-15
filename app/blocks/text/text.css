@@ -11,7 +11,7 @@
     text-align: left;
 }
 
-.text__content p {
+.text__block {
     text-indent: 15px;
 }
 
@@ -20,16 +20,13 @@
     list-style-type: none;
 }
 
-.text__list li:before {
+.text__list-item:before {
     content: '\2014';
     position: absolute;
     margin-left: -20px;
 }
 
-.text__list-item {
-    display: inline-block;
-}
-
 .text__list-item--underline {
+    display: inline-block;
     border-bottom: 1px dashed;
 }
