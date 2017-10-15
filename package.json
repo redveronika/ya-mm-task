@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "babel-jest": "^20.0.3",
+    "imagemin-webpack-plugin": "^1.5.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
