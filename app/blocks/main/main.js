@@ -38,20 +38,44 @@ const Main = ({ filter, tabs }) => (
             <div className="command-window__description commands-description">
                 <h3>Для ввода доступны следующие команды:</h3>
                 <ul className="commands-description__list">
-                    <li>selectTab(tabIndex) — выбор таба с индексом tabIndex</li>
-                    <li>swapTabs(tabIndex1, tabIndex2) — поменять местами в DOM табы
-                        tabIndex1 и tabIndex2</li>
-                    <li>showStat() — показать статистику</li>
-                    <li>setBest(maxStars) — установить максимальноё количество {'"звёздочек"'} рейтинга</li>
-                    <li>setScore(score) — выставить рейтинг</li>
-                    <li>setActiveColor(color) — установить активный цвет {'"звёздочек"'} рейтинга</li>
-                    <li>setInactiveColor(color) — установить неактивный цвет {'"звёздочек"'} рейтинга</li>
-                    <li>setProgress(progress) — установить значение прогресса в прогресс-баре.</li>
+                    <li>
+                        <code className="commands-description__code">selectTab(tabIndex)</code>
+                            — выбор таба с индексом tabIndex.
+                    </li>
+                    <li>
+                        <code className="commands-description__code">swapTabs(tabIndex1, tabIndex2)</code>
+                            — поменять местами в DOM табы
+                        tabIndex1 и tabIndex2.
+                    </li>
+                    <li>
+                        <code className="commands-description__code">showStat()</code>
+                            — показать статистику.
+                    </li>
+                    <li>
+                        <code className="commands-description__code">setBest(maxStars)</code>
+                            — установить максимальное количество {'«звёздочек»'} рейтинга.
+                    </li>
+                    <li>
+                        <code className="commands-description__code">setScore(score)</code>
+                            — выставить рейтинг.
+                    </li>
+                    <li>
+                        <code className="commands-description__code">setActiveColor(HEX)</code>
+                            — установить активный цвет {'«звёздочек»'} рейтинга.
+                    </li>
+                    <li>
+                        <code className="commands-description__code">setInactiveColor(HEX)</code>
+                            — установить неактивный цвет {'«звёздочек»'} рейтинга.
+                    </li>
+                    <li>
+                        <code className="commands-description__code">setProgress(progress)</code>
+                        — установить значение прогресса в прогресс-баре.
+                    </li>
                 </ul>
-                <p>Команды выполняются по нажатию кнопки {'"Выполнить"'}
-                    или клавиши {'"Enter"'}.</p>
+                <p>Команды выполняются по нажатию кнопки {'«Выполнить»'}
+                    или клавиши {'«Enter»'}.</p>
                 <p>Доступна навигация по истории последних 10
-                    команд клавишами {'"↑"'} и {'"↓"'}.</p>
+                    команд клавишами {'«↑»'} и {'«↓»'}.</p>
             </div>
         </section>
     </main>
