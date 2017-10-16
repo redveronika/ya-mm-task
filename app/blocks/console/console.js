@@ -96,7 +96,6 @@ class Console extends Component {
         case SET_PROGRESS:
             return <ManageProgress time={this.state.time} args={this.state.strArgs} />;
         default:
-            console.log(this.state.showResult)
             const message = this.state.showResult === '' ?
                 'Введён пустой поисковый запрос. Список доступных команд представлен ниже.' :
                 'Такой команды не существует! Ознакомьтесь с информацией ниже.';
