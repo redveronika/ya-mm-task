@@ -51,9 +51,13 @@ class ManageRating extends Component {
         // Если значение рейтинга больше максимально допустимого,
         // то выставляем максимально допустимое.
         const score = Math.min(this.props.ratingBest, +this.props.args);
-        if (score > 0) {
+        const messageSuccess = +this.props.args > this.props.ratingBest ?
+            `Введённое значение больше максимально возможного значения рейтинга.
+             Установлен максимальный рейтинг, равный ${score}` :
+            `Величина рейтинга изменена на ${score}`;
+        if (score >= this.state.minValue) {
             this.props.setRatingScore(score);
-            this.setState({ message: `Величина рейтинга изменена на ${score}` });
+            this.setState({ message: messageSuccess });
         } else {
             this.setState({ message: `Введите значение большее или равное ${this.state.minValue}` });
         }

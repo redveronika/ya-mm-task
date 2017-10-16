@@ -11,6 +11,7 @@
 
 .console-window {
     height: 100%;
+    overflow-y: scroll;
 }
 
 .console-window__wrapper {

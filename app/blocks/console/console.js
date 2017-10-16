@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { addCommand } from '../../reducers/console.reducer';
-import { SelectTab, ShowStat, SwapTabs, ManageRating, ManageProgress } from '../../blocks';
+import { SelectTab, ShowStat, SwapTabs, ManageRating, ManageProgress, Help } from '../../blocks';
 
 import './console.css';
 
@@ -23,12 +23,6 @@ class Console extends Component {
         this.state = {
             command: '',
             outputCommand: '',
-            availableCommands: [
-                SELECT_TAB, SHOW_STAT, SWAP_TABS,
-                SET_RATING_BEST, SET_RATING_SCORE,
-                SET_RATING_ACTIVE_COLOR, SET_RATING_INACTIVE_COLOR,
-                SET_PROGRESS,
-            ],
             showResult: null,
             strArgs: '',
             message: '',
@@ -53,35 +47,29 @@ class Console extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const commandsHist = this.props.commandsHist;
-        const command = this.state.command;
+        const command = this.state.command.trim();
+
         // Сохраняем в state введённую команду для вывода в консоль.
         this.setState({ outputCommand: command });
+
         let strArgs;
-        let strCommand;
+        let strCommand = command;
         // Проверяем, что в введённой команде присутствуют скобки.
         if (command.indexOf('(') > -1 && command.indexOf(')') > -1) {
             // Удаляем пробелы из команды и аргументы выносим в отдельную переменную.
-            strArgs = command.trim().substring(command.indexOf('(') + 1, command.indexOf(')'));
+            strArgs = command.substring(command.indexOf('(') + 1, command.indexOf(')'));
             // Из команды удаляем параметры.
             strCommand = command.replace(strArgs, '');
         }
-        // Проверяем, что введённая команда валидна и есть в списке доступных команд.
-        if (typeof strCommand !== 'undefined' && this.state.availableCommands.includes(strCommand)) {
-            this.setState({
-                showResult: strCommand,
-                strArgs,
-                time: new Date().valueOf(),
-                commandHistId: commandsHist.length,
-            });
-        } else if (command.trim() === '') {
-            this.setState({ message: '', showResult: null });
-        } else {
-            // Если команда невалидна или её нет в списке доступных - выводим сообщение об ошибке.
-            this.setState({ showResult: null });
-            this.setState({ message: 'Такой команды не существует! Попробуйте другую команду.' });
-        }
 
-        if (command.trim() !== '' && command.trim() !== commandsHist[commandsHist.length - 1]) {
+        this.setState({
+            showResult: strCommand,
+            strArgs,
+            time: new Date().valueOf(),
+            commandHistId: commandsHist.length,
+        });
+
+        if (command !== '' && command !== commandsHist[commandsHist.length - 1]) {
             // Добавляем команду в историю комманд в стор.
             this.props.addCommand(command);
         }
@@ -107,7 +95,11 @@ class Console extends Component {
             />);
         case SET_PROGRESS:
             return <ManageProgress time={this.state.time} args={this.state.strArgs} />;
-        default: return null;
+        default:
+            const message = this.state.showResult === '' ?
+                'Введён пустой поисковый запрос. Список доступных команд представлен ниже.' :
+                'Такой команды не существует! Ознакомьтесь с информацией ниже.';
+            return <Help message={message} />;
         }
     }
 
@@ -155,11 +147,11 @@ class Console extends Component {
                 <div className="console-window">
                     <div className="console-window__wrapper">
                         <div className="console-window__result">
-                            <p>{this.state.outputCommand && `/> ${this.state.outputCommand}`}</p>
-                            { this.state.showResult
-                                ? this.showResult()
-                                : this.state.message
-                            }
+                            <p>{this.state.outputCommand ?
+                                `/> ${this.state.outputCommand}` :
+                                null}
+                            </p>
+                            { this.state.showResult !== null ? this.showResult() : null }
                         </div>
                     </div>
                 </div>
