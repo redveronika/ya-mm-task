@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './help.css';
 
 const Help = ({ message }) => (
     <div className="help">
-        <h4>{message}</h4>
+        <h4 className="help__message">{message}</h4>
         <div className="help__wrapper">
             <h3>Для ввода доступны следующие команды:</h3>
             <ul className="help__list">
@@ -49,5 +50,13 @@ const Help = ({ message }) => (
         </div>
     </div>
 );
+
+Help.propTypes = {
+    message: PropTypes.string,
+};
+
+Help.defaultProps = {
+    message: '',
+};
 
 export default Help;

@@ -47,17 +47,17 @@ class Console extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const commandsHist = this.props.commandsHist;
-        const command = this.state.command;
+        const command = this.state.command.trim();
 
         // Сохраняем в state введённую команду для вывода в консоль.
         this.setState({ outputCommand: command });
 
         let strArgs;
-        let strCommand;
+        let strCommand = command;
         // Проверяем, что в введённой команде присутствуют скобки.
         if (command.indexOf('(') > -1 && command.indexOf(')') > -1) {
             // Удаляем пробелы из команды и аргументы выносим в отдельную переменную.
-            strArgs = command.trim().substring(command.indexOf('(') + 1, command.indexOf(')'));
+            strArgs = command.substring(command.indexOf('(') + 1, command.indexOf(')'));
             // Из команды удаляем параметры.
             strCommand = command.replace(strArgs, '');
         }
@@ -69,7 +69,7 @@ class Console extends Component {
             commandHistId: commandsHist.length,
         });
 
-        if (command.trim() !== '' && command.trim() !== commandsHist[commandsHist.length - 1]) {
+        if (command !== '' && command !== commandsHist[commandsHist.length - 1]) {
             // Добавляем команду в историю комманд в стор.
             this.props.addCommand(command);
         }
@@ -96,7 +96,10 @@ class Console extends Component {
         case SET_PROGRESS:
             return <ManageProgress time={this.state.time} args={this.state.strArgs} />;
         default:
-            const message = 'Такой команды не существует! Ознакомьтесь с информацией ниже.';
+            console.log(this.state.showResult)
+            const message = this.state.showResult === '' ?
+                'Введён пустой поисковый запрос. Список доступных команд представлен ниже.' :
+                'Такой команды не существует! Ознакомьтесь с информацией ниже.';
             return <Help message={message} />;
         }
     }
@@ -145,7 +148,10 @@ class Console extends Component {
                 <div className="console-window">
                     <div className="console-window__wrapper">
                         <div className="console-window__result">
-                            <p>{this.state.outputCommand && `/> ${this.state.outputCommand}`}</p>
+                            <p>{this.state.outputCommand ?
+                                `/> ${this.state.outputCommand}` :
+                                null}
+                            </p>
                             { this.state.showResult !== null ? this.showResult() : null }
                         </div>
                     </div>
