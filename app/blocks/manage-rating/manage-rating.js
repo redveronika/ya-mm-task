@@ -72,16 +72,14 @@ class ManageRating extends Component {
         // На всякий случай чистим от кавычек.
         const color = this.props.args.replace(/['"]/g, '');
         const hexRegExp = (/^#(?:[0-9a-fA-F]{3}){1,2}$/);
-        if (hexRegExp.test(color) === true) {
-            const message = activeColor === true ?
-                `Активный цвет рейтинга изменён на ${color}` :
-                `Неактивный цвет рейтинга изменён на ${color}`;
-            if (activeColor === true) {
+        if (hexRegExp.test(color)) {
+            if (activeColor) {
                 this.props.setRatingActiveColor(color);
+                this.setState({ message: `Цвет активных «звёздочек» рейтинга изменён на ${color}` });
             } else {
                 this.props.setRatingInactiveColor(color);
+                this.setState({ message: `Цвет неактивных «звёздочек» рейтинга изменён на ${color}` });
             }
-            this.setState({ message });
         } else {
             this.setState({ message: 'Укажите цвет в формате HEX. Например, #ffc04c или #eee.' });
         }
