@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setActiveTab, setActiveTabOpenTime } from '../../../reducers/tabs.reducer';
@@ -13,11 +13,9 @@ class TabsItem extends Component {
         this.setActiveTabInStore = this.setActiveTabInStore.bind(this);
     }
 
-    componentWillMount() {
-        // При заходе в приложение выставляем активный таб, исходя из location.
-        if (this.props.history.location.pathname === this.props.linkTo) {
-            this.setActiveTabInStore();
-        }
+    shouldComponentUpdate(nextProps) {
+        return location.pathname.includes(nextProps.linkTo) ||
+            nextProps.id === this.props.activeTab;
     }
 
     setActiveTabInStore() {
@@ -45,8 +43,8 @@ TabsItem.propTypes = {
     linkTo: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     setActiveTab: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired,
     setActiveTabOpenTime: PropTypes.func.isRequired,
+    activeTab: PropTypes.number.isRequired,
 };
 
 export default connect(
@@ -54,4 +52,4 @@ export default connect(
         activeTab: state.tabs.activeTab,
     }),
     { setActiveTab, setActiveTabOpenTime },
-)(withRouter(TabsItem));
+)(TabsItem);
