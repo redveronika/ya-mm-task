@@ -40,8 +40,8 @@ describe('tabs reducer', () => {
                 sessionTime: [],
             },
         ],
-        activeTab: null,
-        activeTabOpenTime: null,
+        activeTab: 1,
+        activeTabOpenTime: 0,
     };
 
     it('should return the initial state', () => {
