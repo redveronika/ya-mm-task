@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { convertMS } from '../../utils/shared.function';
+import {convertMS, DAY, HOUR, MINUTE, SECOND} from '../../utils/shared.function';
 
 import './show-stat.css';
 
@@ -75,9 +75,10 @@ class ShowStat extends Component {
         });
         // Считаем общее время работы с приложением: суммируем время на всех вкладках в мс.
         const commonTimeMS = tabs.reduce((sum, current) => {
-            sum += current.sessionTime.hours * 24 * 60 * 1000;
-            sum += current.sessionTime.minutes * 60 * 1000;
-            sum += current.sessionTime.seconds * 1000;
+            sum += current.sessionTime.days * DAY;
+            sum += current.sessionTime.hours * HOUR;
+            sum += current.sessionTime.minutes * MINUTE;
+            sum += current.sessionTime.seconds * SECOND;
             return sum;
         }, 0);
         // Сохраняем в state время в человекочитаемом формате.
