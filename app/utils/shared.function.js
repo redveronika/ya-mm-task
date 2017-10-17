@@ -17,4 +17,4 @@ function convertMS(ms) {
     return { days, hours, minutes, seconds };
 }
 
-export { convertMS };
+export { convertMS, SECOND, MINUTE, HOUR, DAY };
