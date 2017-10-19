@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import {convertMS, DAY, HOUR, MINUTE, SECOND} from '../../utils/shared.function';
+import { convertMS } from '../../utils/shared.function';
 
 import './show-stat.css';
 
@@ -54,17 +54,23 @@ class ShowStat extends Component {
 
     countSessionTime() {
         // Проходим по всем табам приложения.
+        let commonTimeMS = 0;
         const tabs = this.props.tabs.tabs.map((tab) => {
             // Определяем сумму всех сессий для каждого таба.
             let time = tab.sessionTime.reduce((sum, current) => {
                 sum += current;
                 return sum;
             }, 0);
+
             // Если таб активный, то находим текущее время сессии:
             // вычитаем из текущего времени время захода на вкладку.
             if (this.props.tabs.activeTab === tab.id) {
                 time += this.props.time - this.props.tabs.activeTabOpenTime;
             }
+
+            // Считаем общее время работы с приложением: суммируем время на всех вкладках в мс.
+            commonTimeMS += time;
+
             // Для конкретного таба перезаписываем время сессии
             // уже в часах, минутах и секундах.
             // Добавляем изменённый таб в новый массив.
@@ -73,14 +79,7 @@ class ShowStat extends Component {
                 sessionTime: convertMS(time),
             };
         });
-        // Считаем общее время работы с приложением: суммируем время на всех вкладках в мс.
-        const commonTimeMS = tabs.reduce((sum, current) => {
-            sum += current.sessionTime.days * DAY;
-            sum += current.sessionTime.hours * HOUR;
-            sum += current.sessionTime.minutes * MINUTE;
-            sum += current.sessionTime.seconds * SECOND;
-            return sum;
-        }, 0);
+
         // Сохраняем в state время в человекочитаемом формате.
         this.setState({ tabs, commonTime: convertMS(commonTimeMS) });
     }

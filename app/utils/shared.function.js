@@ -13,8 +13,8 @@ function convertMS(ms) {
     const minutes = Math.floor(ms / MINUTE);
     ms -= minutes * MINUTE;
 
-    const seconds = Math.floor(ms / SECOND);
+    const seconds = ms / SECOND;
     return { days, hours, minutes, seconds };
 }
 
-export { convertMS, SECOND, MINUTE, HOUR, DAY };
+export { convertMS };

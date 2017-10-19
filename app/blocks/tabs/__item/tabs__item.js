@@ -13,13 +13,19 @@ class TabsItem extends Component {
         this.setActiveTabInStore = this.setActiveTabInStore.bind(this);
     }
 
+    componentWillMount() {
+        if (this.props.activeTab === null && location.pathname.includes(this.props.linkTo)) {
+            this.setActiveTabInStore();
+        }
+    }
+
     shouldComponentUpdate(nextProps) {
         return location.pathname.includes(nextProps.linkTo) ||
             nextProps.id === this.props.activeTab;
     }
 
     setActiveTabInStore() {
-        const time = new Date().valueOf();
+        const time = Date.now();
         // Устанавливаем время открытия активного таба в сторе.
         this.props.setActiveTabOpenTime(time);
         // Записываем выбранный таб, как активный в стор.
@@ -44,7 +50,11 @@ TabsItem.propTypes = {
     title: PropTypes.string.isRequired,
     setActiveTab: PropTypes.func.isRequired,
     setActiveTabOpenTime: PropTypes.func.isRequired,
-    activeTab: PropTypes.number.isRequired,
+    activeTab: PropTypes.number,
+};
+
+TabsItem.defaultProps = {
+    activeTab: null,
 };
 
 export default connect(
