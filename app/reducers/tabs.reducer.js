@@ -31,8 +31,8 @@ const initialState = {
             sessionTime: [],
         },
     ],
-    activeTab: 1,
-    activeTabOpenTime: 0,
+    activeTab: null,
+    activeTabOpenTime: null,
 };
 
 const SET_ACTIVE_TAB = 'SET_ACTIVE_TAB';
