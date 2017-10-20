@@ -14,7 +14,7 @@ import ieIcon from '../../assets/imgs/ie.png';
 
 class IconsList extends Component {
     componentWillUnmount() {
-        const time = new Date().valueOf();
+        const time = Date.now();
         // Добавляем время текущей сессии на данной вкладке в стор.
         this.props.setSessionTime('icons-list', time - this.props.activeTabOpenTime);
     }

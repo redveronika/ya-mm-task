@@ -8,7 +8,7 @@ import './progress-bar.css';
 
 class ProgressBar extends Component {
     componentWillUnmount() {
-        const time = new Date().valueOf();
+        const time = Date.now();
         // Добавляем время текущей сессии на данной вкладке в стор.
         this.props.setSessionTime('progress-bar', time - this.props.activeTabOpenTime);
     }

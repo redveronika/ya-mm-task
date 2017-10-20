@@ -9,7 +9,7 @@ import './button-tab.css';
 
 class ButtonTab extends Component {
     componentWillUnmount() {
-        const time = new Date().valueOf();
+        const time = Date.now();
         // Добавляем время текущей сессии на данной вкладке в стор.
         this.props.setSessionTime('button', time - this.props.activeTabOpenTime);
     }
