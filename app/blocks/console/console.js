@@ -65,7 +65,7 @@ class Console extends Component {
         this.setState({
             showResult: strCommand,
             strArgs,
-            time: new Date().valueOf(),
+            time: Date.now(),
             commandHistId: commandsHist.length,
         });
 

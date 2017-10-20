@@ -8,7 +8,7 @@ import './text.css';
 
 class Text extends Component {
     componentWillUnmount() {
-        const time = new Date().valueOf();
+        const time = Date.now();
         // Добавляем время текущей сессии на данной вкладке в стор.
         this.props.setSessionTime('text', time - this.props.activeTabOpenTime);
     }

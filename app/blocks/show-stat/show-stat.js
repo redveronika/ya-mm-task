@@ -6,6 +6,8 @@ import { convertMS } from '../../utils/shared.function';
 
 import './show-stat.css';
 
+import whiskyPour from '../../assets/imgs/whisky-pour.gif';
+
 class ShowStat extends Component {
     constructor(props) {
         super(props);
@@ -105,6 +107,7 @@ class ShowStat extends Component {
                     Детализация времени просмотра табов:
                     { this.state.tabs.map(tab => this.showTabTime(tab)) }
                 </ul>
+                <img src={whiskyPour} alt="Pouring whisky in glass" />
             </div>
         );
     }
