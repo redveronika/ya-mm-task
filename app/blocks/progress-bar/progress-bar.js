@@ -16,9 +16,21 @@ class ProgressBar extends Component {
     render() {
         const { progress } = this.props.progress;
         return (
-            <div className="progress-bar" >
-                <span className="progress-bar__text">{progress}%</span>
-                <div className="progress-bar__inner" style={{ width: `${progress}%` }} />
+            <div className="progress-bar">
+                <progress className="progress" max="100" value={progress}>
+                    {/* Fallback */}
+                    <div
+                        className="progress progress--type--fallback"
+                        role="progressbar"
+                        aria-valuemin="0"
+                        aria-valuenow={progress}
+                        aria-valuemax="100"
+                    >
+                        <span className="progress__text">{progress}%</span>
+                        <div className="progress__inner" style={{ width: `${progress}%` }} />
+                    </div>
+                </progress>
+                <span className="progress__text">{progress}%</span>
             </div>
         );
     }
