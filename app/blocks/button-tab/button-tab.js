@@ -24,16 +24,16 @@ class ButtonTab extends Component {
                 <div className="button-tab__col">
                     <h4>Кнопки могут быть разного размера</h4>
                     <div className="button-tab__item">
-                        <Button text="Гигантская кнопка" size="XL" onClick={() => alert('Тут будет магия!')} />
+                        <Button text="Гигантская кнопка" size="XL" />
                     </div>
                     <div className="button-tab__item">
-                        <Button text="Кнопка L" size="L" onClick={() => alert('Тут будет магия!')} />
+                        <Button text="Кнопка L" size="L" />
                     </div>
                     <div className="button-tab__item">
-                        <Button text="Кнопка M" size="M" onClick={() => alert('Тут будет магия!')} />
+                        <Button text="Кнопка M" size="M" />
                     </div>
                     <div className="button-tab__item">
-                        <Button text="Кнопка S" onClick={() => alert('Тут будет магия!')} />
+                        <Button text="Кнопка S" />
                     </div>
                 </div>
                 {/*
