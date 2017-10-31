@@ -54,10 +54,11 @@ class Console extends Component {
 
         let strArgs;
         let strCommand = command;
-        // Проверяем, что в введённой команде присутствуют скобки.
-        if (command.indexOf('(') > -1 && command.indexOf(')') > -1) {
-            // Удаляем пробелы из команды и аргументы выносим в отдельную переменную.
-            strArgs = command.substring(command.indexOf('(') + 1, command.indexOf(')'));
+        // Проверяем, что в введённой команде присутствуют скобки
+        // с необязательными аргументами внутри.
+        if ((/\(?(.*)\)/).test(command)) {
+            // Выносим аргументы команды в отдельную переменную.
+            strArgs = command.match(/\((.*)\)/)[0].replace(/\(|\)/g, '');
             // Из команды удаляем параметры.
             strCommand = command.replace(strArgs, '');
         }
