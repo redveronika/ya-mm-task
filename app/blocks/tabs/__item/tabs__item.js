@@ -21,7 +21,7 @@ class TabsItem extends Component {
 
     shouldComponentUpdate(nextProps) {
         return location.pathname.includes(nextProps.linkTo) ||
-            nextProps.id === this.props.activeTab;
+            nextProps.id === this.props.activeTab || nextProps.title !== this.props.title;
     }
 
     setActiveTabInStore() {
