@@ -18,6 +18,19 @@ const SET_RATING_INACTIVE_COLOR = 'setInactiveColor()';
 const SET_PROGRESS = 'setProgress()';
 
 class Console extends Component {
+    static parseCommand(command) {
+        // Проверяем, что в введённой команде присутствуют скобки
+        // с необязательными аргументами внутри.
+        let strArgs = '';
+        const re = /(?:\w+\(([^()]+)\)$)/;
+        if (re.test(command)) {
+            // Выносим аргументы команды в отдельную переменную.
+            strArgs = command.match(re)[1];
+            // Из команды удаляем параметры.
+            command = command.replace(strArgs, '');
+        }
+        return { strArgs, command };
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -52,16 +65,7 @@ class Console extends Component {
         // Сохраняем в state введённую команду для вывода в консоль.
         this.setState({ outputCommand: command });
 
-        let strArgs;
-        let strCommand = command;
-        // Проверяем, что в введённой команде присутствуют скобки
-        // с необязательными аргументами внутри.
-        if ((/\(?(.*)\)/).test(command)) {
-            // Выносим аргументы команды в отдельную переменную.
-            strArgs = command.match(/\((.*)\)/)[0].replace(/\(|\)/g, '');
-            // Из команды удаляем параметры.
-            strCommand = command.replace(strArgs, '');
-        }
+        const { strArgs = '', command: strCommand } = Console.parseCommand(command);
 
         this.setState({
             showResult: strCommand,
