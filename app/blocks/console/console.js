@@ -4,20 +4,19 @@ import PropTypes from 'prop-types';
 
 import { addCommand } from '../../reducers/console.reducer';
 import { SelectTab, ShowStat, SwapTabs, ManageRating, ManageProgress, Help } from '../../blocks';
+import {
+    parseCommand, SELECT_TAB, SET_RATING_SCORE, SET_RATING_BEST, SHOW_STAT, SWAP_TABS,
+    SET_RATING_ACTIVE_COLOR, SET_RATING_INACTIVE_COLOR, SET_PROGRESS,
+} from '../../utils/shared.function';
 
 import './console.css';
 
-// Команды, которые доступны пользователю для ввода в консоль (без параметров).
-const SELECT_TAB = 'selectTab()';
-const SHOW_STAT = 'showStat()';
-const SWAP_TABS = 'swapTabs()';
-const SET_RATING_BEST = 'setBest()';
-const SET_RATING_SCORE = 'setScore()';
-const SET_RATING_ACTIVE_COLOR = 'setActiveColor()';
-const SET_RATING_INACTIVE_COLOR = 'setInactiveColor()';
-const SET_PROGRESS = 'setProgress()';
-
 export class Console extends Component {
+    static propTypes = {
+        commandsHist: PropTypes.array.isRequired,
+        addCommand: PropTypes.func.isRequired,
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -52,11 +51,11 @@ export class Console extends Component {
         // Сохраняем в state введённую команду для вывода в консоль.
         this.setState({ outputCommand: command });
 
-        const { strArgs = '', command: strCommand } = this.parseCommand(command);
+        const { strArgs = '', strCommand } = parseCommand(command);
 
         this.setState({
-            showResult: strCommand,
-            strArgs,
+            showResult: strCommand || command,
+            strArgs: strArgs || '',
             time: Date.now(),
             commandHistId: commandsHist.length,
         });
@@ -65,20 +64,6 @@ export class Console extends Component {
             // Добавляем команду в историю комманд в стор.
             this.props.addCommand(command);
         }
-    }
-
-    parseCommand(command) {
-        // Проверяем, что в введённой команде присутствуют скобки
-        // с необязательными аргументами внутри.
-        let strArgs = '';
-        const re = /(?:\w+\(([^()]+)\)$)/;
-        if (re.test(command)) {
-            // Выносим аргументы команды в отдельную переменную.
-            strArgs = command.match(re)[1];
-            // Из команды удаляем параметры.
-            command = command.replace(strArgs, '');
-        }
-        return { strArgs, command };
     }
 
     // В зависимости от введённой команды вызываем тот или иной компонент.
@@ -177,11 +162,6 @@ export class Console extends Component {
         );
     }
 }
-
-Console.propTypes = {
-    commandsHist: PropTypes.array.isRequired,
-    addCommand: PropTypes.func.isRequired,
-};
 
 export default connect(
     state => ({
