@@ -12,11 +12,6 @@ import {
 import './console.css';
 
 export class Console extends Component {
-    static propTypes = {
-        commandsHist: PropTypes.array.isRequired,
-        addCommand: PropTypes.func.isRequired,
-    };
-
     constructor(props) {
         super(props);
         this.state = {
@@ -162,6 +157,11 @@ export class Console extends Component {
         );
     }
 }
+
+Console.propTypes = {
+    commandsHist: PropTypes.array.isRequired,
+    addCommand: PropTypes.func.isRequired,
+};
 
 export default connect(
     state => ({
