@@ -1,6 +1,6 @@
-import { parseCommand } from '../../utils/shared.function';
+import { parseCommand } from '../../utils/console.function';
 
-describe('console component', () => {
+describe('console command parsing function', () => {
     it('should return selectTab(tabIndex) command parsing result', () => {
         expect(
             parseCommand('selectTab(1)'),
@@ -43,5 +43,11 @@ describe('console component', () => {
         expect(
             parseCommand('setBest(5)'),
         ).toEqual({ strArgs: '5', strCommand: 'setBest' });
+    });
+
+    it('should return empty command parsing result', () => {
+        expect(
+            parseCommand(''),
+        ).toEqual({ strArgs: null, strCommand: ' ' });
     });
 });

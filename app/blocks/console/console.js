@@ -7,7 +7,7 @@ import { SelectTab, ShowStat, SwapTabs, ManageRating, ManageProgress, Help } fro
 import {
     parseCommand, SELECT_TAB, SET_RATING_SCORE, SET_RATING_BEST, SHOW_STAT, SWAP_TABS,
     SET_RATING_ACTIVE_COLOR, SET_RATING_INACTIVE_COLOR, SET_PROGRESS,
-} from '../../utils/shared.function';
+} from '../../utils/console.function';
 
 import './console.css';
 
@@ -17,7 +17,7 @@ export class Console extends Component {
         this.state = {
             command: '',
             outputCommand: '',
-            showResult: null,
+            showResult: undefined,
             strArgs: '',
             message: '',
             commandHistId: null,
@@ -27,6 +27,7 @@ export class Console extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.showResult = this.showResult.bind(this);
+        this.showHelp = this.showHelp.bind(this);
         this.commandHistory = this.commandHistory.bind(this);
         this.showPrevCommand = this.showPrevCommand.bind(this);
         this.showNextCommand = this.showNextCommand.bind(this);
@@ -49,8 +50,8 @@ export class Console extends Component {
         const { strArgs = '', strCommand } = parseCommand(command);
 
         this.setState({
-            showResult: strCommand || command,
-            strArgs: strArgs || '',
+            showResult: strCommand,
+            strArgs,
             time: Date.now(),
             commandHistId: commandsHist.length,
         });
@@ -82,11 +83,17 @@ export class Console extends Component {
         case SET_PROGRESS:
             return <ManageProgress time={this.state.time} args={this.state.strArgs} />;
         default:
-            const message = this.state.showResult === '' ?
-                'Введён пустой поисковый запрос. Список доступных команд представлен ниже.' :
-                'Такой команды не существует! Ознакомьтесь с информацией ниже.';
-            return <Help message={message} />;
+            this.showHelp();
+            return null;
         }
+    }
+
+    // Если введена ошибочная команда — показываем сообщение и помощь
+    showHelp() {
+        const message = this.state.showResult === '' ?
+            'Введён пустой поисковый запрос. Список доступных команд представлен ниже.' :
+            'Такой команды не существует! Ознакомьтесь с информацией ниже.';
+        return <Help message={message} />;
     }
 
     // Действие на нажатие кнопки "↑".
@@ -133,11 +140,18 @@ export class Console extends Component {
                 <div className="console-window">
                     <div className="console-window__wrapper">
                         <div className="console-window__result">
-                            <p>{this.state.outputCommand ?
-                                `/> ${this.state.outputCommand}` :
-                                null}
+                            <p>
+                                {
+                                    this.state.outputCommand
+                                        ? `/> ${this.state.outputCommand}`
+                                        : null
+                                }
                             </p>
-                            { this.state.showResult !== null ? this.showResult() : null }
+                            {
+                                this.state.showResult !== null && this.state.showResult !== ''
+                                    ? this.showResult()
+                                    : this.showHelp()
+                            }
                         </div>
                     </div>
                 </div>
