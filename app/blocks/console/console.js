@@ -18,7 +18,7 @@ export class Console extends Component {
             command: '',
             outputCommand: '',
             showResult: undefined,
-            strArgs: '',
+            argsArray: [],
             message: '',
             commandHistId: null,
             time: null,
@@ -47,11 +47,11 @@ export class Console extends Component {
         // Сохраняем в state введённую команду для вывода в консоль.
         this.setState({ outputCommand: command });
 
-        const { strArgs = '', strCommand } = parseCommand(command);
+        const { argsArray, strCommand } = parseCommand(command);
 
         this.setState({
             showResult: strCommand,
-            strArgs,
+            argsArray,
             time: Date.now(),
             commandHistId: commandsHist.length,
         });
@@ -68,9 +68,9 @@ export class Console extends Component {
         case SHOW_STAT:
             return <ShowStat time={this.state.time} />;
         case SELECT_TAB:
-            return <SelectTab selectedTabId={this.state.strArgs} />;
+            return <SelectTab selectedTabId={this.state.argsArray} />;
         case SWAP_TABS:
-            return <SwapTabs time={this.state.time} args={this.state.strArgs} />;
+            return <SwapTabs time={this.state.time} args={this.state.argsArray} />;
         case SET_RATING_BEST:
         case SET_RATING_SCORE:
         case SET_RATING_ACTIVE_COLOR:
@@ -78,10 +78,10 @@ export class Console extends Component {
             return (<ManageRating
                 time={this.state.time}
                 command={this.state.showResult}
-                args={this.state.strArgs}
+                args={this.state.argsArray}
             />);
         case SET_PROGRESS:
-            return <ManageProgress time={this.state.time} args={this.state.strArgs} />;
+            return <ManageProgress time={this.state.time} args={this.state.argsArray} />;
         default:
             this.showHelp();
             return null;
