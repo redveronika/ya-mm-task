@@ -86,10 +86,14 @@ class SwapTabs extends Component {
 }
 
 SwapTabs.propTypes = {
-    args: PropTypes.array.isRequired,
+    args: PropTypes.array,
     tabs: PropTypes.array.isRequired,
     reorderTabs: PropTypes.func.isRequired,
     time: PropTypes.number.isRequired,
+};
+
+SwapTabs.defaultProps = {
+    args: null,
 };
 
 export default connect(
