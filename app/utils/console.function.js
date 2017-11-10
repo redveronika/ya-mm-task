@@ -19,7 +19,7 @@ const COMMANDS_ARRAY = [
 ];
 
 function parseCommand(command) {
-    let argsArray = [];
+    let argsArray = null;
     let strCommand = null;
     const commandsPipe = COMMANDS_ARRAY.join('|');
     // Проверяем, что во введённой команде присутствует

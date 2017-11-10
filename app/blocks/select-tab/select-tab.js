@@ -30,12 +30,12 @@ class SelectTab extends Component {
     }
 
     selectTab() {
-        // Предполагаем, что массив с объектами табов остортирирован, id идут по возрастанию.
-        const minTabId = this.props.tabs[0].id;
-        const maxTabId = this.props.tabs[this.props.tabs.length - 1].id;
         const selectedTabId = this.props.selectedTabId.length === 1
             ? this.props.selectedTabId[0]
             : null;
+        // Предполагаем, что массив с объектами табов остортирирован, id идут по возрастанию.
+        const minTabId = this.props.tabs[0].id;
+        const maxTabId = this.props.tabs[this.props.tabs.length - 1].id;
         // Проверяем, что значение id таба не пустое и такой номер таба существует.
         if (selectedTabId !== null
             && selectedTabId >= minTabId
