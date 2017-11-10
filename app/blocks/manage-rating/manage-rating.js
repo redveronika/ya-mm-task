@@ -38,10 +38,14 @@ class ManageRating extends Component {
     }
 
     setBest() {
-        if (+this.props.args >= this.state.minValue &&
-            +this.props.args <= this.state.maxValue) {
+        const best = this.props.args !== null && this.props.args.length === 1
+            ? this.props.args[0]
+            : null;
+        if (best !== null &&
+            +best >= this.state.minValue &&
+            +best <= this.state.maxValue) {
             this.props.setRatingBest(+this.props.args);
-            this.setState({ message: `Максимальное значение рейтинга установлено равным ${this.props.args}` });
+            this.setState({ message: `Максимальное значение рейтинга установлено равным ${best}` });
         } else {
             this.setState({ message: `Введите значение от ${this.state.minValue} до ${this.state.maxValue}.` });
         }
@@ -50,14 +54,23 @@ class ManageRating extends Component {
     setScore() {
         // Если значение рейтинга больше максимально допустимого,
         // то выставляем максимально допустимое.
-        const score = Math.min(this.props.ratingBest, +this.props.args);
-        const messageSuccess = +this.props.args > this.props.ratingBest ?
-            `Введённое значение больше максимально возможного значения рейтинга.
+        let args = null;
+        let score = null;
+        let messageSuccess = '';
+        if (this.props.args !== null && this.props.args.length === 1) {
+            args = this.props.args[0];
+            score = Math.min(this.props.ratingBest, +args);
+
+            messageSuccess = +args > this.props.ratingBest ?
+                `Введённое значение больше максимально возможного значения рейтинга.
              Установлен максимальный рейтинг, равный ${score}` :
-            `Величина рейтинга изменена на ${score}`;
-        if (score >= this.state.minValue) {
-            this.props.setRatingScore(score);
-            this.setState({ message: messageSuccess });
+                `Величина рейтинга изменена на ${score}`;
+            if (score >= this.state.minValue) {
+                this.props.setRatingScore(score);
+                this.setState({ message: messageSuccess });
+            } else {
+                this.setState({ message: `Введите значение большее или равное ${this.state.minValue}` });
+            }
         } else {
             this.setState({ message: `Введите значение большее или равное ${this.state.minValue}` });
         }
@@ -68,17 +81,21 @@ class ManageRating extends Component {
      * true = активный или false = неактивный
      */
     setColor(activeColor) {
-        // Значение цвета может быть передан как в кавычках, так и без.
-        // На всякий случай чистим от кавычек.
-        const color = this.props.args.replace(/['"]/g, '');
-        const hexRegExp = (/^#(?:[0-9a-fA-F]{3}){1,2}$/);
-        if (hexRegExp.test(color)) {
-            if (activeColor) {
-                this.props.setRatingActiveColor(color);
-                this.setState({ message: `Цвет активных «звёздочек» рейтинга изменён на ${color}` });
+        if (this.props.args !== null && this.props.args.length === 1) {
+            // Значение цвета может быть передан как в кавычках, так и без.
+            // На всякий случай чистим от кавычек.
+            const color = this.props.args[0].replace(/['"]/g, '');
+            const hexRegExp = (/^#(?:[0-9a-fA-F]{3}){1,2}$/);
+            if (hexRegExp.test(color)) {
+                if (activeColor) {
+                    this.props.setRatingActiveColor(color);
+                    this.setState({ message: `Цвет активных «звёздочек» рейтинга изменён на ${color}` });
+                } else {
+                    this.props.setRatingInactiveColor(color);
+                    this.setState({ message: `Цвет неактивных «звёздочек» рейтинга изменён на ${color}` });
+                }
             } else {
-                this.props.setRatingInactiveColor(color);
-                this.setState({ message: `Цвет неактивных «звёздочек» рейтинга изменён на ${color}` });
+                this.setState({ message: 'Укажите цвет в формате HEX. Например, #ffc04c или #eee.' });
             }
         } else {
             this.setState({ message: 'Укажите цвет в формате HEX. Например, #ffc04c или #eee.' });
@@ -89,13 +106,13 @@ class ManageRating extends Component {
     // вызываем ту или иную функцию.
     manageRating() {
         switch (this.props.command) {
-        case 'setBest()':
+        case 'setBest':
             return this.setBest();
-        case 'setScore()':
+        case 'setScore':
             return this.setScore();
-        case 'setActiveColor()':
+        case 'setActiveColor':
             return this.setColor(true);
-        case 'setInactiveColor()':
+        case 'setInactiveColor':
             return this.setColor(false);
         default:
             return null;
@@ -113,13 +130,17 @@ class ManageRating extends Component {
 
 ManageRating.propTypes = {
     command: PropTypes.string.isRequired,
-    args: PropTypes.string.isRequired,
+    args: PropTypes.array,
     time: PropTypes.number.isRequired,
     ratingBest: PropTypes.number.isRequired,
     setRatingBest: PropTypes.func.isRequired,
     setRatingScore: PropTypes.func.isRequired,
     setRatingActiveColor: PropTypes.func.isRequired,
     setRatingInactiveColor: PropTypes.func.isRequired,
+};
+
+ManageRating.defaultProps = {
+    args: null,
 };
 
 export default connect(

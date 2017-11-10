@@ -32,15 +32,14 @@ class SwapTabs extends Component {
     }
 
     reorder() {
-        const tabsId = this.props.args.split(',');
+        const tabsId = this.props.args.length === 2 ? this.props.args : null;
         // Предполагаем, что массив с объектами табов остортирирован, id идут по возрастанию
         const minTabId = this.props.tabs[0].id;
         const maxTabId = this.props.tabs[this.props.tabs.length - 1].id;
         // Такое ужасное условие, да.
         // Проверяем, что пользователь ввёл параметры, и что параметров 2 штуки.
         // Проверяем, что табы с такими id существуют в приложении.
-        if (this.props.args !== ''
-            && tabsId.length === 2
+        if (tabsId !== null
             && +tabsId[0] >= minTabId
             && +tabsId[0] <= maxTabId
             && +tabsId[1] >= minTabId
@@ -69,10 +68,7 @@ class SwapTabs extends Component {
         и №${tabsId[1]} "${tabTitle2}" местами.` });
             // Сохраняем заново отсортированный массив табов в стор.
             this.props.reorderTabs(newTabs);
-        } else if (this.props.args === '') {
-            // Выводим сообщение, если пользователь не передал параметры.
-            this.setState({ message: 'Введите номера табов в качестве аргументов.' });
-        } else if (tabsId.length !== 2) {
+        } else if (tabsId === null) {
             // Выводим сообщение, если пользователь передал не 2 параметра.
             this.setState({ message: 'Вы ввели неверное количество аргументов. Необходимо ввести 2 аргумента.' });
         } else {
@@ -90,10 +86,14 @@ class SwapTabs extends Component {
 }
 
 SwapTabs.propTypes = {
-    args: PropTypes.string.isRequired,
+    args: PropTypes.array,
     tabs: PropTypes.array.isRequired,
     reorderTabs: PropTypes.func.isRequired,
     time: PropTypes.number.isRequired,
+};
+
+SwapTabs.defaultProps = {
+    args: null,
 };
 
 export default connect(

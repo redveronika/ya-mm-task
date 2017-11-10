@@ -30,12 +30,14 @@ class ManageProgress extends Component {
     }
 
     manageProgress() {
-        const progress = +this.props.args;
+        const progress = this.props.args !== null && this.props.args.length === 1
+            ? +this.props.args[0]
+            : null;
         const minProgress = 0;
         const maxProgress = 100;
         // Если величина введённого пользователем прогресса лежит
         // в допустимых пределах, то устанавливаем прогресс.
-        if (progress >= minProgress && progress <= maxProgress) {
+        if (progress !== null && progress >= minProgress && progress <= maxProgress) {
             this.props.setProgress(progress);
             this.setState({ message: `Значение прогресса установлено равным ${progress}.` });
         } else {
@@ -55,9 +57,13 @@ class ManageProgress extends Component {
 }
 
 ManageProgress.propTypes = {
-    args: PropTypes.string.isRequired,
+    args: PropTypes.array,
     time: PropTypes.number.isRequired,
     setProgress: PropTypes.func.isRequired,
+};
+
+ManageProgress.defaultProps = {
+    args: null,
 };
 
 export default connect(

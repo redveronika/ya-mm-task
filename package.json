@@ -4,7 +4,13 @@
   "scripts": {
     "start:dev": "webpack-dev-server",
     "start:prod": "NODE_ENV=production webpack -p",
-    "test": "jest"
+    "test": "jest --no-cache"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/app/tests/assetsTransformer.js",
+      "\\.(css|less)$": "<rootDir>/app/tests/assetsTransformer.js"
+    }
   },
   "dependencies": {
     "babel-jest": "^20.0.3",
@@ -15,7 +21,7 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -26,9 +32,11 @@
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.17",
     "css-loader": "^0.28.7",
-    "eslint": "^4.8.0",
+    "enzyme": "^3.1.1",
+    "enzyme-adapter-react-16": "^1.0.4",
+    "eslint": "^4.10.0",
     "eslint-config-airbnb": "^15.1.0",
-    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.4.0",
     "favicons-webpack-plugin": "0.0.7",
@@ -36,12 +44,13 @@
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^20.0.4",
-    "postcss-loader": "^2.0.7",
+    "jest-enzyme": "^4.0.1",
+    "postcss-loader": "^2.0.8",
     "prop-types": "^15.6.0",
-    "react-test-renderer": "^16.0.0",
+    "react-test-renderer": "^15.6.1",
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^0.4.6",
-    "webpack": "^3.7.1",
-    "webpack-dev-server": "^2.9.1"
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4"
   }
 }

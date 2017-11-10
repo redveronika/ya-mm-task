@@ -4,27 +4,21 @@ import PropTypes from 'prop-types';
 
 import { addCommand } from '../../reducers/console.reducer';
 import { SelectTab, ShowStat, SwapTabs, ManageRating, ManageProgress, Help } from '../../blocks';
+import {
+    parseCommand, SELECT_TAB, SET_RATING_SCORE, SET_RATING_BEST, SHOW_STAT, SWAP_TABS,
+    SET_RATING_ACTIVE_COLOR, SET_RATING_INACTIVE_COLOR, SET_PROGRESS,
+} from '../../utils/console.function';
 
 import './console.css';
 
-// Команды, которые доступны пользователю для ввода в консоль (без параметров).
-const SELECT_TAB = 'selectTab()';
-const SHOW_STAT = 'showStat()';
-const SWAP_TABS = 'swapTabs()';
-const SET_RATING_BEST = 'setBest()';
-const SET_RATING_SCORE = 'setScore()';
-const SET_RATING_ACTIVE_COLOR = 'setActiveColor()';
-const SET_RATING_INACTIVE_COLOR = 'setInactiveColor()';
-const SET_PROGRESS = 'setProgress()';
-
-class Console extends Component {
+export class Console extends Component {
     constructor(props) {
         super(props);
         this.state = {
             command: '',
             outputCommand: '',
-            showResult: null,
-            strArgs: '',
+            showResult: undefined,
+            argsArray: null,
             message: '',
             commandHistId: null,
             time: null,
@@ -33,6 +27,7 @@ class Console extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.showResult = this.showResult.bind(this);
+        this.showHelp = this.showHelp.bind(this);
         this.commandHistory = this.commandHistory.bind(this);
         this.showPrevCommand = this.showPrevCommand.bind(this);
         this.showNextCommand = this.showNextCommand.bind(this);
@@ -52,20 +47,11 @@ class Console extends Component {
         // Сохраняем в state введённую команду для вывода в консоль.
         this.setState({ outputCommand: command });
 
-        let strArgs;
-        let strCommand = command;
-        // Проверяем, что в введённой команде присутствуют скобки
-        // с необязательными аргументами внутри.
-        if ((/\(?(.*)\)/).test(command)) {
-            // Выносим аргументы команды в отдельную переменную.
-            strArgs = command.match(/\((.*)\)/)[0].replace(/\(|\)/g, '');
-            // Из команды удаляем параметры.
-            strCommand = command.replace(strArgs, '');
-        }
+        const { argsArray, strCommand } = parseCommand(command);
 
         this.setState({
             showResult: strCommand,
-            strArgs,
+            argsArray,
             time: Date.now(),
             commandHistId: commandsHist.length,
         });
@@ -82,9 +68,9 @@ class Console extends Component {
         case SHOW_STAT:
             return <ShowStat time={this.state.time} />;
         case SELECT_TAB:
-            return <SelectTab selectedTabId={this.state.strArgs} />;
+            return <SelectTab selectedTabId={this.state.argsArray} />;
         case SWAP_TABS:
-            return <SwapTabs time={this.state.time} args={this.state.strArgs} />;
+            return <SwapTabs time={this.state.time} args={this.state.argsArray} />;
         case SET_RATING_BEST:
         case SET_RATING_SCORE:
         case SET_RATING_ACTIVE_COLOR:
@@ -92,16 +78,22 @@ class Console extends Component {
             return (<ManageRating
                 time={this.state.time}
                 command={this.state.showResult}
-                args={this.state.strArgs}
+                args={this.state.argsArray}
             />);
         case SET_PROGRESS:
-            return <ManageProgress time={this.state.time} args={this.state.strArgs} />;
+            return <ManageProgress time={this.state.time} args={this.state.argsArray} />;
         default:
-            const message = this.state.showResult === '' ?
-                'Введён пустой поисковый запрос. Список доступных команд представлен ниже.' :
-                'Такой команды не существует! Ознакомьтесь с информацией ниже.';
-            return <Help message={message} />;
+            this.showHelp();
+            return null;
         }
+    }
+
+    // Если введена ошибочная команда — показываем сообщение и помощь
+    showHelp() {
+        const message = this.state.showResult === '' ?
+            'Введён пустой поисковый запрос. Список доступных команд представлен ниже.' :
+            'Такой команды не существует! Ознакомьтесь с информацией ниже.';
+        return <Help message={message} />;
     }
 
     // Действие на нажатие кнопки "↑".
@@ -148,11 +140,18 @@ class Console extends Component {
                 <div className="console-window">
                     <div className="console-window__wrapper">
                         <div className="console-window__result">
-                            <p>{this.state.outputCommand ?
-                                `/> ${this.state.outputCommand}` :
-                                null}
+                            <p>
+                                {
+                                    this.state.outputCommand
+                                        ? `/> ${this.state.outputCommand}`
+                                        : null
+                                }
                             </p>
-                            { this.state.showResult !== null ? this.showResult() : null }
+                            {
+                                this.state.showResult !== null && this.state.showResult !== ''
+                                    ? this.showResult()
+                                    : this.showHelp()
+                            }
                         </div>
                     </div>
                 </div>
