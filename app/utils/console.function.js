@@ -18,14 +18,13 @@ const COMMANDS_ARRAY = [
     SET_PROGRESS,
 ];
 
+// Проверяем, что во введённой команде присутствует
+// имя команды из перечня, а также скобки
+// с необязательными аргументами внутри.
 function parseCommand(command) {
     let argsArray = null;
     let strCommand = null;
     const commandsPipe = COMMANDS_ARRAY.join('|');
-    // Проверяем, что во введённой команде присутствует
-    // имя команды из перечня, а также скобки
-    // с необязательными аргументами внутри.
-
     /*
         (${commandsPipe}) — 1 группа: собираем имена доступных команд в пайп
         \\( — проверяем наличие открывающей скобки перед аргументами
@@ -36,12 +35,15 @@ function parseCommand(command) {
     const re = new RegExp(`(${commandsPipe})\\(([^()]+)*?\\)$`);
 
     const matchCommand = command.match(re);
+    console.log(matchCommand)
     if (matchCommand !== null) {
         // Записываем имя команды
         strCommand = matchCommand[1];
         // Выносим аргументы команды в отдельную переменну,
         // если аргументов нет — записываем пустую строку
-        argsArray = typeof matchCommand[2] !== 'undefined' ? matchCommand[2].split(/,\s*/) : argsArray;
+        argsArray = typeof matchCommand[2] !== 'undefined'
+            ? matchCommand[2].replace(/['"]/g, '').split(/,\s*/)
+            : argsArray;
     }
     if (command === '') {
         strCommand = command;
