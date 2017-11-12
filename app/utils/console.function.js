@@ -22,7 +22,7 @@ const COMMANDS_ARRAY = [
 // имя команды из перечня, а также скобки
 // с необязательными аргументами внутри.
 function parseCommand(command) {
-    let argsArray = null;
+    const argsArray = [];
     let strCommand = null;
     const commandsPipe = COMMANDS_ARRAY.join('|');
 
@@ -45,12 +45,14 @@ function parseCommand(command) {
     if (matchCommand !== null) {
         // Записываем имя команды
         strCommand = matchCommand[1];
-        // Выносим аргументы команды в отдельную переменну,
-        // если аргументов нет — записываем пустую строку
-        argsArray = typeof matchCommand[2] !== 'undefined'
-            ? matchCommand[2].replace(/['"]/g, '').split(/,\s*/)
-            : argsArray;
+
+        // Выносим аргументы команды в отдельную переменную
+        if (typeof matchCommand[2] !== 'undefined') {
+            argsArray.push(...matchCommand[2].replace(/['"]/g, '').split(/,\s*/));
+        }
     }
+
+    // Для случая с пустым вводом
     if (command === '') {
         strCommand = command;
     }

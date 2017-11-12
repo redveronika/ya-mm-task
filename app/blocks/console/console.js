@@ -18,7 +18,7 @@ export class Console extends Component {
             command: '',
             outputCommand: '',
             showResult: undefined,
-            argsArray: null,
+            argsArray: [],
             message: '',
             commandHistId: null,
             time: null,
