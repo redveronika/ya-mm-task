@@ -19,6 +19,9 @@
       "webpack/",
       "coverage/",
       "app/test",
+      "app/index.js",
+      "app/blocks/index.js",
+      "app/reducers/index.js",
       ".gemini.js",
       "postcss.config.js",
       "webpack.config.js"

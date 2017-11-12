@@ -81,7 +81,7 @@ class ManageRating extends Component {
      * true = активный или false = неактивный
      */
     setColor(activeColor) {
-        if (this.props.args !== null && this.props.args.length === 1) {
+        if (this.props.args.length === 1) {
             // Значение цвета может быть передан как в кавычках, так и без.
             // На всякий случай чистим от кавычек.
             const color = this.props.args[0].replace(/['"]/g, '');
@@ -130,17 +130,13 @@ class ManageRating extends Component {
 
 ManageRating.propTypes = {
     command: PropTypes.string.isRequired,
-    args: PropTypes.array,
+    args: PropTypes.array.isRequired,
     time: PropTypes.number.isRequired,
     ratingBest: PropTypes.number.isRequired,
     setRatingBest: PropTypes.func.isRequired,
     setRatingScore: PropTypes.func.isRequired,
     setRatingActiveColor: PropTypes.func.isRequired,
     setRatingInactiveColor: PropTypes.func.isRequired,
-};
-
-ManageRating.defaultProps = {
-    args: null,
 };
 
 export default connect(

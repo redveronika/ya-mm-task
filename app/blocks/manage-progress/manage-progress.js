@@ -30,7 +30,7 @@ class ManageProgress extends Component {
     }
 
     manageProgress() {
-        const progress = this.props.args !== null && this.props.args.length === 1
+        const progress = this.props.args.length === 1
             ? +this.props.args[0]
             : null;
         const minProgress = 0;
@@ -57,13 +57,9 @@ class ManageProgress extends Component {
 }
 
 ManageProgress.propTypes = {
-    args: PropTypes.array,
+    args: PropTypes.array.isRequired,
     time: PropTypes.number.isRequired,
     setProgress: PropTypes.func.isRequired,
-};
-
-ManageProgress.defaultProps = {
-    args: null,
 };
 
 export default connect(
