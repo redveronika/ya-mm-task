@@ -6,7 +6,7 @@ import { setSessionTime } from '../../reducers/tabs.reducer';
 
 import './icons-list.css';
 
-import chromeIcon from './../../assets/imgs/chrome.png';
+import chromeIcon from '../../assets/imgs/chrome.png';
 import firefoxIcon from '../../assets/imgs/firefox.png';
 import operaIcon from '../../assets/imgs/opera.png';
 import safariIcon from '../../assets/imgs/safari.png';
