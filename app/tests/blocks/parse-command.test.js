@@ -16,7 +16,7 @@ describe('console command parsing function', () => {
     it('should return showStat() command parsing result', () => {
         expect(
             parseCommand('showStat()'),
-        ).toEqual({ argsArray: null, strCommand: 'showStat' });
+        ).toEqual({ argsArray: [], strCommand: 'showStat' });
     });
 
     it('should return setBest(maxStars) command parsing result', () => {
@@ -49,45 +49,45 @@ describe('console command parsing function', () => {
         ).toEqual({ argsArray: ['50'], strCommand: 'setProgress' });
     });
 
-    // Пустой ввод — должен вернуть null в строке команды и пустую строку в аргументах
+    // Пустой ввод — должен вернуть пустой массив аргументов и пустую строку в строке команды
     it('should return empty command parsing result', () => {
         expect(
             parseCommand(''),
-        ).toEqual({ argsArray: null, strCommand: '' });
+        ).toEqual({ argsArray: [], strCommand: '' });
     });
 
     // «Двойные скобки» — должен вернуть null в строке команды.
     it('should return selectTab(1)() command parsing null result', () => {
         expect(
             parseCommand('selectTab(1)()'),
-        ).toEqual({ argsArray: null, strCommand: null });
+        ).toEqual({ argsArray: [], strCommand: null });
     });
 
     // Лишний символ после скобок — должен вернуть null в строке команды.
     it('should return selectTab(1)a command parsing null result', () => {
         expect(
             parseCommand('selectTab(1)а'),
-        ).toEqual({ argsArray: null, strCommand: null });
+        ).toEqual({ argsArray: [], strCommand: null });
     });
 
     // Отсутствует «закрывающая скобка» — должен вернуть null в строке команды.
     it('should return selectTab( command parsing null result', () => {
         expect(
             parseCommand('selectTab('),
-        ).toEqual({ argsArray: null, strCommand: null });
+        ).toEqual({ argsArray: [], strCommand: null });
     });
 
     // Опечатка — должен вернуть null в строке команды.
     it('should return selecttab(1) command parsing null result', () => {
         expect(
             parseCommand('selecttab(1)'),
-        ).toEqual({ argsArray: null, strCommand: null });
+        ).toEqual({ argsArray: [], strCommand: null });
     });
 
-    // Не введено имя команды — должен вернуть null в строке команды и аргументов.
+    // Не введено имя команды — должен вернуть null в строке команды и пустой массив аргументов.
     it('should return empty command name parsing result', () => {
         expect(
             parseCommand('(3, 4)'),
-        ).toEqual({ argsArray: null, strCommand: null });
+        ).toEqual({ argsArray: [], strCommand: null });
     });
 });
