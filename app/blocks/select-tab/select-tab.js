@@ -30,8 +30,7 @@ class SelectTab extends Component {
     }
 
     selectTab() {
-        const selectedTabId = this.props.selectedTabId !== null
-        && this.props.selectedTabId.length === 1
+        const selectedTabId = this.props.selectedTabId.length === 1
             ? this.props.selectedTabId[0]
             : null;
         // Предполагаем, что массив с объектами табов остортирирован, id идут по возрастанию.
@@ -68,14 +67,10 @@ class SelectTab extends Component {
 }
 
 SelectTab.propTypes = {
-    selectedTabId: PropTypes.array,
+    selectedTabId: PropTypes.array.isRequired,
     tabs: PropTypes.array.isRequired,
     setActiveTab: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
-};
-
-SelectTab.defaultProps = {
-    selectedTabId: null,
 };
 
 export default connect(
