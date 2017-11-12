@@ -50,7 +50,7 @@ const config = {
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
-                        outputPath: './assets/imgs/',
+                        outputPath: 'assets/imgs/',
                     },
                 }],
             },
@@ -61,7 +61,7 @@ const config = {
             filename: 'index.html',
             template: './app/index.html',
         }),
-        new CleanWebpackPlugin(['dist']),
+        new CleanWebpackPlugin(['../dist'], { allowExternal: true }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
         }),
@@ -73,6 +73,10 @@ const config = {
             },
         }),
     ],
+    output: {
+        path: path.resolve(__dirname, '../dist'),
+        publicPath: '/',
+    },
 };
 
 module.exports = { config };
