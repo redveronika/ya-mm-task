@@ -86,4 +86,5 @@ describe('SelectTab', () => {
     it('render the connected component', () => {
         expect(wrapper.find(SelectTab).length).toEqual(1);
     });
+
 });
