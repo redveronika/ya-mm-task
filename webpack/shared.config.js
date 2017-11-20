@@ -75,7 +75,6 @@ const config = {
     ],
     output: {
         path: path.resolve(__dirname, '../dist'),
-        publicPath: '/',
     },
 };
 

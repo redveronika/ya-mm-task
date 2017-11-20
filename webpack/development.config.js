@@ -1,4 +1,3 @@
-const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const { config } = require('./shared.config');
@@ -17,5 +16,6 @@ module.exports = merge(config, {
     ],
     output: {
         filename: '[name].bundle.js',
+        publicPath: '/',
     },
 });
