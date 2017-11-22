@@ -6,9 +6,9 @@
     "start:prod": "NODE_ENV=production webpack -p",
     "jest": "jest --no-cache",
     "gemini": "gemini test",
-    "test": "npm-run-all --parallel jest gemini",
+    "test": "jest",
     "lint": "eslint --ext .jsx,.js app/ -c .eslintrc",
-    "validate": "npm-run-all --parallel lint test",
+    "validate": "npm-run-all --parallel lint jest gemini",
     "precommit": "npm run validate"
   },
   "jest": {
