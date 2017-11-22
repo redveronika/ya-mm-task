@@ -8,7 +8,19 @@ import './show-stat.css';
 
 import whiskyPour from '../../assets/imgs/whisky-pour.gif';
 
-class ShowStat extends Component {
+class ShowStat extends Component {// Отвечает за отображение времени проведённого на каждом табе.
+    static showTabTime(tab) {
+        const { hours, minutes, seconds } = tab.sessionTime;
+        return (
+            <li className="show-stat__tabs-item" key={tab.id}>
+                {`${tab.id} "${tab.title}":`}
+                { hours > 0 ? ` ${hours} ч` : null}
+                { minutes > 0 ? ` ${minutes} мин` : null}
+                { ` ${seconds} сек` }
+            </li>
+        );
+    }
+
     constructor(props) {
         super(props);
 
@@ -84,19 +96,6 @@ class ShowStat extends Component {
 
         // Сохраняем в state время в человекочитаемом формате.
         this.setState({ tabs, commonTime: convertMS(commonTimeMS) });
-    }
-
-    // Отвечает за отображение времени проведённого на каждом табе.
-    showTabTime(tab) {
-        const { hours, minutes, seconds } = tab.sessionTime;
-        return (
-            <li className="show-stat__tabs-item" key={tab.id}>
-                {`${tab.id} "${tab.title}":`}
-                { hours > 0 ? ` ${hours} ч` : null}
-                { minutes > 0 ? ` ${minutes} мин` : null}
-                { ` ${seconds} сек` }
-            </li>
-        );
     }
 
     render() {
