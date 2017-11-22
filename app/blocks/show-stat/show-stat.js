@@ -9,6 +9,19 @@ import './show-stat.css';
 import whiskyPour from '../../assets/imgs/whisky-pour.gif';
 
 class ShowStat extends Component {
+    // Отвечает за отображение времени проведённого на каждом табе.
+    static showTabTime(tab) {
+        const { hours, minutes, seconds } = tab.sessionTime;
+        return (
+            <li className="show-stat__tabs-item" key={tab.id}>
+                {`${tab.id} "${tab.title}":`}
+                {hours > 0 ? ` ${hours} ч` : null}
+                {minutes > 0 ? ` ${minutes} мин` : null}
+                {` ${seconds} сек`}
+            </li>
+        );
+    }
+
     constructor(props) {
         super(props);
 
@@ -47,9 +60,9 @@ class ShowStat extends Component {
         return (
             <p>
                 Общее время работы со страницей:
-                { hours > 0 ? ` ${hours} ч` : null}
-                { minutes > 0 ? ` ${minutes} мин` : null}
-                { ` ${seconds} сек`}
+                {hours > 0 ? ` ${hours} ч` : null}
+                {minutes > 0 ? ` ${minutes} мин` : null}
+                {` ${seconds} сек`}
             </p>
         );
     }
@@ -86,26 +99,13 @@ class ShowStat extends Component {
         this.setState({ tabs, commonTime: convertMS(commonTimeMS) });
     }
 
-    // Отвечает за отображение времени проведённого на каждом табе.
-    showTabTime(tab) {
-        const { hours, minutes, seconds } = tab.sessionTime;
-        return (
-            <li className="show-stat__tabs-item" key={tab.id}>
-                {`${tab.id} "${tab.title}":`}
-                { hours > 0 ? ` ${hours} ч` : null}
-                { minutes > 0 ? ` ${minutes} мин` : null}
-                { ` ${seconds} сек` }
-            </li>
-        );
-    }
-
     render() {
         return (
             <div className="show-stat">
                 <div className="show-stat__common">{this.showCommonTime()}</div>
                 <ul className="show-stat__tabs">
                     Детализация времени просмотра табов:
-                    { this.state.tabs.map(tab => this.showTabTime(tab)) }
+                    {this.state.tabs.map(tab => this.showTabTime(tab))}
                 </ul>
                 <img src={whiskyPour} alt="Pouring whisky in glass" />
             </div>
