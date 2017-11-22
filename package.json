@@ -4,7 +4,12 @@
   "scripts": {
     "start:dev": "webpack-dev-server",
     "start:prod": "NODE_ENV=production webpack -p",
-    "test": "jest --no-cache"
+    "jest": "jest --no-cache",
+    "gemini": "gemini test",
+    "test": "npm-run-all --parallel jest gemini",
+    "lint": "eslint --ext .jsx,.js app/ -c .eslintrc",
+    "validate": "npm-run-all --parallel lint test",
+    "precommit": "npm run validate"
   },
   "jest": {
     "moduleNameMapper": {
