@@ -1,4 +1,5 @@
-rootUrl: http://localhost:8080/main
+rootUrl: https://redveronika.github.io/ya-mm-task
+gridUrl: http://ondemand.saucelabs.com/wd/hub
 calibrate: false
 screenshotsDir: ./app/tests/gemini/screens
 
@@ -6,11 +7,16 @@ browsers:
   chrome-latest:
     desiredCapabilities:
       browserName: chrome
+      platform: WINDOWS
 
 system:
   projectRoot: ./
   sourceRoot: ./app
   exclude: ["*node_modules*", "*webpack*", "*app/assets*", "*app/blocks*", "*app/reducers*", "*app/utils*"]
+  plugins:
+    sauce:
+      username: proccess.env.SAUCE_USERNAME
+      accessKey: proccess.env.SAUCE_ACCESS_KEY
 
 sets:
   chrome:
