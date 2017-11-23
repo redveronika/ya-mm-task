@@ -1,13 +1,17 @@
-rootUrl: https://redveronika.github.io/ya-mm-task
-gridUrl: http://ondemand.saucelabs.com/wd/hub
+rootUrl: http://localhost:8080/main
 calibrate: false
-screenshotsDir: ./app/tests/gemini/screens
+screenshotsDir: './app/tests/gemini/screens'
 
 browsers:
   chrome-latest:
+    screenshotsDir: './chrome-screens'
     desiredCapabilities:
       browserName: chrome
-      platform: WINDOWS
+  firefox-latest:
+    screenshotsDir: './ff-screens'
+    desiredCapabilities:
+      browserName: firefox
+      platform: LINUX
 
 system:
   projectRoot: ./
@@ -19,8 +23,14 @@ system:
       accessKey: proccess.env.SAUCE_ACCESS_KEY
 
 sets:
-  chrome:
+  local:
     files:
-    - ./app/tests/gemini
+    - './app/tests/gemini/**/*.gemini.js'
     browsers:
     - chrome-latest
+  sauce:
+    files:
+    - './app/tests/gemini/**/*.gemini.js'
+    browsers:
+    - firefox-latest
+
