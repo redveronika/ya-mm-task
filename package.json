@@ -5,11 +5,11 @@
     "start:dev": "webpack-dev-server",
     "start:prod": "NODE_ENV=production webpack -p",
     "jest": "jest --no-cache",
-    "gemini": "gemini test",
-    "test": "jest",
-    "lint": "eslint --ext .jsx,.js app/ -c .eslintrc",
-    "validate": "npm-run-all --parallel lint jest gemini",
-    "precommit": "npm run validate"
+    "gemini-local": "gemini test -s local",
+    "gemini-local-update": "gemini update -s local",
+    "gemini-sauce": "gemini_grid_url=\"http://ondemand.saucelabs.com/wd/hub\" gemini test -s sauce",
+    "gemini-sauce-update": "gemini_grid_url=\"http://ondemand.saucelabs.com/wd/hub\" gemini update -s sauce",
+    "test": "npm-run-all --parallel jest gemini-sauce"
   },
   "jest": {
     "moduleNameMapper": {
@@ -64,6 +64,8 @@
     "favicons-webpack-plugin": "0.0.7",
     "file-loader": "^1.1.5",
     "gemini": "^5.0.0-alpha.10",
+    "gemini-sauce": "^1.0.1",
+    "gemini-saucelabs-info": "^1.0.0",
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
     "husky": "^0.14.3",
