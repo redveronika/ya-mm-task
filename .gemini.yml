@@ -7,11 +7,13 @@ browsers:
     screenshotsDir: './app/tests/gemini/screens/chrome-screens'
     desiredCapabilities:
       browserName: chrome
+      platform: LINUX
   firefox-latest:
     screenshotsDir: './app/tests/gemini/screens/ff-screens'
     desiredCapabilities:
+      version: "47.0"
       browserName: firefox
-      platform: LINUX
+      platform: WINDOWS
 
 system:
   projectRoot: ./
