@@ -10,6 +10,7 @@ browsers:
       platform: LINUX
   firefox-latest:
     screenshotsDir: './app/tests/gemini/screens/ff-screens'
+    calibrate: true
     desiredCapabilities:
       version: "47.0"
       browserName: firefox
@@ -18,6 +19,7 @@ browsers:
 system:
   projectRoot: ./
   sourceRoot: ./app
+  parallelLimit: 1
   exclude: ["*node_modules*", "*webpack*", "*app/assets*", "*app/blocks*", "*app/reducers*", "*app/utils*"]
 
 sets:
