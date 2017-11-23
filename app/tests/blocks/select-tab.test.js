@@ -1,7 +1,6 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { configure, shallow, mount } from 'enzyme';
+import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import SelectTab from '../../blocks/select-tab/select-tab';
@@ -77,14 +76,16 @@ describe('SelectTab', () => {
         };
         store = mockStore(initialState);
         wrapper = shallow(
-            <Provider store={store}>
-                <SelectTab selectedTabId={props.selectedTabId} />
-            </Provider>,
+            <SelectTab selectedTabId={props.selectedTabId} />,
+            { context: { store } },
         );
     });
 
     it('render the connected component', () => {
-        expect(wrapper.find(SelectTab).length).toEqual(1);
+        expect(wrapper.length).toEqual(1);
     });
 
+    it('check that selectedTabId is equal', () => {
+        expect(wrapper.prop('selectedTabId')).toEqual(['2']);
+    });
 });
