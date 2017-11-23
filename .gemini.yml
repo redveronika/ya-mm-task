@@ -4,11 +4,11 @@ screenshotsDir: './app/tests/gemini/screens'
 
 browsers:
   chrome-latest:
-    screenshotsDir: './chrome-screens'
+    screenshotsDir: './app/tests/gemini/screens/chrome-screens'
     desiredCapabilities:
       browserName: chrome
   firefox-latest:
-    screenshotsDir: './ff-screens'
+    screenshotsDir: './app/tests/gemini/screens/ff-screens'
     desiredCapabilities:
       browserName: firefox
       platform: LINUX
@@ -17,20 +17,16 @@ system:
   projectRoot: ./
   sourceRoot: ./app
   exclude: ["*node_modules*", "*webpack*", "*app/assets*", "*app/blocks*", "*app/reducers*", "*app/utils*"]
-  plugins:
-    sauce:
-      username: proccess.env.SAUCE_USERNAME
-      accessKey: proccess.env.SAUCE_ACCESS_KEY
 
 sets:
   local:
     files:
-    - './app/tests/gemini/**/*.gemini.js'
+    - ./app/tests/gemini/**/*.js
     browsers:
     - chrome-latest
   sauce:
     files:
-    - './app/tests/gemini/**/*.gemini.js'
+    - ./app/tests/gemini/**/*.js
     browsers:
     - firefox-latest
 
