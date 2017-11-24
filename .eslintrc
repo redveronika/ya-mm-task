@@ -3,6 +3,9 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "env": { "browser": true, "jest": true },
+  "globals": {
+    "gemini": true
+  },
   "rules": {
     "react/jsx-filename-extension": [ 1, { "extensions": [".js"] } ],
     // Валидация пробелов
