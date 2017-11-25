@@ -1,20 +1,35 @@
 rootUrl: http://localhost:8080/main
+gridUrl: http://ondemand.saucelabs.com/wd/hub
 calibrate: false
 screenshotsDir: ./app/tests/gemini/screens
 
 browsers:
   chrome-latest:
+    screenshotsDir: ./app/tests/gemini/screens/chrome-screens
     desiredCapabilities:
       browserName: chrome
+      platform: LINUX
+  firefox-latest:
+    screenshotsDir: ./app/tests/gemini/screens/ff-screens
+    desiredCapabilities:
+      version: 47.0
+      browserName: firefox
+      platform: WINDOWS
 
 system:
   projectRoot: ./
   sourceRoot: ./app
+  parallelLimit: 1
   exclude: ["*node_modules*", "*webpack*", "*app/assets*", "*app/blocks*", "*app/reducers*", "*app/utils*"]
 
 sets:
-  chrome:
+  local:
     files:
-    - ./app/tests/gemini
+    - ./app/tests/gemini/**/*.js
     browsers:
     - chrome-latest
+  sauce:
+    files:
+    - ./app/tests/gemini/**/*.js
+    browsers:
+    - firefox-latest
