@@ -8,7 +8,7 @@ browsers:
     screenshotsDir: ./app/tests/gemini/screens/chrome-screens
     desiredCapabilities:
       browserName: chrome
-      platform: LINUX
+      platform: MAC
   firefox-latest:
     screenshotsDir: ./app/tests/gemini/screens/ff-screens
     desiredCapabilities:
@@ -25,11 +25,6 @@ system:
 sets:
   local:
     files:
-    - ./app/tests/gemini/**/*.js
+    - ./app/tests/gemini/**/*.gemini.js
     browsers:
     - chrome-latest
-  sauce:
-    files:
-    - ./app/tests/gemini/**/*.js
-    browsers:
-    - firefox-latest
