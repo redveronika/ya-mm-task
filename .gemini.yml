@@ -23,7 +23,7 @@ system:
   exclude: ["*node_modules*", "*webpack*", "*app/assets*", "*app/blocks*", "*app/reducers*", "*app/utils*"]
 
 sets:
-  local:
+  sauce:
     files:
     - ./app/tests/gemini/**/*.gemini.js
     browsers:
