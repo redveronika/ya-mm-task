@@ -3,14 +3,13 @@
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    height: 300px;
     box-sizing: border-box;
     background-color: #2fe5bf;
     box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.04)
 }
 
 .console-window {
-    height: 100%;
+    height: 270px;
     overflow-y: auto;
 }
 
@@ -21,13 +20,13 @@
 
 .console-form {
     width: 100%;
+    height: 30px;
     display: flex;
 }
 
 .console-form__input {
     width: calc(100% - 100px);
-    height: 30px;
-    line-height: 30px;
+    height: 100%;
     padding: 0 10px;
     border: 0;
     font-size: 16px;
@@ -41,7 +40,7 @@
 
 .console-form__submit {
     width: 100px;
-    height: 30px;
+    height: 100%;
     padding: 0;
     box-sizing: border-box;
     border: 0;
