@@ -1,0 +1,6 @@
+{
+  "root": true,
+  "levels": [
+    {"path": "app/blocks", "scheme": "nested", "naming": "react"}
+  ]
+}

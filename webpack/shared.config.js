@@ -13,7 +13,14 @@ const config = {
             {
                 test: /\.js$/,
                 include: path.resolve(__dirname, '../app'),
-                loader: 'babel-loader',
+                loader: [{
+                    loader: 'webpack-bem-loader',
+                    options: {
+                        techs: ['js', 'css'],
+                    },
+                },
+                'babel-loader',
+                ],
             },
             {
                 test: /\.html$/,
