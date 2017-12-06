@@ -12,5 +12,5 @@ export { default as SwapTabs } from './swap-tabs/swap-tabs';
 export { default as Icon } from './icon/icon';
 export { default as ManageRating } from './manage-rating/manage-rating';
 export { default as ManageProgress } from './manage-progress/manage-progress';
-export { default as Button } from './button/button';
+// export { default as Button } from './Button/Button';
 export { default as Help } from './help/help';

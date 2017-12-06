@@ -1,21 +1,9 @@
 {
-  "presets": [
-    ["es2015", { "modules": false }],
-    "react"
-  ],
-  "plugins": [
-    "transform-object-rest-spread",
-    ["bem-import", {
-      "naming": "react",
-      "levels": [
-        "./app/blocks"
-      ],
-      "techs": ["js", "css"]
-    }]
-  ],
+  "presets": ["es2015", "react"],
+  "plugins": [["bem-import", { "techs": ["js"] }], "transform-object-rest-spread"],
   "env": {
     "test": {
-      "presets": [["es2015"], "react"]
+      "presets": ["es2015", "react"]
     }
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { decl } from 'bem-react-core';
 import PropTypes from 'prop-types';
-import Text from 'e:Text';
+import ButtonText from 'e:Text';
 
 import './button.css';
 
@@ -27,7 +27,7 @@ export default decl({
 
     content({ text }) {
         return (
-            <Text>{text}</Text>
+            <ButtonText>{text}</ButtonText>
         );
     },
 }, {
@@ -48,9 +48,9 @@ export default decl({
 });
 
 // const Button = ({ text, type, size, state, onClick }) => (
-//     <button type="button" className={`button button--${type} button--${size} button--${state}`} onClick={() => onClick()}>
+//     <Button type="Button" className={`Button Button--${type} Button--${size} Button--${state}`} onClick={() => onClick()}>
 //         <span className="button__label">{text}</span>
-//     </button>
+//     </Button>
 // );
 //
 //

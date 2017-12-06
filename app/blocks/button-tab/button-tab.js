@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { setSessionTime } from '../../reducers/tabs.reducer';
-import { Button } from '../../blocks';
+// import { Button } from '../../blocks';
+import Button from 'b:Button';
 
 import './button-tab.css';
 
