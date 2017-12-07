@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { setSessionTime } from '../../reducers/tabs.reducer';
+/* eslint-disable import/extensions, import/no-unresolved */
 import Button from 'b:Button m:mode=default|action|light|bright m:size=S|M|L|XL';
+import { setSessionTime } from '../../reducers/tabs.reducer';
 
 import './button-tab.css';
 

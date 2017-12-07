@@ -8,7 +8,7 @@
     "gemini-sauce": "gemini_grid_url=\"http://ondemand.saucelabs.com/wd/hub\" gemini test -s sauce",
     "gemini-sauce-update": "gemini_grid_url=\"http://ondemand.saucelabs.com/wd/hub\" gemini update",
     "test": "npm-run-all --parallel jest gemini-sauce",
-    "lint": "eslint --ext .jsx,.js app/ -c .eslintrc",
+    "lint": "eslint --ext .js app/ -c .eslintrc",
     "validate": "npm-run-all --parallel lint jest",
     "precommit": "npm run validate"
   },

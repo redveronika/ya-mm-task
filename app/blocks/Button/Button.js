@@ -2,6 +2,7 @@ import React from 'react';
 import { decl } from 'bem-react-core';
 import PropTypes from 'prop-types';
 
+/* eslint-disable import/extensions, import/no-unresolved */
 import ButtonText from 'e:Text';
 
 export default decl({
@@ -23,9 +24,8 @@ export default decl({
             onClick,
         };
     },
-
+    /* eslint-disable react/prop-types */
     content({ text }) {
-        console.log('content');
         return (
             <ButtonText>{text}</ButtonText>
         );
@@ -46,9 +46,3 @@ export default decl({
         onClick: () => false,
     },
 });
-
-// const Button = ({ text, type, size, state, onClick }) => (
-//     <Button type="Button" className={`Button Button--${type} Button--${size} Button--${state}`} onClick={() => onClick()}>
-//         <span className="button__label">{text}</span>
-//     </Button>
-// );
