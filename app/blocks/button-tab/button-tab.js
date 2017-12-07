@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { setSessionTime } from '../../reducers/tabs.reducer';
-// import { Button } from '../../blocks';
-import Button from 'b:Button';
+import Button from 'b:Button m:mode=default|action|light|bright m:size=S|M|L|XL';
 
 import './button-tab.css';
 
@@ -44,16 +43,16 @@ class ButtonTab extends Component {
                 <div className="button-tab__col">
                     <h4>Кнопки могут иметь разное состояние</h4>
                     <div className="button-tab__item">
-                        <Button text="Нормальная такая кнопка" size="M" state="normal" type="action" />
+                        <Button text="Нормальная такая кнопка" size="M" state="normal" mode="action" />
                     </div>
                     <div className="button-tab__item">
-                        <Button text=":hover" size="M" state="hover" type="action" />
+                        <Button text=":hover" size="M" state="hover" mode="action" />
                     </div>
                     <div className="button-tab__item">
-                        <Button text=":focus" size="M" state="focus" type="action" />
+                        <Button text=":focus" size="M" state="focus" mode="action" />
                     </div>
                     <div className="button-tab__item">
-                        <Button text=":active" size="M" state="active" type="action" />
+                        <Button text=":active" size="M" state="active" mode="action" />
                     </div>
                 </div>
                 {/*
@@ -63,16 +62,16 @@ class ButtonTab extends Component {
                 <div className="button-tab__col">
                     <h4>Кнопки могут легко менять своё визуальное представление</h4>
                     <div className="button-tab__item">
-                        <Button text="type = action" size="M" type="action" />
+                        <Button text="type = action" size="M" mode="action" />
                     </div>
                     <div className="button-tab__item">
-                        <Button text="type = default" size="M" type="default" />
+                        <Button text="type = default" size="M" mode="default" />
                     </div>
                     <div className="button-tab__item">
-                        <Button text="type = light" size="M" type="light" />
+                        <Button text="type = light" size="M" mode="light" />
                     </div>
                     <div className="button-tab__item">
-                        <Button text="type = bright" size="M" type="bright" />
+                        <Button text="type = bright" size="M" mode="bright" />
                     </div>
                 </div>
             </div>

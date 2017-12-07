@@ -1,0 +1,19 @@
+.Button_mode_light {
+    border-radius: 4px;
+    background-color: rgba(232, 232, 232, 0.77);
+    border-color: rgba(232, 232, 232, 0.77);
+}
+
+.Button_mode_light:hover {
+    background-color: rgb(232, 232, 232);
+    border-color: rgb(232, 232, 232);
+}
+
+.Button_mode_light:focus {
+    box-shadow: 0 0 3px 1px rgba(158, 158, 158, 0.55);
+}
+
+.Button_mode_light:active {
+    background-color: rgb(232, 232, 232);
+    border-color: rgb(232, 232, 232);
+}

@@ -1,0 +1,22 @@
+.Button_mode_action {
+    border-radius: 4px;
+    background-color: #ffe200;
+    border-color: #ffe200;
+}
+
+.Button_mode_action.Button_state_hover {
+    background: #f7ca15;
+    border-color: #f7ca15;
+}
+
+.Button_mode_action.Button_state_focus {
+    background: #f7ca15;
+    border-color: #f7ca15;
+    box-shadow: 0 0 3px 1px rgba(47, 229, 191, 0.5);
+}
+
+.Button_mode_action.Button_state_active {
+    background: #f1c30a;
+    border-color: #f1c30a;
+    transform: scale(0.95);
+}

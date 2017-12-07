@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "babel-jest": "^20.0.3",
-    "bem-react-core": "0.4.2",
+    "bem-react-core": "^0.5.0-beta",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
@@ -83,8 +83,5 @@
     "webpack": "^3.10.0",
     "webpack-bem-loader": "^0.5.1",
     "webpack-dev-server": "^2.9.4"
-  },
-  "files": [
-    ".bemrc"
-  ]
+  }
 }

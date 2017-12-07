@@ -1,22 +1,21 @@
 import React from 'react';
 import { decl } from 'bem-react-core';
 import PropTypes from 'prop-types';
-import ButtonText from 'e:Text';
 
-import './button.css';
+import ButtonText from 'e:Text';
 
 export default decl({
     block: 'Button',
 
     tag: 'button',
 
-    // mods({ type, size, state }) {
-    //     return {
-    //         type,
-    //         size,
-    //         state
-    //     }
-    // },
+    mods({ mode, size, state }) {
+        return {
+            mode,
+            size,
+            state,
+        };
+    },
 
     attrs({ onClick }) {
         return {
@@ -26,6 +25,7 @@ export default decl({
     },
 
     content({ text }) {
+        console.log('content');
         return (
             <ButtonText>{text}</ButtonText>
         );
@@ -33,14 +33,14 @@ export default decl({
 }, {
     propTypes: {
         text: PropTypes.string,
-        type: PropTypes.string,
+        mode: PropTypes.string,
         size: PropTypes.string,
         state: PropTypes.string,
         onClick: PropTypes.func,
     },
     defaultProps: {
         text: 'Кнопка',
-        type: 'default',
+        mode: 'default',
         size: 'S',
         state: 'normal',
         onClick: () => false,
@@ -52,22 +52,3 @@ export default decl({
 //         <span className="button__label">{text}</span>
 //     </Button>
 // );
-//
-//
-// Button.propTypes = {
-//     text: PropTypes.string,
-//     type: PropTypes.string,
-//     size: PropTypes.string,
-//     state: PropTypes.string,
-//     onClick: PropTypes.func,
-// };
-//
-// Button.defaultProps = {
-//     text: 'Кнопка',
-//     type: 'default',
-//     size: 'S',
-//     state: 'normal',
-//     onClick: () => false,
-// };
-//
-// export default Button;

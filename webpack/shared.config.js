@@ -17,8 +17,7 @@ const config = {
                     loader: 'webpack-bem-loader',
                     options: {
                         levels: {
-                            '../app/blocks': {
-                                default: true,
+                            './app/blocks': {
                                 scheme: 'nested',
                                 naming: 'react',
                             },

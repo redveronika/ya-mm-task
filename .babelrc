@@ -1,6 +1,6 @@
 {
   "presets": ["es2015", "react"],
-  "plugins": [["bem-import", { "techs": ["js"] }], "transform-object-rest-spread"],
+  "plugins": ["bem-import", "transform-object-rest-spread"],
   "env": {
     "test": {
       "presets": ["es2015", "react"]
