@@ -1,4 +1,4 @@
-## Задание разработчика интерфейсов в команду Яндекс.Картинок, Яндекс.Видео.
+## Задание разработчика интерфейсов в команду Яндекс.Картинок, Яндекс.Видео. [![Build Status](https://travis-ci.org/redveronika/ya-mm-task.svg?branch=dev "Build Status")](https://travis-ci.org/redveronika/ya-mm-task)
 
 Само задание: https://github.com/sbmaxx/yandex-mm-task
 
