@@ -8,6 +8,6 @@ deploy:
   github_token: $GITHUB_TOKEN
   on:
     branch: dev
-script
+script:
 - npm run jest
 - npm run start:prod
