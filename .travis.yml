@@ -9,5 +9,5 @@ deploy:
   on:
     branch: dev
 script:
-  - npm run jest
-  - npm run start:prod
+- npm run jest
+- npm run start:prod
