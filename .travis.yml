@@ -1,8 +1,13 @@
 language: node_js
 node_js:
     - 8.9.1
-addons:
-  sauce_connect: true
-script:
-  - npm run jest
-  - npm run gemini-sauce
+deploy:
+  provider: pages
+  local_dir: dist
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: dev
+script
+- npm run jest
+- npm run start:prod

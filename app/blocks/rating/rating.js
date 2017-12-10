@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+/* eslint-disable import/extensions, import/no-unresolved */
+import Icon from 'b:Icon m:type=star';
+
 import { setSessionTime } from '../../reducers/tabs.reducer';
 import { setRatingScore } from '../../reducers/rating.reducer';
-import { Icon } from '../../blocks';
 
 import './rating.css';
 
@@ -25,7 +27,7 @@ class Rating extends Component {
         return (
             <span className="rating__item" key={i} onClick={() => this.setRating(i)}>
                 <Icon
-                    name="star"
+                    type="star"
                     color={i < score ? activeColor : inactiveColor}
                     width="30"
                     height="30"

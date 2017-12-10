@@ -12,8 +12,19 @@ const config = {
         rules: [
             {
                 test: /\.js$/,
-                include: path.resolve(__dirname, '../app'),
-                loader: 'babel-loader',
+                // include: path.resolve(__dirname, '../app'),
+                use: [{
+                    loader: 'webpack-bem-loader',
+                    options: {
+                        levels: {
+                            './app/blocks': {
+                                scheme: 'nested',
+                                naming: 'react',
+                            },
+                        },
+                        techs: ['js', 'css'],
+                    },
+                }, 'babel-loader'],
             },
             {
                 test: /\.html$/,
