@@ -2,13 +2,13 @@
   "name": "ya-mm-task",
   "author": "Veronika Voronova",
   "scripts": {
-    "start:dev": "webpack-dev-server",
+    "start:dev": "webpack-dev-server --progress --watch",
     "start:prod": "NODE_ENV=production webpack -p",
     "jest": "jest --no-cache",
     "gemini-sauce": "gemini_grid_url=\"http://ondemand.saucelabs.com/wd/hub\" gemini test -s sauce",
     "gemini-sauce-update": "gemini_grid_url=\"http://ondemand.saucelabs.com/wd/hub\" gemini update",
     "test": "npm-run-all --parallel jest gemini-sauce",
-    "lint": "eslint --ext .jsx,.js app/ -c .eslintrc",
+    "lint": "eslint --ext .js app/ -c .eslintrc",
     "validate": "npm-run-all --parallel lint jest",
     "precommit": "npm run validate"
   },
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "babel-jest": "^20.0.3",
-    "imagemin-webpack-plugin": "^1.5.2",
+    "bem-react-core": "^0.5.0-beta",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
@@ -50,6 +50,7 @@
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
+    "babel-plugin-bem-import": "^1.5.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
@@ -62,7 +63,7 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.4.0",
-    "favicons-webpack-plugin": "0.0.7",
+    "favicons-webpack-plugin": "^0.0.7",
     "file-loader": "^1.1.5",
     "gemini": "^5.0.0-alpha.10",
     "gemini-sauce": "^1.0.1",
@@ -70,6 +71,7 @@
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
     "husky": "^0.14.3",
+    "imagemin-webpack-plugin": "^1.5.2",
     "jest": "^20.0.4",
     "jest-enzyme": "^4.0.1",
     "npm-run-all": "^4.1.2",
@@ -78,7 +80,8 @@
     "react-test-renderer": "^16.2.0",
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^0.4.6",
-    "webpack": "^3.8.1",
+    "webpack": "^3.10.0",
+    "webpack-bem-loader": "^0.5.1",
     "webpack-dev-server": "^2.9.4"
   }
 }

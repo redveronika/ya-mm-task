@@ -9,8 +9,6 @@ export { default as Console } from './console/console';
 export { default as SelectTab } from './select-tab/select-tab';
 export { default as ShowStat } from './show-stat/show-stat';
 export { default as SwapTabs } from './swap-tabs/swap-tabs';
-export { default as Icon } from './icon/icon';
 export { default as ManageRating } from './manage-rating/manage-rating';
 export { default as ManageProgress } from './manage-progress/manage-progress';
-export { default as Button } from './button/button';
 export { default as Help } from './help/help';

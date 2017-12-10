@@ -1,0 +1,19 @@
+.Button_mode_bright {
+    border-radius: 4px;
+    background-color: #2fe5bf;
+    border-color: #2fe5bf;
+}
+
+.Button_mode_bright:hover {
+    background-color: #11c29d;
+    border-color: #11c29d;
+}
+
+.Button_mode_bright:focus {
+    box-shadow: 0 0 3px 1px rgba(255, 226, 0, 0.55);
+}
+
+.Button_mode_bright:active {
+    background-color: #11c29d;
+    border-color: #11c29d;
+}
