@@ -5,8 +5,8 @@ gemini.suite('button', (suite) => {
     const buttonsToTest = ['.button--default', '.button--light', '.button--bright'];
 
     buttonsToTest.forEach((button) => {
-        gemini.suite(button.replace('.', ''), (element) => {
-            element
+        gemini.suite(button.replace('.', ''), (suite) => {
+            suite
                 .setCaptureElements(button)
                 .before((actions, find) => {
                     this.button = find(button);
